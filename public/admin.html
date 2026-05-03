@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>Admin Dashboard</title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/css/admin.css">
+
+  <!-- ICONS -->
+  <link rel="icon" href="/img/logo/32.png" sizes="32x32">
+  <link rel="icon" href="/img/logo/64.png" sizes="64x64">
+  <link rel="apple-touch-icon" href="/img/logo/180.png">
+
+  <!-- SWIPER -->
+  <link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" as="style">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+  <!-- SECURITY -->
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    style-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com 'unsafe-inline';
+    font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:;
+    script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';
+    img-src 'self' data:;
+    connect-src 'self' https://cdn.jsdelivr.net;
+  ">
+</head>
+
+<body>
+
+<!-- ===== HEADER ===== -->
+<header class="top_header">
+  <div class="container header_inner">
+
+    <!-- LOGO -->
+    <a href="index.html" class="logo">
+      <picture>
+        <source srcset="img/logo/logo-sm.webp" media="(max-width: 768px)">
+        <source srcset="img/logo/logo-lg.webp">
+        <img src="img/logo/logo-lg.webp" alt="Rovix Home Logo" class="logo_img">
+      </picture>
+    </a>
+
+    <!-- ACTIONS -->
+    <div class="header_actions">
+
+      <!-- SEARCH -->
+      <form class="search_box" onsubmit="return false;">
+        <input type="text" id="searchInput" placeholder="ابحث عن منتج..." />
+        <button type="button" onclick="handleSearch()" aria-label="بحث">
+          <svg class="icon-stroke" viewBox="0 0 24 24">
+            <path 
+              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </button>
+      </form>
+
+      <!-- ACCOUNT -->
+      <a href="account.html" class="header_icon" title="حسابي">
+        <svg class="icon-fill" viewBox="0 0 24 24">
+          <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 
+          2.24-5 5 2.24 5 5 5zm0 2c-4.42 0-8 
+          2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"/>
+        </svg>
+      </a>
+
+    </div>
+  </div>
+</header>
+
+<!-- ===== PAGE WRAPPER 🔥 ===== -->
+<div class="page-wrapper">
+
+  <h1 class="page-title">Admin Dashboard</h1>
+
+  <!-- ===== STATS ===== -->
+  <div id="stats" class="stats-container"></div>
+
+  <!-- ===== TOP PRODUCTS ===== -->
+  <div id="topProducts" class="top-products"></div>
+
+  <!-- ===== ACTION BAR 🔥 ===== -->
+  <div class="action-bar">
+
+    <div class="nav-buttons">
+      <button onclick="loadProducts()" class="btn">📦 Products</button>
+      <button onclick="loadOrders()" class="btn">📋 Orders</button>
+    </div>
+
+    <div class="filters">
+      <select onchange="filterOrders(this.value)">
+        <option value="all">All</option>
+        <option value="pending">Pending</option>
+        <option value="shipped">Shipped</option>
+        <option value="delivered">Delivered</option>
+      </select>
+
+      <input class="input" placeholder="🔍 ابحث بالايميل..." oninput="searchOrders(this.value)">
+    </div>
+
+  </div>
+
+  <!-- ===== MAIN GRID 🔥 ===== -->
+  <div class="main-grid">
+
+    <!-- ===== CONTENT ===== -->
+    <div id="content" class="content"></div>
+
+    <!-- ===== ADD PRODUCT ===== -->
+    <div class="add-product">
+
+      <h2>➕ إضافة منتج</h2>
+
+  <div class="form-grid">
+
+  <input id="name" placeholder="اسم المنتج" class="input">
+
+  <input id="price" type="number" placeholder="السعر" class="input">
+  <input id="oldPrice" type="number" placeholder="السعر قبل" class="input">
+
+  <input id="rating" type="number" min="1" max="5" value="5" class="input">
+
+  <!-- نخلي دول صف كامل -->
+  <input id="description" placeholder="الوصف" class="input full">
+  <input id="dimensions" placeholder="المقاسات" class="input full">
+
+</div>
+
+<!-- ✅ flags فوق الصور -->
+
+  <label><input type="checkbox" id="bestSeller"> للمطبخ بالمتر</label>
+  <label><input type="checkbox" id="hasMeters"> الأكثر مبيعا</label>
+
+
+<!-- الصور -->
+<label>صورة الكرت (400×400)</label>
+<input type="file" id="image" class="input">
+
+<label>صورة صفحة المنتج (800×800)</label>
+<input type="file" id="imageWebp" class="input">
+
+      <!-- COLORS -->
+      <h3>🎨 الألوان</h3>
+      <div id="colorsContainer"></div>
+      <button type="button" onclick="addColor()" class="btn">+ لون</button>
+
+      <!-- MATERIALS -->
+      <h3>🪵 الخامات</h3>
+      <div id="materialsContainer"></div>
+      <button type="button" onclick="addMaterial()" class="btn">+ خامة</button>
+
+      <!-- ACTIONS -->
+      <div class="actions">
+        <button onclick="addProduct()" class="btn primary">إضافة المنتج</button>
+        <button onclick="loadUsers()" class="btn">👤 Users</button>
+        <button onclick="logout()" class="btn danger">🚪 تسجيل خروج</button>
+      </div>
+
+    </div>
+
+  </div>
+
+  <hr>
+
+</div> <!-- 🔥 قفلنا wrapper هنا -->
+
+<!-- TOAST -->
+<div id="toast" class="toast"></div>
+
+<!-- JS -->
+<script src="http://localhost:3000/socket.io/socket.io.js"></script>
+<script src="/js/api.js"></script>
+<script src="/js/admin.js"></script>
+
+<!-- SCRIPT -->
+<script>
+function addMaterial() {
+  const div = document.createElement("div");
+
+  div.innerHTML = `
+    <input placeholder="اسم الخامة (MDF)">
+    <input type="number" placeholder="السعر">
+    <button onclick="this.parentElement.remove()">حذف</button>
+  `;
+
+  document.getElementById("materialsContainer").appendChild(div);
+}
+</script>
+
+</body>
+</html>

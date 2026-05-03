@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>login</title>
+  <link rel="icon" href="/img/logo/32.png" sizes="32x32">
+<link rel="icon" href="/img/logo/64.png" sizes="64x64">
+<link rel="apple-touch-icon" href="/img/logo/180.png">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  style-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com 'unsafe-inline';
+  font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:;
+  script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';
+  img-src 'self' data:;
+  connect-src 'self' https://cdn.jsdelivr.net;
+">
+
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="css/auth.css">
+
+<body>
+
+<picture>
+  <source srcset="img/logo/logo-sm.webp" media="(max-width: 768px)">
+  <source srcset="img/logo/logo-lg.webp" type="image/webp">
+  <img src="img/logo/logo-lg.webp" alt="Rovix Home" class="auth_logo">
+</picture>
+
+<div class="auth_wrapper">
+
+  <div class="auth_box">
+    <!-- LOGIN -->
+    <div class="auth_section">
+      <div class="auth_header" onclick="toggleAuth('login')">
+        <h2>تسجيل الدخول</h2>
+        <span class="arrow" id="loginArrow">▼</span>
+      </div>
+
+      <p class="forgot_password" onclick="openForgot()">
+        نسيت كلمة المرور؟
+      </p>
+<div class="auth_content" id="loginBox">
+  <input id="loginEmail" type="email" placeholder="البريد الإلكتروني">
+
+  <div class="password_wrap">
+    <input id="loginPassword" type="password" placeholder="كلمة المرور">
+    <i class="fa-solid fa-eye-slash toggle_pass"
+       onclick="togglePassword('loginPassword', this)"></i>
+  </div>
+
+  <button onclick="login()">دخول</button>
+</div>
+
+<hr>
+
+<div class="auth_section">
+  <div class="auth_header" onclick="toggleAuth('register')">
+    <h2>إنشاء حساب جديد</h2>
+    <span class="arrow" id="registerArrow">▼</span>
+  </div>
+
+  <div class="auth_content" id="registerBox">
+    <input id="regFirstName" placeholder="الاسم الأول">
+    <input id="regLastName" placeholder="اسم العائلة">
+    <input id="regEmail" type="email" placeholder="البريد الإلكتروني">
+
+    <div class="password_wrap">
+      <input id="regPassword" type="password" placeholder="كلمة المرور">
+      <i class="fa-solid fa-eye-slash toggle_pass"
+         onclick="togglePassword('regPassword', this)"></i>
+    </div>
+
+    <button onclick="register()">إنشاء حساب</button>
+  </div>
+</div>
+
+    <p id="msg"></p>
+
+  </div>
+
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+
+
+</body>
+</html>

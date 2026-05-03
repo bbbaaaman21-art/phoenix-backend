@@ -1,0 +1,14 @@
+const mongoose = require("mongoose");
+
+const settingsSchema = new mongoose.Schema({
+  shippingPrice: {
+    type: Number,
+    default: 0
+  },
+  freeShipping: {
+    type: Boolean,
+    default: false
+  }
+});
+
+module.exports = mongoose.model("Settings", settingsSchema);

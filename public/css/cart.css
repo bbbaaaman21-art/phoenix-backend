@@ -1,0 +1,149 @@
+/* ================= CART PAGE ================= */
+
+.cart_section {
+  margin-top: 15px;
+  display: grid;
+  grid-template-columns: minmax(0, 2.5fr) minmax(0, 1fr);
+  gap: 22px;
+}
+
+/* ===== TABLE ===== */
+
+.cart_table_wrap {
+  overflow-x: auto;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+}
+
+.cart_table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+/* cells */
+.cart_table th,
+.cart_table td {
+  padding: 12px 10px;
+  text-align: center;
+  border-bottom: 1px solid #eee; /* 🔥 بدل اللون البرتقالي */
+  font-size: 0.95rem; /* 🔥 كان كبير */
+}
+
+.cart_table th {
+  background: #f7f7f7;
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* صورة المنتج */
+.cart_item_img img {
+  width: 65px;
+  height: 65px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+/* ===== SUMMARY ===== */
+
+.cart_summary {
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.cart_summary p {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+/* ===== BUTTONS ===== */
+
+.cart_summary_actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+/* توحيد الأزرار */
+.cart_summary_actions .btn,
+.cart_summary_actions button {
+
+  height: 48px;
+  min-width: 140px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 18px;
+  border-radius: 999px;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+
+  color: #fff;
+  background: linear-gradient(135deg, var(--main-color));
+
+  transition: 0.25s ease;
+  box-shadow: 0 8px 18px rgba(0,0,0,0.15);
+}
+
+/* hover */
+.cart_summary_actions .btn:hover,
+.cart_summary_actions button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 26px rgba(0,0,0,0.2);
+}
+
+/* active */
+.cart_summary_actions .btn:active,
+.cart_summary_actions button:active {
+  transform: scale(0.96);
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+
+  /* layout */
+  .cart_section {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  /* table */
+  .cart_table th,
+  .cart_table td {
+    font-size: 0.8rem;
+    padding: 8px;
+  }
+
+  .cart_item_img img {
+    width: 55px;
+    height: 55px;
+  }
+
+  /* buttons */
+  .cart_summary_actions {
+    flex-direction: column;
+  }
+
+  .cart_summary_actions .btn,
+  .cart_summary_actions button {
+    width: 100%;
+    height: 44px;
+    font-size: 13px;
+  }
+
+}

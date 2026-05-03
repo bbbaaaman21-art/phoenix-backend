@@ -1,0 +1,80 @@
+/*****************************************************
+  GLOBAL MODAL (Confirm / Alert / Delete)
+*****************************************************/
+
+.modal_overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+  backdrop-filter: blur(2px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 99999;
+  transition:.25s;
+}
+
+.hidden {
+  display: none;
+}
+
+.modal_box {
+  background: #fff;
+  padding: 22px;
+  width: min(95%, 380px);
+  border-radius: 16px;
+  box-shadow: 0 12px 32px rgba(0,0,0,0.25);
+  animation: pop .25s ease;
+  text-align: center;
+}
+
+@keyframes pop {
+  0% {transform: scale(.85); opacity:.4;}
+  100% {transform: scale(1); opacity:1;}
+}
+
+.modal_box h3 {
+  margin-bottom: 8px;
+  font-size: 1.1rem;
+}
+
+.modal_box p {
+  font-size: 0.9rem;
+  color: #555;
+  margin-bottom: 18px;
+}
+
+/* Buttons */
+.modal_actions {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.btn_cancel,
+.btn_confirm {
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  border: none;
+  cursor: pointer;
+}
+
+.btn_cancel {
+  background: #ccc;
+  color: #000;
+}
+
+.btn_cancel:hover {
+  background: #bdbdbd;
+}
+
+.btn_confirm {
+  background: linear-gradient(135deg, var(--main-color), var(--accent));
+  color: #fff;
+}
+
+.btn_confirm:hover {
+  opacity: .85;
+}
+

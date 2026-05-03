@@ -1,0 +1,2 @@
+Mongo connected
+Products inserted ✅

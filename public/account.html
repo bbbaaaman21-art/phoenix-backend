@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rovix Account</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <link rel="icon" href="/img/logo/32.png" sizes="32x32">
+<link rel="icon" href="/img/logo/64.png" sizes="64x64">
+<link rel="apple-touch-icon" href="/img/logo/180.png">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+  <!-- Font Awesome ( ) -->
+ <meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  style-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com 'unsafe-inline';
+  font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:;
+  script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';
+  img-src 'self' data:;
+  connect-src 'self' https://cdn.jsdelivr.net;
+">
+
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/header.css">
+  <link rel="stylesheet" href="css/footer.css">
+   <link rel="stylesheet" href="css/account.css">
+ 
+</head>
+<body class="page-account">
+
+<header class="top_header">
+  <div class="container header_inner">
+
+      <!-- LOGO -->
+    <a href="index.html" class="logo">
+      <picture>
+        <source srcset="img/logo/logo-sm.webp" media="(max-width: 768px)">
+        <source srcset="img/logo/logo-lg.webp">
+        <img src="img/logo/logo-lg.webp" alt="Rovix Home Logo" class="logo_img">
+      </picture>
+    </a>
+
+    <!-- ACTIONS -->
+    <div class="header_actions">
+
+      <!-- SEARCH -->
+      <form class="search_box" onsubmit="return false;">
+        <input type="text" id="searchInput" placeholder="ابحث عن منتج..." />
+        <button type="button" onclick="handleSearch()" aria-label="بحث">
+
+          <svg class="icon-stroke" viewBox="0 0 24 24">
+  <path 
+    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
+
+        </button>
+      </form>
+
+      <!-- WISHLIST -->
+      <a href="wishlist.html" class="header_icon" title="المفضلة">
+
+        <!-- HEART ICON -->
+        <svg class="icon-fill" viewBox="0 0 24 24">
+  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+  2 6 4 4 6.5 4c1.74 0 3.41 1.01 4.22 2.44C11.09 5.01 
+  12.76 4 14.5 4 17 4 19 6 19 8.5c0 3.78-3.4 
+  6.86-8.55 11.54z"/>
+</svg>
+
+        <span id="wishlistCount" class="icon_count">0</span>
+      </a>
+
+      <!-- ACCOUNT -->
+      <a href="account.html" class="header_icon" title="حسابي">
+
+        <!-- USER ICON -->
+       <svg class="icon-fill" viewBox="0 0 24 24">
+  <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 
+  2.24-5 5 2.24 5 5 5zm0 2c-4.42 0-8 
+  2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"/>
+</svg>
+
+      </a>
+
+      <!-- CART -->
+      <a href="cart.html" class="cart_icon" aria-label="السلة">
+
+        <!-- CART ICON -->
+    <svg class="icon-fill" viewBox="0 0 24 24">
+  <path d="M7 4H5L4 6h2l3.6 7.59-1.35 2.44A2 2 0 009 19h10v-2H9.42a.25.25 0 01-.23-.37L10.1 15h7.45a2 2 0 001.79-1.11l3.58-6.49A1 1 0 0022 6H6.21L5.27 4z"/>
+</svg>
+        <span id="cartCount" class="cart_count">0</span>
+      </a>
+
+    </div>
+  </div>
+</header>
+
+<!-- ========== CATEGORY BAR ========== -->
+<nav class="category_bar">
+  <div class="container category_inner">
+    <a href="index.html" class="active">الرئيسية</a>
+    <a href="category.html?cat=all">كل المنتجات</a>
+    <a href="category.html?cat=dressing">دريسنج</a>
+    <a href="category.html?cat=hairdo">تسريحة</a>
+    <a href="category.html?cat=komod">كومود</a>
+    <a href="category.html?cat=buffet">بوفيه</a>
+    <a href="category.html?cat=units_tv">وحدات تليفزيون</a>
+    <a href="category.html?cat=units_table">ترابيزة + وحدات</a>
+    <a href="category.html?cat=tables">ترابيزات</a>
+    <a href="category.html?cat=units_ki">وحدات مطبخ</a>
+    <a href="category.html?cat=coffee_corner">كوفي كورنر</a>
+    <a href="category.html?cat=books">مكتبة</a>
+    <a href="category.html?cat=office">مكتب</a>
+    <a href="category.html?cat=units_sh">وحدات أحذية</a>
+  </div>
+</nav>
+
+    
+
+
+<div class="account_layout">
+
+  <!-- Sidebar -->
+  <aside class="account_sidebar">
+    <div class="user_box">
+      <div class="avatar" id="avatarLetterOrImg"></div>
+
+      <div class="user_meta">
+        <strong id="userName"></strong>
+        <small id="userEmail"></small>
+      </div>
+    </div>
+
+    <nav class="menu">
+      <button class="menu_item active" onclick="openTab(event,'dashboard')">
+        <i class="fa-solid fa-gauge"></i> نظرة عامة
+      </button>
+      <button class="menu_item" onclick="openTab(event,'orders')">
+        <i class="fa-solid fa-box"></i> الطلبات
+      </button>
+      <button class="menu_item" onclick="openTab(event,'notifications')">
+  <i class="fa-solid fa-bell"></i>
+  الإشعارات
+  
+  <span id="sideNotifCount" class="side_badge hidden">0</span>
+</button>
+
+
+      <button class="menu_item" onclick="openTab(event,'addresses')">
+        <i class="fa-solid fa-location-dot"></i> العناوين
+      </button>
+    
+<button class="menu_item" onclick="openTab(event,'settings')">
+  <i class="fa-solid fa-gear"></i> الإعدادات
+</button>
+      <button class="menu_item logout" onclick="logout()">
+        <i class="fa-solid fa-right-from-bracket"></i> تسجيل خروج
+      </button>
+    </nav>
+  </aside>
+
+  <!-- Main -->
+  <main class="account_main">
+
+    <!-- Header -->
+    <header class="account_header">
+      <h2>مرحبًا 👋</h2>
+      <p>إدارة حسابك وطلباتك من مكان واحد</p>
+      
+      <div class="notif_icon" onclick="toggleNotifications()">
+  <i class="fa-solid fa-bell"></i>
+  <span id="notifCount" class="notif_badge hidden">0</span>
+</div>
+
+    </header>
+
+    <!-- Dashboard -->
+    <section id="dashboard" class="tab_content active">
+      <div class="grid_3">
+        <div class="card stat">
+          <i class="fa-solid fa-box"></i>
+          <div>
+            <strong>طلباتك</strong>
+            <span>تابع آخر الطلبات وحالاتها</span>
+          </div>
+        </div>
+        <div class="card stat">
+          <i class="fa-solid fa-location-dot"></i>
+          <div>
+            <strong>العناوين</strong>
+            <span>إدارة عناوين الشحن</span>
+          </div>
+        </div>
+        <div class="card stat">
+          <i class="fa-solid fa-shield-halved"></i>
+          <div>
+            <strong>الأمان</strong>
+            <span>بياناتك في أمان</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>آخر الطلبات</h3>
+        <!-- نعيد استخدام نفس container -->
+        <div id="ordersPreview" class="orders_preview">
+          اضغط على “الطلبات” لعرض التفاصيل
+        </div>
+      </div>
+    </section>
+
+    <!-- Orders -->
+    <section id="orders" class="tab_content">
+      <div class="card">
+        <h3>طلباتي</h3>
+        <div id="ordersList">جاري التحميل…</div>
+      </div>
+    </section>
+
+    <!-- Addresses -->
+    <section id="addresses" class="tab_content">
+      <div class="card">
+        <div class="card_head">
+          <h3>عناويني</h3>
+          <button class="btn_primary" onclick="toggleAddressForm()">
+            <i class="fa-solid fa-plus"></i> إضافة عنوان
+          </button>
+        </div>
+
+        <div id="addressList">جاري التحميل…</div>
+
+        <div id="addressForm" class="address_form hidden">
+            <input type="hidden" id="addrId">
+
+          <input id="addrLabel" placeholder=" المحافظة*">
+          <input id="addrCity" placeholder="المدينة*">
+          <input id="addrStreet" placeholder="الشارع*">
+          <input id="addrDetails" placeholder="تفاصيل إضافية">
+          <button class="btn_primary" onclick="saveAddress()">حفظ العنوان</button>
+
+        </div>
+        <div id="notifBox" class="notif_box hidden">
+  <h4>الإشعارات</h4>
+  <div id="notifList">جاري التحميل…</div>
+</div>
+
+      </div>
+    </section>
+
+
+<section id="settings" class="tab_content">
+  <div class="card">
+    <h3>الإعدادات</h3>
+
+    <!-- تعديل البيانات الأساسية -->
+    <form class="address_form" onsubmit="event.preventDefault(); updateProfile();">
+      <input id="setFirst" placeholder="الاسم الأول">
+      <input id="setLast" placeholder="اسم العائلة">
+      <input id="setEmail" placeholder="البريد الإلكتروني">
+      <button type="submit" class="btn_primary">حفظ البيانات</button>
+    </form>
+
+    <hr style="margin:18px 0">
+
+    <!-- تغيير الصورة -->
+    <form class="address_form" onsubmit="event.preventDefault(); uploadAvatar();">
+      <input type="file" id="setAvatar" accept="image/*">
+      <button type="submit" class="btn_primary">تحديث الصورة</button>
+    
+      <button type="button" class="btn_primary" style="background:#c0392b" onclick="deleteAvatar()">
+        حذف الصورة الحالية
+      </button>
+    </form>
+
+    <hr style="margin:18px 0">
+
+    <!-- تغيير كلمة المرور -->
+    <form class="address_form" onsubmit="event.preventDefault(); changePasswordFromSettings();">
+      <input type="password" id="oldPass2" placeholder="كلمة المرور الحالية">
+      <input type="password" id="newPass2" placeholder="كلمة المرور الجديدة">
+      <input type="password" id="confirmPass2" placeholder="تأكيد كلمة المرور">
+      <button type="submit" class="btn_primary">تغيير كلمة المرور</button>
+    </form>
+
+    <p id="settingsMsg"></p>
+  </div>
+</section>
+
+<section id="notifications" class="tab_content">
+  <div class="card">
+    <h3>الإشعارات</h3>
+    <div id="notifListFull">جاري التحميل…</div>
+  </div>
+</section>
+
+
+  </main>
+</div>
+
+<footer class="site_footer">
+  <div class="container footer_inner">
+
+    <!-- About / Logo -->
+    <div>
+      <h3 class="footer_logo">Rovix Home</h3>
+      <p>أفضل جودة وأفضل سعر – أثاث راقي لكل بيت.</p>
+
+      <div class="footer_social">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="Whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h4>روابط مهمة</h4>
+      <a href="index.html">الرئيسية</a>
+      <a href="category.html?cat=all">تسوق الآن</a>
+      <a href="account.html">حسابي</a>
+      <a href="wishlist.html">المفضلة</a>
+      <a href="cart.html">السلة</a>
+    </div>
+
+    <!-- Support -->
+    <div>
+      <h4>خدمة العملاء</h4>
+      <a href="#">تواصل معنا</a>
+      <a href="#">سياسة الاستبدال</a>
+      <a href="#">سياسة الخصوصية</a>
+      <a href="#">الشحن والتوصيل</a>
+    </div>
+
+  </div>
+
+  <div class="footer_copy">
+    © 2026 Rovix Home — جميع الحقوق محفوظة
+  </div>
+</footer>
+
+
+<!-- Scripts (نفس ترتيبك الآمن) -->
+<script src="js/ui-toast.js"></script>
+<script src="js/ui-modal.js"></script>
+<script src="js/core.js"></script>
+<script src="js/wishlist.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/api.js"></script>
+<script src="js/auth.js"></script>
+<script src="js/account.js"></script>
+<div id="appModal" class="modal_overlay hidden">
+  <div class="modal_box">
+    <h3 id="modalTitle"></h3>
+    <p id="modalMessage"></p>
+
+    <div class="modal_actions">
+      <button id="modalCancel">إلغاء</button>
+      <button id="modalConfirm">تأكيد</button>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

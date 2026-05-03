@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+ 
+  
+<head>
+  <meta charset="UTF-8">
+  <title>Invoice</title>
+     <!-- ICONS -->
+  <link rel="icon" href="/img/logo/32.png?v=2" sizes="32x32">
+  <link rel="icon" href="/img/logo/64.png?v=2" sizes="64x64">
+  <link rel="apple-touch-icon" href="/img/logo/180.png?v=2">
+  <style>
+    body {
+      direction: rtl;
+      text-align: right;
+      font-family: Arial, sans-serif;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      direction: rtl;
+      margin-top: 20px;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: right;
+    }
+
+    .total {
+      margin-top: 20px;
+      font-weight: bold;
+      text-align: right;
+    }
+
+    header, .box {
+      margin-bottom: 20px;
+    }
+
+    .box {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .right, .left {
+      width: 48%;
+    }
+    .ltr {
+  direction: ltr;
+  unicode-bidi: embed;
+}
+  </style>
+  <style>
+/* اللوجو */
+.logo {
+  width: 120px !important;
+  height: auto !important;
+}
+
+/* أيقونات الاتصال */
+.contact img {
+  width: 20px !important;
+  height: 20px !important;
+  object-fit: contain !important;
+}
+
+/* ترتيب الكونتاكت */
+.contact div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 6px;
+}
+
+/* حماية عامة */
+img {
+  max-width: 120px !important;
+  height: auto !important;
+}
+/* ===== BASE ===== */
+body {
+  direction: rtl;
+  font-family: Arial, sans-serif;
+  text-align: right;
+  background: #f5f5f5;
+  padding: 20px;
+}
+
+/* ===== INVOICE ===== */
+.invoice {
+  background: #fff;
+  max-width: 800px;
+  margin: auto;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,.08);
+}
+
+/* ===== HEADER ===== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 10px;
+}
+
+.logo {
+  width: 120px;
+  height: auto;
+}
+
+/* ===== CONTACT ===== */
+.contact div {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+/* ===== INFO ===== */
+.box {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.right, .left {
+  width: 48%;
+}
+
+.ltr {
+  direction: ltr;
+  unicode-bidi: embed;
+}
+
+/* ===== TABLE ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 25px;
+}
+
+th {
+  background: #111;
+  color: #fff;
+  padding: 10px;
+}
+
+td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+/* ===== TOTAL ===== */
+.total {
+  margin-top: 20px;
+  text-align: left;
+  font-size: 15px;
+}
+
+.total strong {
+  font-size: 18px;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  text-align: center;
+  margin-top: 20px;
+}
+
+/* ===== PRINT BUTTON ===== */
+.print-btn {
+  margin-top: 20px;
+  padding: 10px 20px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* ===== PRINT MODE ===== */
+@media print {
+  body {
+    background: #fff;
+    padding: 0;
+  }
+
+  .invoice {
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .print-btn {
+    display: none;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="invoice">
+
+  <header>
+   <img src="{{LOGO}}">
+
+    <div class="contact">
+      <div>
+       <img src="{{PHONE_ICON}}">
+        <span>01006675938</span>
+      </div>
+      <div>
+        <img src="{{WHATSAPP_ICON}}">
+        <span>01275444579</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="box">
+
+    <div class="right"> 
+      <p>اسم العميل : <span class="ltr">{{NAME}}</span></p>
+<p>الهاتف : <span class="ltr">{{PHONE}}</span></p>
+<p>العنوان : <span class="ltr">{{ADDRESS}}</span></p>
+</div>
+<div class="left">
+<p>رقم الفاتورة : <span class="ltr">INV-{{ORDER_ID}}</span></p>
+<p>التاريخ : <span class="ltr">{{DATE}}</span></p>
+<p>العملة : EGP</p>
+    </div>
+
+  </section>
+
+  <table>
+    <thead>
+      <tr>
+        <th>المنتج</th>
+        <th>الوصف</th>
+        <th>الكمية</th>
+        <th>السعر</th>
+        <th>الإجمالي</th>
+      </tr>
+    </thead>
+
+  <tbody>
+  {{ITEMS}}
+</tbody>
+
+  </table>
+
+  <div class="total">
+  <p>الشحن : {{SHIPPING}} EGP</p>
+  <p><strong>الإجمالي النهائي : {{TOTAL}} EGP</strong></p>
+</div>
+
+  <footer>
+ <img src="{{STAMP}}">
+  </footer>
+
+</div>
+<script>
+  window.onload = () => {
+    setTimeout(() => {
+      window.print();
+    }, 300);
+  };
+</script>
+</body>
+</html>

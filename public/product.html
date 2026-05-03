@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="أفضل منتجات الأثاث">
+  <title>Phoenix Furniture | تفاصيل المنتج</title>
+
+<link rel="icon" href="/img/logo/32.png" sizes="32x32">
+<link rel="icon" href="/img/logo/64.png" sizes="64x64">
+<link rel="apple-touch-icon" href="/img/logo/180.png">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+ <meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  style-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com 'unsafe-inline';
+  font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:;
+  script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';
+  img-src 'self' data:;
+  connect-src 'self' https://cdn.jsdelivr.net;
+">   
+
+  <!-- Main CSS -->
+   <link rel="stylesheet" href="css/product.css">
+   <link rel="stylesheet" href="css/header.css">
+   <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <link rel="stylesheet" href="css/toast.css">
+  
+
+</head>
+<body class="page-product">
+
+<header class="top_header">
+  <div class="container header_inner">
+
+    <!-- LOGO -->
+    <a href="index.html" class="logo">
+ <picture>
+  <!-- موبايل -->
+  <source srcset="img/logo/logo-sm.webp" media="(max-width: 768px)">
+
+  <!-- ديسكتوب -->
+  <source srcset="img/logo/logo-lg.webp">
+
+  <img 
+    src="img/logo/logo-lg.webp"
+    alt="Phoenix Furniture"
+    class="logo_img"
+    width="200"
+    height="60"
+    loading="eager"
+  >
+</picture>
+</a>
+
+
+    <!-- ACTIONS -->
+    <div class="header_actions">
+
+      <!-- SEARCH -->
+      <form class="search_box" onsubmit="return false;">
+        <input type="text" id="searchInput" placeholder="ابحث عن منتج..." />
+        <button type="button" onclick="handleSearch()" aria-label="بحث">
+
+          <svg class="icon-stroke" viewBox="0 0 24 24">
+  <path 
+    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
+
+        </button>
+      </form>
+
+      <!-- WISHLIST -->
+      <a href="wishlist.html" class="header_icon" title="المفضلة">
+
+        <!-- HEART ICON -->
+        <svg class="icon-fill" viewBox="0 0 24 24">
+  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+  2 6 4 4 6.5 4c1.74 0 3.41 1.01 4.22 2.44C11.09 5.01 
+  12.76 4 14.5 4 17 4 19 6 19 8.5c0 3.78-3.4 
+  6.86-8.55 11.54z"/>
+</svg>
+
+        <span id="wishlistCount" class="icon_count">0</span>
+      </a>
+
+      <!-- ACCOUNT -->
+      <a href="account.html" class="header_icon" title="حسابي">
+
+        <!-- USER ICON -->
+       <svg class="icon-fill" viewBox="0 0 24 24">
+  <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 
+  2.24-5 5 2.24 5 5 5zm0 2c-4.42 0-8 
+  2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"/>
+</svg>
+
+      </a>
+
+      <!-- CART -->
+      <a href="cart.html" class="cart_icon" aria-label="السلة">
+
+        <!-- CART ICON -->
+    <svg class="icon-fill" viewBox="0 0 24 24">
+  <path d="M7 4H5L4 6h2l3.6 7.59-1.35 2.44A2 2 0 009 19h10v-2H9.42a.25.25 0 01-.23-.37L10.1 15h7.45a2 2 0 001.79-1.11l3.58-6.49A1 1 0 0022 6H6.21L5.27 4z"/>
+</svg>
+        <span id="cartCount" class="cart_count">0</span>
+      </a>
+
+    </div>
+  </div>
+</header>
+
+
+<!-- ========== CATEGORY BAR ========== -->
+<nav class="category_bar">
+  <div class="container category_inner">
+    <a href="index.html" class="active">الرئيسية</a>
+    <a href="category.html?cat=all">كل المنتجات</a>
+    <a href="category.html?cat=dressing">دريسنج</a>
+    <a href="category.html?cat=hairdo">تسريحة</a>
+    <a href="category.html?cat=komod">كومود</a>
+    <a href="category.html?cat=buffet">بوفيه</a>
+    <a href="category.html?cat=units_tv">وحدات تليفزيون</a>
+    <a href="category.html?cat=units_table">ترابيزة + وحدات</a>
+    <a href="category.html?cat=tables">ترابيزات</a>
+    <a href="category.html?cat=units_ki">وحدات مطبخ</a>
+    <a href="category.html?cat=coffee_corner">كوفي كورنر</a>
+    <a href="category.html?cat=books">مكتبة</a>
+    <a href="category.html?cat=office">مكتب</a>
+    <a href="category.html?cat=units_sh">وحدات أحذية</a>
+  </div>
+</nav>
+
+
+<main class="page_main">
+  <div class="container product_page_layout">
+
+    <!-- سايدبار: المنتجات التي شوهدت مؤخرًا -->
+    <aside class="product_sidebar">
+      <h3 class="sidebar_title">المنتجات التي شوهدت مؤخرًا</h3>
+      <div id="recentList" class="recent_list">
+        <!-- يتم الملء من JS -->
+      </div>
+    </aside>
+
+    <!-- المحتوى الرئيسي للمنتج -->
+    <section class="product_main">
+
+      <!-- مسار التنقل -->
+      <nav class="breadcrumb">
+        <a href="index.html">الرئيسية</a>
+        <span>/</span>
+        <a href="category.html?cat=all">المنتجات</a>
+        <span>/</span>
+        <span id="breadcrumbProduct">تفاصيل المنتج</span>
+      </nav>
+
+      <!-- أعلى الصفحة: صورة + بيانات -->
+      <div class="product_top">
+        <!-- صور المنتج -->
+        <div class="product_gallery">
+          <div class="product_main_img">
+            <img id="productImage" src="" alt="منتج">
+          </div>
+          <div id="productThumbs" class="product_thumbs">
+            <!-- يتم الملء من JS -->
+          </div>
+        </div>
+
+        <!-- بيانات المنتج -->
+        <div class="product_info">
+          <h1 id="productName">اسم المنتج</h1>
+
+          <div class="product_meta_line">
+            <span>القسم:</span>
+            <strong id="productCategory">قسم</strong>
+          </div>
+
+          <div class="product_price_block">
+            <span class="product_price_label">السعر:</span>
+           <div id="productPrice" class="product_price_value"></div>
+          </div>
+
+          <!-- دوائر الألوان -->
+          <div class="product_colors">
+            <span class="colors_label">الألوان المتاحة:</span>
+            <div id="colorOptions" class="color_dots">
+              <!-- يتم الملء من JS -->
+            </div>
+          </div>
+
+ 
+
+<!-- الألوان (موجودة عندك) -->
+
+<!-- الخامات تحت الألوان -->
+<div id="materialsBox" style="display:none;">
+  <label>الخامة:</label>
+  <div id="materialsOptions"></div>
+</div>
+
+<!-- الصف النهائي -->
+<div class="product_bottom_row">
+
+<div id="qtyWrap" style="display:flex; align-items:center; gap:6px;">
+  <label style="font-size:14px;">الكمية:</label>
+
+  <input 
+    type="number" 
+    id="qtyInput" 
+    value="1" 
+    min="1"
+    style="
+      width:100px;
+      height:29px;
+      text-align:center;
+      font-size:14px;
+      border-radius:8px;
+      border:1px solid #ddd;
+      padding:2px;
+    "
+  >
+</div>
+
+  <!-- عدد الأمتار -->
+  <div id="metersWrap" style="display:none;">
+    <label>عدد الأمتار:</label>
+    <input type="number" id="metersInput" value="1" min="1">
+  </div>
+
+  <!-- زر الإضافة -->
+  <button id="addToCartBtn" class="btn" disabled>
+    <i class="fa-solid fa-cart-shopping"></i>
+  أضف للسلة 
+  </button>
+
+  <!-- المفضلة -->
+  <button id="productWishlistBtn" class="wishlist_btn">
+    <i class="fa-regular fa-heart"></i>
+  </button>
+
+</div>
+
+<!-- الكمية (للمنتجات العادية فقط) -->
+
+
+          <div class="product_meta_line">
+            <span class="meta_label">الأبعاد:</span>
+            <span id="productDimensions" class="meta_value"></span>
+          </div>
+          
+    
+
+          <div class="product_notes">
+            <p class="note_warning">
+              <span class="warn_icon">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+              </span>
+              إمكانية تنفيذ المقاسات والألوان حسب الطلب.
+            </p>
+            
+            <p><i class="fa-regular fa-circle-check"></i> خامات MDF وتشطيب عالي الجودة.</p>
+            <p class="note_warning">
+              <span class="warn_icon">
+                <i class="fa-solid fa-triangle-exclamation"></i>
+              </span>
+                 التسليم خلال من 2_10 ايام عمل .
+            </p>
+            
+          </div>
+          <p class="trust_msg">
+  توصيل سريع 🚚 | دفع عند الاستلام 💰
+</p>
+           <!-- تفاصيل إضافية / وصف طويل -->
+      <section class="product_details_block">
+        <h2>تفاصيل المنتج</h2>
+        <p id="productDescription" class="product_description">
+          وصف تفصيلي للمنتج يمكنك تعديله يدويًا أو ربطه من البيانات لاحقًا. اكتب هنا معلومات عن الخامات،
+          الأبعاد، وطريقة الاستخدام أو أي تفاصيل ترويجية أخرى.
+        </p>
+      </section>
+
+        </div>
+      </div>
+      
+     
+
+      <!-- منتجات ذات صلة -->
+      <section class="related_section">
+        <h2>منتجات ذات صلة</h2>
+        <div id="relatedGrid" class="related_grid">
+          <!-- يتم الملء من JS -->
+        </div>
+      </section>
+
+    </section>
+
+  </div>
+</main>
+
+<footer class="site_footer">
+  <div class="container footer_inner">
+
+    <!-- About / Logo -->
+    <div>
+      <h3 class="footer_logo">Phoenix Furniture</h3>
+      <p>أفضل جودة وأفضل سعر – أثاث راقي لكل بيت.</p>
+
+      <div class="footer_social">
+        <a href="#" aria-label="Facebook"><i class="fa-brands fa-facebook-f"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+        <a href="#" aria-label="Whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div>
+      <h4>روابط مهمة</h4>
+      <a href="index.html">الرئيسية</a>
+      <a href="category.html?cat=all">تسوق الآن</a>
+      <a href="account.html">حسابي</a>
+      <a href="wishlist.html">المفضلة</a>
+      <a href="cart.html">السلة</a>
+    </div>
+
+    <!-- Support -->
+    <div>
+      <h4>خدمة العملاء</h4>
+      <a href="#">تواصل معنا</a>
+      <a href="#">سياسة الاستبدال</a>
+      <a href="#">سياسة الخصوصية</a>
+      <a href="#">الشحن والتوصيل</a>
+    </div>
+
+  </div>
+
+  <div class="footer_copy">
+    © 2025 Phoenix Furniture — جميع الحقوق محفوظة
+  </div>
+</footer>
+
+
+
+
+
+
+<!-- JS -->
+<div id="toastContainer" class="toast_container"></div>
+<script src="js/ui-toast.js"></script>
+<script src="js/ui-modal.js"></script>
+
+
+<a href="https://wa.me/201275444579"
+   class="whatsapp_floating"
+   target="_blank"
+   aria-label="تواصل عبر واتساب">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+<script src="js/core.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/wishlist.js"></script>
+<script src="js/product.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,252 @@
+/* ============ PRODUCT CARD (UNIFIED) ============ */
+
+.product_card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-soft);
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 360px; /* 🔥 تثبيت الكارت */
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  text-align: center;
+}
+
+.product_card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 14px 32px rgba(0,0,0,0.09);
+}
+
+/* الصورة */
+.product_img {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 10px;
+  aspect-ratio: 1 / 1; /* 🔥 أهم تعديل */
+}
+
+.product_img img {
+  width: 100%;
+  height: 100%; /* 🔥 بدل height ثابت */
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.product_card:hover .product_img img {
+  transform: scale(1.04);
+}
+
+/* ❤️ زر القلب */
+.card_wishlist_btn {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.95);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0,0,0,.15);
+  cursor: pointer;
+}
+
+.card_wishlist_btn i {
+  color: #555;
+}
+
+.card_wishlist_btn.active i {
+  color: #e53935;
+}
+
+/* 🔥 BADGES */
+.badges_wrap {
+  position: absolute;
+  top: 8px;
+  left: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 2;
+}
+
+.badge {
+  padding: 4px 10px;
+  border-radius: 14px;
+  font-size: 0.7rem;
+  color: #fff;
+  font-weight: 600;
+}
+
+.badge-main {
+  background: linear-gradient(135deg, #fa7c28, #ff4081);
+}
+
+.badge-second {
+  background: rgba(231, 13, 13, 0.8);
+}
+
+/* ⭐ RATING */
+.rating_stars {
+  direction: ltr;
+  display: flex;
+  justify-content: center;
+  gap: 2px;
+  margin: 6px 0;
+}
+
+.rating_stars i {
+  font-size: 13px;
+  color: #f5b301;
+}
+
+/* 📝 TEXT */
+.product_title {
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+  color: var(--dark);
+  text-align: center;
+  line-height: 1.4;
+  min-height: 40px; /* 🔥 تثبيت */
+}
+
+.product_meta {
+  font-size: 0.8rem;
+  color: var(--muted);
+  margin-bottom: 4px;
+}
+
+/* 💰 PRICE */
+.price {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--main-color);
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+/* زر */
+.product_card .btn {
+  width: 100%;
+  justify-content: center;
+}
+
+/* ================= GRID ================= */
+
+.category-products,
+.products_grid_page {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+
+  .category-products,
+  .products_grid_page {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .product_card {
+    min-height: 320px; /* 🔥 موبايل */
+  }
+
+  .product_title {
+    font-size: 0.85rem;
+    min-height: 36px; /* 🔥 مهم */
+  }
+
+  .price {
+    font-size: 0.9rem;
+  }
+
+  .card_wishlist_btn {
+    width: 30px;
+    height: 30px;
+  }
+
+  .badge {
+    font-size: 0.65rem;
+    padding: 3px 8px;
+  }
+
+}
+
+/* ===== PRICE SYSTEM ===== */
+
+.price_wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  min-height: 22px; /* 🔥 يمنع shift */
+}
+
+/* السعر الجديد */
+.price {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--main-color);
+}
+
+/* السعر القديم */
+.old_price {
+  font-size: 0.85rem;
+  color: #000;
+  text-decoration: line-through;
+  opacity: 0.7;
+  line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+
+  .price {
+    font-size: 0.9rem;
+  }
+
+  .old_price {
+    font-size: 0.75rem;
+  }
+
+}
+
+/* ====== PAGE LAYOUTS ====== */
+
+.page_main {
+  padding: 30px 0 50px;
+  background: #eee;
+}
+
+.breadcrumb {
+  font-size: 0.85rem;
+  color: var(--muted);
+  display: flex;
+  gap: 6px;
+  margin-bottom: 10px;
+}
+
+.breadcrumb a {
+  color: var(--muted);
+}
+
+.breadcrumb a:hover {
+  color: var(--main-color);
+}
+
+.page_head h1 {
+  font-size: 1.6rem;
+  margin-bottom: 4px;
+}
+
+.page_subtitle {
+  color: #000;
+  margin-bottom: 18px;
+}

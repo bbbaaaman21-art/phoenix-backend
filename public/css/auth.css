@@ -1,0 +1,259 @@
+/* =========================
+   GLOBAL RESET
+========================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Tajawal', system-ui, sans-serif;
+  line-height: 1.6;
+}
+h1, h2, h3 {
+  font-weight: 600;
+}
+
+p {
+  font-weight: 400;
+}
+body {
+  min-height: 100vh;
+  background:
+  linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
+  url("../img/logo/auth.webp") center/cover no-repeat;
+  background-size: cover;
+background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  direction: rtl;
+}
+
+/* =========================
+   LOGO
+========================= */
+.auth_logo {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  width: 220px;
+  z-index: 120;
+}
+
+/* =========================
+   WRAPPER & BOX
+========================= */
+.auth_wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.auth_box {
+  background: #fff;
+  width: 100%;
+  max-width: 420px;
+  border-radius: 18px;
+  padding: 30px 22px;
+  box-shadow: 0 25px 60px rgba(0,0,0,.25);
+  animation: fadeUp .6s ease;
+}
+
+.auth_box h2 {
+  text-align: center;
+  margin-bottom: 18px;
+  color: #555;
+  font-size: 20px;
+  font-weight: 800;
+}
+
+/* =========================
+   INPUTS
+========================= */
+.auth_box input {
+  width: 100%;
+  margin-top: 12px;
+  padding: 13px 40px 13px 14px; /* 👈 هنا التعديل */
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+  transition: .3s;
+}
+
+.auth_box input:focus {
+  outline: none;
+  border-color: #1b6ca8;
+  box-shadow: 0 0 0 3px rgba(27,108,168,.15);
+}
+
+/* =========================
+   PASSWORD STRENGTH
+========================= */
+.password_strength {
+  margin-top: 8px;
+  height: 6px;
+  border-radius: 6px;
+  background: #eee;
+  overflow: hidden;
+}
+
+.password_strength span {
+  display: block;
+  height: 100%;
+  width: 0;
+  transition: .4s;
+}
+
+.strength-weak    { width: 33%; background: #e63946; }
+.strength-medium  { width: 66%; background: #f4a261; }
+.strength-strong  { width: 100%; background: #2ec4b6; }
+
+/* =========================
+   BUTTON
+========================= */
+.auth_box button {
+  width: 100%;
+  margin-top: 20px;
+  padding: 13px;
+  border-radius: 12px;
+  border: none;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  color: #fff;
+  background: #555;
+ 
+  transition: .25s;
+  position: relative;
+}
+
+.auth_box button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(46,196,182,.35);
+}
+
+.auth_box button:disabled {
+  opacity: .7;
+  cursor: not-allowed;
+}
+
+/* =========================
+   LOADER
+========================= */
+.auth_box button.loading {
+  pointer-events: none;
+  color: transparent;
+}
+
+.auth_box button.loading::after {
+  content: "";
+  width: 22px;
+  height: 22px;
+  
+  border: 3px solid #fff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  animation: spin .8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* =========================
+   MESSAGES
+========================= */
+#msg {
+  margin-top: 15px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.msg-success {
+  color: #2ec4b6;
+}
+
+.msg-error {
+  color: #e63946;
+}
+
+/* =========================
+   COLLAPSE (LOGIN / REGISTER)
+========================= */
+.auth_content {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height .45s ease;
+}
+
+.auth_content.open {
+  max-height: 500px;
+}
+
+.auth_header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  padding: 12px 10px;
+  border-radius: 10px;
+}
+
+.arrow {
+  transition: .3s;
+}
+
+.arrow.rotate {
+  transform: rotate(180deg);
+}
+
+/* =========================
+   FORGOT LINK
+========================= */
+.forgot_password {
+  text-align: left;
+  font-size: 13px;
+  color: #555;
+  cursor: pointer;
+}
+
+/* =========================
+   ANIMATION
+========================= */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 480px) {
+  .auth_logo { width: 110px; }
+  .auth_box  { padding: 24px 16px; }
+}
+
+.password_wrap {
+  position: relative;
+}
+
+.password_wrap input {
+  padding-left: 40px;
+}
+
+.toggle_pass {
+  position: absolute;
+  left: 12px; /* عشان RTL */
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  font-size: 16px;
+  color: #555;
+}

@@ -1,0 +1,373 @@
+/* ================= CHECKOUT PAGE CLEAN ================= */
+
+.page-checkout {
+  background: var(--bg);
+}
+
+/* ===== GRID ===== */
+
+.checkout_grid {
+  display: grid;
+  grid-template-columns: minmax(0,1.4fr) minmax(0,1fr);
+  gap: 28px;
+  margin-top: 30px;
+}
+
+/* ===== BOXES ===== */
+
+.checkout_form_box,
+.checkout_summary_box {
+  background: #fff;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 8px 28px rgba(0,0,0,.05);
+}
+
+/* ===== TITLES ===== */
+
+.section_title {
+  font-size: 1.15rem;
+  margin-bottom: 18px;
+  font-weight: 800;
+  color: var(--dark);
+}
+
+/* ===== FORM ===== */
+
+.checkout_form .form_row {
+  margin-bottom: 16px;
+}
+
+.checkout_form label {
+  display: block;
+  margin-bottom: 6px;
+  font-weight: 600;
+  font-size: .85rem;
+}
+
+/* inputs */
+.checkout_form input,
+.checkout_form textarea {
+  width: 100%;
+  padding: 11px 12px;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  font-size: .9rem;
+  background: #fafafa;
+  transition: 0.2s ease;
+}
+
+.checkout_form textarea {
+  resize: vertical;
+}
+
+/* focus */
+.checkout_form input:focus,
+.checkout_form textarea:focus {
+  outline: none;
+  border-color: var(--main-color);
+  background: #fff;
+  box-shadow: 0 0 0 2px rgba(106,76,147,.12);
+}
+
+/* ===== TWO COLS ===== */
+
+.form_row.two_cols {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+/* ===== ADDRESS ===== */
+
+#addressBox {
+  display: grid;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+
+.address_item {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  cursor: pointer;
+  background: #fafafa;
+  transition: 0.2s ease;
+}
+
+.address_item:hover {
+  border-color: var(--main-color);
+  background: #fff;
+}
+
+.address_item strong {
+  font-size: 0.9rem;
+}
+
+/* ===== NEW ADDRESS ===== */
+
+.new_address_box {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px dashed var(--border);
+}
+
+.new_address_box > label {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: 10px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* 🔥 الحالة الافتراضية (مخفي) */
+#newAddressFields {
+  display: none;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: 0.25s ease;
+  margin-top: 12px;
+  padding: 14px;
+  border-radius: 12px;
+  background: #f6f5fb;
+}
+
+/* ✅ لما يتفعل */
+#newAddressFields.active {
+  display: block;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== ACTIONS ===== */
+
+.checkout_actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+
+  .checkout_grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .checkout_form_box,
+  .checkout_summary_box {
+    padding: 18px;
+  }
+
+  .section_title {
+    font-size: 1rem;
+  }
+
+  .checkout_form input,
+  .checkout_form textarea {
+    font-size: 0.85rem;
+    padding: 10px;
+  }
+
+  .form_row.two_cols {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout_actions {
+    grid-template-columns: 1fr;
+  }
+
+}
+/* ================= CHECKOUT ACTIONS ================= */
+
+/* buttons */
+.checkout_actions .btn,
+.checkout_actions button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 12px 16px;
+  border-radius: 12px;
+
+  font-size: 0.9rem;
+  font-weight: 700;
+
+  cursor: pointer;
+  transition: 0.25s ease;
+
+  border: none;
+}
+
+/* primary */
+.checkout_actions .btn_primary,
+.checkout_actions #confirmHere {
+  background: var(--main-color);
+  color: #fff;
+}
+
+.checkout_actions .btn_primary:hover,
+.checkout_actions #confirmHere:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(0,0,0,.18);
+}
+
+/* whatsapp */
+.checkout_actions #confirmWhatsApp {
+  background: linear-gradient(135deg,#22c55e,#16a34a);
+  color: #fff;
+}
+
+.checkout_actions #confirmWhatsApp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 22px rgba(0,0,0,.18);
+}
+
+/* ================= SUMMARY ================= */
+
+.checkout_summary_box h2 {
+  margin-bottom: 16px;
+}
+
+#checkoutItems {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.checkout_item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.85rem;
+}
+
+/* totals */
+.checkout_totals {
+  margin-top: 18px;
+  padding-top: 14px;
+  border-top: 1px dashed var(--border);
+}
+
+.checkout_totals > div {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+
+.ct_total {
+  font-weight: 900;
+  font-size: 1rem;
+  padding-top: 8px;
+}
+
+/* note */
+.checkout_note {
+  margin-top: 14px;
+  font-size: 0.8rem;
+  background: #f7f7f7;
+  padding: 10px 12px;
+  border-radius: 10px;
+  line-height: 1.6;
+}
+
+/* ================= PAYMENT ================= */
+
+.checkout_payment_box {
+  background: #fff;
+  border-radius: 16px;
+  padding: 18px;
+  margin-bottom: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.05);
+}
+
+.checkout_payment_title {
+  font-size: 1rem;
+  font-weight: 800;
+  margin-bottom: 12px;
+  color: var(--dark);
+}
+
+/* option */
+.payment_option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 10px 12px;
+  border-radius: 10px;
+
+  background: #f4f4f4;
+  font-weight: 700;
+  margin-bottom: 8px;
+
+  transition: 0.2s ease;
+}
+
+.payment_option:hover {
+  background: #eee;
+}
+
+/* active */
+.payment_option.active {
+  background: #ede9fe;
+  color: #4c1d95;
+}
+
+/* check icon */
+.check_icon {
+  background: #22c55e;
+  color: white;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: .7rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* warning */
+.payment_warning {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: #b91c1c;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+
+  padding: 10px 12px;
+  border-radius: 10px;
+
+  font-size: .8rem;
+}
+
+/* ================= MOBILE ================= */
+
+@media (max-width: 768px) {
+
+  .checkout_summary_box,
+  .checkout_form_box {
+    padding: 18px;
+  }
+
+  .checkout_actions .btn,
+  .checkout_actions button {
+    width: 100%;
+    font-size: 0.85rem;
+    padding: 10px;
+  }
+
+  .checkout_item {
+    font-size: 0.8rem;
+  }
+
+  .ct_total {
+    font-size: 0.95rem;
+  }
+
+}

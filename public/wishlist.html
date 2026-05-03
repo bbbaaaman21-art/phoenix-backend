@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wishlist</title>
+    <link rel="icon" href="/img/logo/32.png" sizes="32x32">
+<link rel="icon" href="/img/logo/64.png" sizes="64x64">
+<link rel="apple-touch-icon" href="/img/logo/180.png">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+
+ <meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  style-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com 'unsafe-inline';
+  font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:;
+  script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';
+  img-src 'self' data:;
+  connect-src 'self' https://cdn.jsdelivr.net;
+"> 
+ 
+     <link rel="stylesheet" href="css/category.css">
+     <link rel="stylesheet" href="css/base.css">
+     <link rel="stylesheet" href="css/header.css">
+     <link rel="stylesheet" href="css/footer.css">
+   
+     <link rel="stylesheet" href="css/toast.css">
+</head>
+<body class="page-wishlist">
+
+  
+  <header class="top_header">
+    <div class="container header_inner">
+  
+      <!-- LOGO -->
+      <a href="index.html" class="logo">
+  
+   <picture>
+  <!-- موبايل -->
+  <source srcset="img/logo/logo-sm.webp" media="(max-width: 768px)">
+
+  <!-- ديسكتوب -->
+  <source srcset="img/logo/logo-lg.webp">
+
+  <img 
+    src="img/logo/logo-lg.webp"
+    alt="Phoenix Furniture"
+    class="logo_img"
+    width="200"
+    height="60"
+    loading="eager"
+  >
+</picture>
+  
+  </a>
+  
+  
+     <!-- ACTIONS -->
+    <div class="header_actions">
+
+      <!-- SEARCH -->
+      <form class="search_box" onsubmit="return false;">
+        <input type="text" id="searchInput" placeholder="ابحث عن منتج..." />
+        <button type="button" onclick="handleSearch()" aria-label="بحث">
+
+          <svg class="icon-stroke" viewBox="0 0 24 24">
+  <path 
+    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
+
+        </button>
+      </form>
+
+      <!-- WISHLIST -->
+      <a href="wishlist.html" class="header_icon" title="المفضلة">
+
+        <!-- HEART ICON -->
+        <svg class="icon-fill" viewBox="0 0 24 24">
+  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+  2 6 4 4 6.5 4c1.74 0 3.41 1.01 4.22 2.44C11.09 5.01 
+  12.76 4 14.5 4 17 4 19 6 19 8.5c0 3.78-3.4 
+  6.86-8.55 11.54z"/>
+</svg>
+
+        <span id="wishlistCount" class="icon_count">0</span>
+      </a>
+
+      <!-- ACCOUNT -->
+      <a href="account.html" class="header_icon" title="حسابي">
+
+        <!-- USER ICON -->
+       <svg class="icon-fill" viewBox="0 0 24 24">
+  <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 
+  2.24-5 5 2.24 5 5 5zm0 2c-4.42 0-8 
+  2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"/>
+</svg>
+
+      </a>
+
+      <!-- CART -->
+      <a href="cart.html" class="cart_icon" aria-label="السلة">
+
+        <!-- CART ICON -->
+    <svg class="icon-fill" viewBox="0 0 24 24">
+  <path d="M7 4H5L4 6h2l3.6 7.59-1.35 2.44A2 2 0 009 19h10v-2H9.42a.25.25 0 01-.23-.37L10.1 15h7.45a2 2 0 001.79-1.11l3.58-6.49A1 1 0 0022 6H6.21L5.27 4z"/>
+</svg>
+        <span id="cartCount" class="cart_count">0</span>
+      </a>
+
+    </div>
+  </div>
+</header>
+
+  
+  <!-- ========== CATEGORY BAR ========== -->
+  <nav class="category_bar">
+    <div class="container category_inner">
+      <a href="index.html" class="active">الرئيسية</a>
+      <a href="category.html?cat=all">كل المنتجات</a>
+      <a href="category.html?cat=dressing">دريسنج</a>
+      <a href="category.html?cat=buffet">بوفيه</a>
+      <a href="category.html?cat=units_ki">وحدات مطبخ</a>
+      <a href="category.html?cat=units_tv">وحدات تليفزيون</a>
+      <a href="category.html?cat=units_table">ترابيزة + وحدات</a>
+      <a href="category.html?cat=tables">ترابيزات</a>
+      <a href="category.html?cat=books">مكتبة</a>
+      <a href="category.html?cat=office">مكتب</a>
+      <a href="category.html?cat=komod">كومود</a>
+      <a href="category.html?cat=units_sh">وحدات أحذية</a>
+    </div>
+  </nav>
+  
+
+<main class="container">
+  <h1>المفضلة</h1>
+  <div id="wishlistGrid" class="products_grid_page"></div>
+</main>
+
+<footer>
+  <!-- نفس الفوتر -->
+</footer>
+<div id="toastContainer" class="toast_container"></div>
+<script src="js/ui-toast.js"></script>
+<script src="js/ui-modal.js"></script>
+<script src="js/core.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/wishlist.js"></script>
+
+
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>نسيت كلمة المرور</title>
+ <link rel="icon" href="/img/logo/32.png" sizes="32x32">
+<link rel="icon" href="/img/logo/64.png" sizes="64x64">
+<link rel="apple-touch-icon" href="/img/logo/180.png">
+  <link rel="stylesheet" href="css/auth.css">
+</head>
+<body>
+
+  <img src="img/logo/log.png" class="auth_logo" alt="Phoenix Furniture">
+
+<div class="auth_wrapper">
+  <div class="auth_box">
+    <h2>نسيت كلمة المرور</h2>
+
+    <input id="forgotEmail" type="email" placeholder="البريد الإلكتروني" required>
+    <button onclick="sendReset()">إرسال رابط التغيير</button>
+
+    <p id="msg"></p>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/auth-extra.js"></script>
+
+</body>
+</html>

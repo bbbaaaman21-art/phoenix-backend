@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>متجر أثاث مودرن | غرف نوم - مكاتب - كوفي كورنر ROVIX HOME</title>
+
+<meta name="description" content="أفضل أثاث مودرن بأسعار مميزة. شحن سريع والدفع عند الاستلام. اكتشف غرف النوم والمكاتب وحدات الشاشة الآن.">
+  <!-- Favicon -->
+  
+<link rel="icon" href="/img/logo/32.png" sizes="32x32">
+<link rel="icon" href="/img/logo/64.png" sizes="64x64">
+<link rel="apple-touch-icon" href="/img/logo/180.png">
+  <!-- Swiper CSS -->
+
+<link rel="preload" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" as="style">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'self';
+  style-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://fonts.googleapis.com 'unsafe-inline';
+  font-src 'self' https://fonts.gstatic.com https://cdnjs.cloudflare.com data:;
+  script-src 'self' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com 'unsafe-inline' 'unsafe-eval';
+  img-src 'self' data:;
+  connect-src 'self' https://cdn.jsdelivr.net;
+">
+
+
+
+<!-- Main CSS -->
+  <link rel="preload" as="image" href="/img/hero/20-lg.webp">
+<link rel="preload" as="image" href="/img/logo/logo-lg.webp">
+   
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/header.css">
+<link rel="stylesheet" href="css/footer.css">
+<link rel="stylesheet" href="css/home.css">
+
+  
+  <link rel="stylesheet" href="css/toast.css">
+  <link rel="stylesheet" href="css/modal.css">
+
+</head>
+
+<body class="page-home">
+
+<header class="top_header">
+  <div class="container header_inner">
+
+    <!-- LOGO -->
+    <a href="index.html" class="logo">
+      <picture>
+        <source srcset="img/logo/logo-sm.webp" media="(max-width: 768px)">
+        <source srcset="img/logo/logo-lg.webp">
+        <img src="img/logo/logo-lg.webp" alt="Rovix Home Logo" class="logo_img">
+      </picture>
+    </a>
+
+    <!-- ACTIONS -->
+    <div class="header_actions">
+
+      <!-- SEARCH -->
+      <form class="search_box" onsubmit="return false;">
+        <input type="text" id="searchInput" placeholder="ابحث عن منتج..." />
+        <button type="button" onclick="handleSearch()" aria-label="بحث">
+
+          <svg class="icon-stroke" viewBox="0 0 24 24">
+  <path 
+    d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  />
+</svg>
+
+        </button>
+      </form>
+
+      <!-- WISHLIST -->
+      <a href="wishlist.html" class="header_icon" title="المفضلة">
+
+        <!-- HEART ICON -->
+        <svg class="icon-fill" viewBox="0 0 24 24">
+  <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 
+  2 6 4 4 6.5 4c1.74 0 3.41 1.01 4.22 2.44C11.09 5.01 
+  12.76 4 14.5 4 17 4 19 6 19 8.5c0 3.78-3.4 
+  6.86-8.55 11.54z"/>
+</svg>
+
+        <span id="wishlistCount" class="icon_count">0</span>
+      </a>
+
+      <!-- ACCOUNT -->
+      <a href="account.html" class="header_icon" title="حسابي">
+
+        <!-- USER ICON -->
+       <svg class="icon-fill" viewBox="0 0 24 24">
+  <path d="M12 12c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 
+  2.24-5 5 2.24 5 5 5zm0 2c-4.42 0-8 
+  2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5z"/>
+</svg>
+
+      </a>
+
+      <!-- CART -->
+      <a href="cart.html" class="cart_icon" aria-label="السلة">
+
+        <!-- CART ICON -->
+    <svg class="icon-fill" viewBox="0 0 24 24">
+  <path d="M7 4H5L4 6h2l3.6 7.59-1.35 2.44A2 2 0 009 19h10v-2H9.42a.25.25 0 01-.23-.37L10.1 15h7.45a2 2 0 001.79-1.11l3.58-6.49A1 1 0 0022 6H6.21L5.27 4z"/>
+</svg>
+        <span id="cartCount" class="cart_count">0</span>
+      </a>
+
+    </div>
+  </div>
+</header>
+
+<!-- ========== CATEGORY BAR ========== -->
+<nav class="category_bar">
+  <div class="container category_inner">
+    <a href="index.html" class="active">الرئيسية</a>
+    <a href="category.html?cat=all">كل المنتجات</a>
+    <a href="category.html?cat=dressing">دريسنج</a>
+    <a href="category.html?cat=hairdo">تسريحة</a>
+    <a href="category.html?cat=komod">كومود</a>
+    <a href="category.html?cat=buffet">بوفيه</a>
+    <a href="category.html?cat=units_tv">وحدات تليفزيون</a>
+    <a href="category.html?cat=units_table">ترابيزة + وحدات</a>
+    <a href="category.html?cat=tables">ترابيزات</a>
+    <a href="category.html?cat=units_ki">وحدات مطبخ</a>
+    <a href="category.html?cat=coffee_corner">كوفي كورنر</a>
+    <a href="category.html?cat=books">مكتبة</a>
+    <a href="category.html?cat=office">مكتب</a>
+    <a href="category.html?cat=units_sh">وحدات أحذية</a>
+  </div>
+</nav>
+
+
+<main>
+
+  <!-- HERO SLIDER -->
+  <section class="hero_section">
+    <div class="container">
+      <div class="swiper heroSwiper">
+        <div class="swiper-wrapper">
+
+          <div class="swiper-slide hero_slide">
+  <picture>
+    <!-- 📱 موبايل -->
+    <source srcset="img/hero/20-sm.webp" media="(max-width: 768px)">
+
+    <!-- 💻 ديسكتوب -->
+    <img src="img/hero/20-lg.webp" loading="eager" fetchpriority="high">
+  </picture>
+
+  <div class="hero_caption">
+    <h1>أثاث فاخر ومودرن</h1>
+    <p>تصميمات عملية تناسب المساحات المختلفة.</p>
+    <a href="category.html?cat=living" class="btn">تسوق الآن</a>
+  </div>
+</div>
+
+<div class="swiper-slide hero_slide">
+  <picture>
+    <!-- 📱 موبايل -->
+    <source srcset="img/hero/18-sm.webp" media="(max-width: 768px)">
+
+    <!-- 💻 ديسكتوب -->
+    <img src="img/hero/18-lg.webp" loading="lazy" alt="">
+  </picture>
+
+  <div class="hero_caption">
+    <h1>اثاث لغرف المعيشة</h1>
+    <p>راحة وجودة عالية بأفضل الأسعار.</p>
+    <a href="category.html?cat=bedroom" class="btn">استكشف غرف النوم</a>
+  </div>
+</div>
+
+<div class="swiper-slide hero_slide">
+  <picture>
+    <!-- 📱 موبايل -->
+    <source srcset="img/hero/23-sm.webp" media="(max-width: 768px)">
+
+    <!-- 💻 ديسكتوب -->
+    <img src="img/hero/23-lg.webp" loading="lazy" alt="">
+  </picture>
+
+  <div class="hero_caption">
+    <h1>اثاث عصري وحديث</h1>
+    <p>خبرة و رؤيا مميزة لعالم الأثاث</p>
+    <a href="category.html?cat=coffee" class="btn">اكتشف الكوفي كورنر</a>
+  </div>
+</div>
+
+        </div>
+
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-next hero_next"></div>
+        <div class="swiper-button-prev hero_prev"></div>
+      </div>
+    </div>
+  </section>
+<!-- CATEGORIES -->
+<!-- CATEGORIES -->
+<section class="section_block">
+  <div class="container">
+    <h2 class="section_title">أقسام المنتجات</h2>
+
+    <div class="swiper categoriesSwiper">
+
+      <div class="swiper-wrapper">
+
+        <!-- دريسنج -->
+        <div class="swiper-slide">
+          <a href="category.html?cat=dressing" class="category_card">
+            <picture>
+              <source srcset="img/ca/dr.webp" type="image/webp">
+              <img src="img/ca/dr.webp" loading="lazy" width="300" height="300" alt="دريسنج">
+            </picture>
+            <h3>دريسنج</h3>
+          </a>
+        </div>
+
+        <!-- تسريحة -->
+        <div class="swiper-slide">
+          <a href="category.html?cat=hairdo" class="category_card">
+            <picture>
+              <source srcset="img/ca/ha.webp" type="image/webp">
+              <img src="img/ca/ha.webp" loading="lazy" width="300" height="300" alt="تسريحة">
+            </picture>
+            <h3>تسريحة</h3>
+          </a>
+        </div>
+
+        <!-- كومود -->
+        <div class="swiper-slide">
+          <a href="category.html?cat=komod" class="category_card">
+            <picture>
+              <source srcset="img/ca/ko.webp" type="image/webp">
+              <img src="img/ca/ko.webp" loading="lazy" width="300" height="300" alt="كومود">
+            </picture>
+            <h3>كومود</h3>
+          </a>
+        </div>
+
+        <!-- بوفيه -->
+        <div class="swiper-slide">
+          <a href="category.html?cat=buffet" class="category_card">
+            <picture>
+              <source srcset="img/ca/bu.webp" type="image/webp">
+              <img src="img/ca/bu.webp" loading="lazy" width="300" height="300" alt="بوفيه">
+            </picture>
+            <h3>بوفيه</h3>
+          </a>
+        </div>
+
+        <!-- وحدات تليفزيون -->
+        <div class="swiper-slide">
+          <a href="category.html?cat=units_tv" class="category_card">
+            <picture>
+              <source srcset="img/ca/tu.webp" type="image/webp">
+              <img src="img/ca/tu.webp" loading="lazy" width="300" height="300" alt="وحدات تليفزيون">
+            </picture>
+            <h3>وحدات تليفزيون</h3>
+          </a>
+        </div>
+
+        <!-- ترابيزة + وحدات -->
+        <div class="swiper-slide">
+          <a href="category.html?cat=units_table" class="category_card">
+            <picture>
+              <source srcset="img/ca/tt.webp" type="image/webp">
+              <img src="img/ca/tt.webp" loading="lazy" width="300" height="300" alt="ترابيزة + وحدات">
+            </picture>
+            <h3>ترابيزة + وحدات</h3>
+          </a>
+        </div>
+
+        <!-- ترابيزات -->
+        <div class="swiper-slide">
+          <a href="category.html?cat=tables" class="category_card">
+            <picture>
+              <source srcset="img/ca/ta.webp" type="image/webp">
+              <img src="img/ca/ta.webp" loading="lazy" width="300" height="300" alt="ترابيزات">
+            </picture>
+            <h3>ترابيزات</h3>
+          </a>
+        </div>
+
+        <!-- وحدات مطبخ -->
+        <div class="swiper-slide">
+          <a href="category.html?cat=units_ki" class="category_card">
+            <picture>
+              <source srcset="img/ca/ki.webp" type="image/webp">
+              <img src="img/ca/ki.webp" loading="lazy" width="300" height="300" alt="وحدات مطبخ">
+            </picture>
+            <h3>وحدات مطبخ</h3>
+          </a>
+        </div>
+
+        <!-- كوفي كورنر -->
+        <div class="swiper-slide">
+          <a href="category.html?cat=coffee_corner" class="category_card">
+            <picture>
+              <source srcset="img/ca/co.webp" type="image/webp">
+              <img src="img/ca/co.webp" loading="lazy" width="300" height="300" alt="كوفي كورنر">
+            </picture>
+            <h3>كوفي كورنر</h3>
+          </a>
+        </div>
+
+        <!-- مكتبة -->
+        <div class="swiper-slide">
+          <a href="category.html?cat=books" class="category_card">
+            <picture>
+              <source srcset="img/ca/li.webp" type="image/webp">
+              <img src="img/ca/li.webp" loading="lazy" width="300" height="300" alt="مكتبة">
+            </picture>
+            <h3>مكتبة</h3>
+          </a>
+        </div>
+
+        <!-- مكتب -->
+        <div class="swiper-slide">
+          <a href="category.html?cat=office" class="category_card">
+            <picture>
+              <source srcset="img/ca/of.webp" type="image/webp">
+              <img src="img/ca/of.webp" loading="lazy" width="300" height="300" alt="مكتب">
+            </picture>
+            <h3>مكتب</h3>
+          </a>
+        </div>
+
+        <!-- وحدات أحذية -->
+        <div class="swiper-slide">
+          <a href="category.html?cat=units_sh" class="category_card">
+            <picture>
+              <source srcset="img/ca/sh.webp" type="image/webp">
+              <img src="img/ca/sh.webp" loading="lazy" width="300" height="300" alt="وحدات أحذية">
+            </picture>
+            <h3>وحدات أحذية</h3>
+          </a>
+        </div>
+
+      </div>
+
+      <!-- 🔥 مهم جدًا: برا wrapper -->
+      <div class="swiper-button-next cat_next"></div>
+      <div class="swiper-button-prev cat_prev"></div>
+
+    </div>
+  </div>
+</section>
+  <!-- BEST SELLERS -->
+  <section class="section_block">
+    <div class="container">
+      <div class="section_head">
+        <h2 class="section_title">الأكثر مبيعًا</h2>
+        <a href="category.html?cat=all" class="link_more">عرض كل المنتجات</a>
+      </div>
+
+      <div class="swiper productsSwiper" id="bestSellersSlider">
+        <div class="swiper-wrapper">
+          <!-- الكروت هتتولد من JS باستخدام data.js -->
+        </div>
+
+        <div class="swiper-button-next prod_next"></div>
+        <div class="swiper-button-prev prod_prev"></div>
+      </div>
+    </div>
+  </section>
+
+  
+  <!-- ====== منتجات من كل قسم (سطر لكل كاتيجوري) ====== -->
+  <section class="section_block">
+    <div class="container">
+      <h2 class="section_title">منتجات حسب الأقسام</h2>
+      <div id="homeCategoryRows"></div>
+    </div>
+  </section>
+
+
+  <!-- ABOUT / BANNER -->
+  <section class="section_block about_block">
+    <div class="container about_inner">
+      <div>
+        <h2 class="section_title">عن Phoenix Furniture</h2>
+        <p>
+          نوفر لك أثاث مودرن بجودة عالية وخامات مضمونة، وتصميمات مستوحاة من أحدث صيحات الأثاث،
+          مع إمكانية تنفيذ المقاسات حسب طلبك.
+        </p>
+        <ul class="about_list">
+          <li>ضمان على الخامات والتشطيب.</li>
+          <li>إمكانية التعديل في الألوان والمقاسات.</li>
+          <li>خدمة عملاء للمتابعة من الطلب للتسليم.</li>
+        </ul>
+      </div>
+      <div class="about_image">
+       <picture>
+  <source srcset="img/logo/log.webp" type="image/webp">
+  <img src="img/logo/log.webp" loading="lazy" width="300" height="300" alt="عن المتجر">
+</picture>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ============ FEATURE ICONS STRIP ============ -->
+<section class="section_block features_strip">
+    <div class="container features_row">
+  
+      <!-- 1 - عروض حصرية -->
+      <div class="feature_item">
+        <div class="feature_icon feature_offer">
+          <i class="fa-solid fa-tags"></i>
+        </div>
+        <h3>عروض حصرية</h3>
+        <p>خصومات مستمرة على تشكيلات مختارة من الأثاث.</p>
+      </div>
+  
+      <!-- 2 - معاينة قبل الاستلام -->
+      <div class="feature_item">
+        <div class="feature_icon feature_eye">
+          <i class="fa-solid fa-eye"></i>
+        </div>
+        <h3>معاينة قبل الاستلام</h3>
+        <p>تقدر تشوف المنتج وتتأكد من الجودة قبل ما تستلمه.</p>
+      </div>
+  
+      <!-- 3 - شحن محلي -->
+      <div class="feature_item">
+        <div class="feature_icon feature_truck">
+          <i class="fa-solid fa-truck-fast"></i>
+        </div>
+        <h3>شحن سريع وآمن </h3>
+        <p>توصيل سريع وآمن لحد باب البيت.</p>
+      </div>
+  
+      <!-- 4 - أثاث مريح -->
+      <div class="feature_item">
+        <div class="feature_icon feature_sofa">
+          <i class="fa-solid fa-couch"></i>
+        </div>
+        <h3>أثاث مريح وعصري</h3>
+        <p>قطع مختارة بعناية لراحة شكل وراحة استخدام.</p>
+      </div>
+  
+    </div>
+  </section>
+  
+
+<footer class="site_footer">
+  <div class="container footer_inner">
+    <div>
+      <h3 class="footer_logo">Phoenix Furniture</h3>
+      <p>أثاث مودرن وعصري يناسب كل الأذواق والمساحات.</p>
+    </div>
+
+    <div>
+      <h4>روابط سريعة</h4>
+      <a href="index.html">الرئيسية</a>
+      <a href="category.html?cat=all">كل المنتجات</a>
+      <a href="cart.html">السلة</a>
+    </div>
+
+    <div>
+      <h4>تواصل معنا</h4>
+      <p>واتساب: <a href="https://wa.me/201275444579">+201275444579</a></p>
+      <p>هاتف: <a href="tel:01006675938">+201006675938</a></p>
+      <div class="footer_social">
+        <a href="#"><i class="fa-brands fa-facebook"></i></a>
+        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+        <a href="https://wa.me/201275444579"><i class="fa-brands fa-whatsapp"></i></a>
+      </div>
+    </div>
+  </div>
+
+
+  <p class="footer_copy">© 2025 جميع الحقوق محفوظة لـ Phoenix Furniture</p>
+</footer>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+
+<!-- بيانات المنتجات -->
+
+
+<!-- الكود الرئيسي -->
+
+
+<a href="https://wa.me/201275444579"
+   class="whatsapp_floating"
+   target="_blank"
+   aria-label="تواصل عبر واتساب">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
+
+<!-- ===== GLOBAL MODAL ===== -->
+<div id="appModal" class="modal_overlay hidden">
+  <div class="modal_box">
+    <h3 id="modalTitle">عنوان</h3>
+    <p id="modalMessage">هنا الرسالة…</p>
+
+    <div class="modal_actions">
+      <button id="modalCancel" class="btn_cancel">إلغاء</button>
+      <button id="modalConfirm" class="btn_confirm">تأكيد</button>
+    </div>
+  </div>
+</div>
+
+<div id="toastContainer" class="toast_container"></div>
+
+<script src="js/core.js" defer></script>
+<script src="js/wishlist.js" defer></script>
+<script src="js/cart.js" defer></script>
+<script src="js/home.js" defer></script>
+<script src="js/ui-toast.js" defer></script>
+<script src="js/ui-modal.js" defer></script>
+
+</body>
+</html>
