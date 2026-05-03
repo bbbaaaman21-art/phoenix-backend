@@ -86,7 +86,7 @@ const upload = multer({
 app.disable("x-powered-by");
 
 app.use(cors({
-  origin: ["http://localhost:3000", "https://rovixhome.com"], // فرونت عندك
+  origin: ["https://phoenix-backend-47l8.onrender.com", "https://rovixhome.com"], // فرونت عندك
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
@@ -334,7 +334,7 @@ const { Server } = require("socket.io");
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["http://localhost:3000", "https://rovixhome.com"]
+    origin: ["https://phoenix-backend-47l8.onrender.com", "https://rovixhome.com"]
   }
 });
 // 🔥 نخزن io عشان نستخدمه في أي مكان

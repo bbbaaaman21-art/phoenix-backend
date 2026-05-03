@@ -1,5 +1,5 @@
 // ================= GLOBAL =================
-window.API = "http://localhost:3000/api";
+window.API = "https://phoenix-backend-47l8.onrender.com/api";
 
 window.PRODUCTS = [];
 window.PRODUCTS_MAP = {};
@@ -20,7 +20,7 @@ window.getImageHtml = function (prod) {
   }
 
   if (img.startsWith("/uploads/")) {
-    img = "http://localhost:3000" + img;
+    img = "https://phoenix-backend-47l8.onrender.com" + img;
   }
 
   return `

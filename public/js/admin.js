@@ -1,4 +1,4 @@
-const socket = io("http://localhost:3000");
+const socket = io("https://phoenix-backend-47l8.onrender.com");
 
 let lastOrdersCount = 0;
 let allOrders = [];

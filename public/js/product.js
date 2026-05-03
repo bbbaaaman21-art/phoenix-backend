@@ -115,7 +115,7 @@ if (wishlistBtn) {
   }
 
   if (img.startsWith("/uploads/")) {
-    img = "http://localhost:3000" + img;
+    img = "https://phoenix-backend-47l8.onrender.com" + img;
   }
 
   imgEl.src = img;
