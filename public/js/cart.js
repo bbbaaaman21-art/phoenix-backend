@@ -73,7 +73,7 @@ async function handleAddToCart(btn, productId) {
     const token = localStorage.getItem("token");
 
     if (!token) {
-      showToast("Please log in first.", "remove");
+      showToast("⚠ Please log in first", "remove");
       return;
     }
 

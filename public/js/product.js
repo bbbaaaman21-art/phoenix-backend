@@ -390,7 +390,7 @@ if (addBtn) {
     const user = localStorage.getItem("user");
 
     if (!user) {
-      showToast("Please log in first", "remove");
+      showToast("⚠ Please log in first", "remove");
       return;
     }
 
