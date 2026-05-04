@@ -1,5 +1,5 @@
 // ================= GLOBAL =================
-window.API = "https://phoenix-backend-47l8.onrender.com/api";
+window.API = " https://rovixhome.com/api";
 
 window.PRODUCTS = [];
 window.PRODUCTS_MAP = {};
@@ -20,7 +20,7 @@ window.getImageHtml = function (prod) {
   }
 
   if (img.startsWith("/uploads/")) {
-    img = "https://phoenix-backend-47l8.onrender.com" + img;
+    img = " https://rovixhome.com" + img;
   }
 
   return `
@@ -45,7 +45,7 @@ window.handleSearch = function () {
   const value = input.value.trim();
 
   if (!value) {
-    showToast("Write the search term");
+    showToast("Write the search term", "remove");
     return;
   }
 

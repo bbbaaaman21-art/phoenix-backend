@@ -1,4 +1,4 @@
-const socket = io("https://phoenix-backend-47l8.onrender.com");
+const socket = io(" https://rovixhome.com");
 
 let lastOrdersCount = 0;
 let allOrders = [];
@@ -37,13 +37,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 socket.on("newOrder", (order) => {
-  showToast("🔥 New Order !");
+  showToast("🔥 New Order !", "add");
 
   // 🔄 نحدث الطلبات فورًا
   loadOrders();
 });
 socket.on("orderUpdated", (order) => {
-  showToast("⚠️ Request has been updated");
+  showToast("⚠️ Request has been updated", "add");
 
   loadOrders();
 });
@@ -218,7 +218,7 @@ async function loadOrders() {
 
   // 🔔 إشعار أوردر جديد
 if (orders.length > lastOrdersCount && lastOrdersCount !== 0) {
-  showToast("🔥 New Order From " + (orders[0]?.userId?.email || "عميل"));
+  showToast("🔥 New Order From ", "add" + (orders[0]?.userId?.email || "عميل"));
 
   try {
     const audio = new Audio("/sounds/notify.mp3");
@@ -336,7 +336,7 @@ async function updateOrderStatus(orderId, status) {
     body: JSON.stringify({ status, trackingNumber })
   });
 
-  showToast("🚚 Request has been updated");
+  showToast("🚚 Request has been updated", "add");
 
   loadOrders();
 }
@@ -427,7 +427,7 @@ async function deleteUser(id) {
     headers: { Authorization: "Bearer " + token }
   });
 
-  showToast("🗑 User has been deleted", "error");
+  showToast("🗑 User has been deleted", "remove");
 
   loadUsers();
 }
@@ -438,7 +438,7 @@ async function makeAdmin(id) {
     headers: { Authorization: "Bearer " + token }
   });
 
-  showToast("👑It has been converted to Admin");
+  showToast("👑It has been converted to Admin", "add");
 
   loadUsers();
 }
@@ -453,7 +453,7 @@ async function updateTracking(orderId, trackingNumber) {
     body: JSON.stringify({ trackingNumber })
   });
 
-  showToast("📦 Tracking number has been updated");
+  showToast("📦 Tracking number has been updated", "add");
 }
 
 //==============================اللون=================
@@ -520,7 +520,7 @@ async function editProduct(id) {
   document.getElementById("hasMeters").checked = p.hasMeters;
   document.getElementById("bestSeller").checked = p.bestSeller;
 
-  showToast("✏️ Edit the product and then press Add.");
+  showToast("✏️ Edit the product and then press Add." , "add");
 }
 
 

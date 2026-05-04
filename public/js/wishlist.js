@@ -127,7 +127,7 @@ async function toggleWishlist(productId) {
   const token = localStorage.getItem("token");
 
   if (!token) {
-    showToast("⚠ Please log in first");
+    showToast("⚠ Please log in first", "remove");
     return false;
   }
 

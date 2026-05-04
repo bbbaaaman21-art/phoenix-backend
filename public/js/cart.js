@@ -162,7 +162,7 @@ function updateCartCount() {
 
 
 /* ================== REMOVE ================== */
-async function removeFromCartAPI(productId) {
+async function removeFromCartAPI(cartItemId) {
   try {
     const token = localStorage.getItem("token");
 
@@ -172,13 +172,17 @@ async function removeFromCartAPI(productId) {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + token
       },
-      body: JSON.stringify({ productId })
+      body: JSON.stringify({ cartItemId })
     });
 
     // 🔥 تحديث الكاش
-    CART_CACHE = (CART_CACHE || []).filter(item => item.productId !== productId);
+    CART_CACHE = (CART_CACHE || []).filter(
+  item => item._id !== cartItemId
+);
 
     updateCartCount();
+
+    showToast("The product has been deleted", "remove");
 
     // لو في صفحة الكارت
     if (typeof renderCartTable === "function") {
@@ -270,7 +274,7 @@ function renderCartTable() {
 
       <td>
         <button class="btn"
-          onclick="removeFromCartAPI(${item.productId})">
+          onclick="removeFromCartAPI('${item._id}')">
           حذف
         </button>
       </td>

@@ -38,19 +38,13 @@ const dimEl = document.getElementById("productDimensions");
     const wishlistBtn   = document.getElementById("productWishlistBtn");
 
     // ✅ SEO TITLE
-      document.title = prod.name + " | Phoenix Furniture";
+      document.title = prod.name + " | Rovix Home";
 
      // ✅ SEO DESCRIPTION
       const metaDesc = document.querySelector('meta[name="description"]');
       if (metaDesc) {
         metaDesc.setAttribute("content", prod.description);
     }
-
-    // ================= ADD BTN =================
-    if (addBtn) {
-      addBtn.disabled = prod.hasMeters;
-    }
-
 
     // ================= WISHLIST =================
 if (wishlistBtn) {
@@ -115,7 +109,7 @@ if (wishlistBtn) {
   }
 
   if (img.startsWith("/uploads/")) {
-    img = "https://phoenix-backend-47l8.onrender.com" + img;
+    img = " https://rovixhome.com" + img;
   }
 
   imgEl.src = img;
@@ -169,52 +163,88 @@ if (wishlistBtn) {
 
 
     // ================= MATERIALS =================
-    let selectedMaterial = null;
+    // ================= PRODUCT TYPE =================
 
-    const materialsBox = document.getElementById("materialsBox");
+if (addBtn) {
+  addBtn.disabled = false;
+}
 
-    if (materialsWrap && prod.materials?.length) {
+if (prod.hasMeters) {
 
-      if (materialsBox) materialsBox.style.display = "block";
+  if (metersWrap) metersWrap.style.display = "block";
+  if (qtyWrap) qtyWrap.style.display = "none";
 
-      materialsWrap.innerHTML = "";
+  if (metersInput) {
+    metersInput.addEventListener("input", function () {
+      updatePrice();
+    });
+  }
 
-      // 🔥 اختيار أرخص خامة
-      selectedMaterial = prod.materials.reduce((min, m) =>
-        m.price < min.price ? m : min
-      );
+} else {
 
-      window.selectedMaterial = selectedMaterial;
+  if (metersWrap) metersWrap.style.display = "none";
+  if (qtyWrap) qtyWrap.style.display = "block";
+}
 
-      prod.materials.forEach((m) => {
 
-        const btn = document.createElement("button");
+// ================= MATERIALS =================
 
-        const isActive = m.price === selectedMaterial.price;
+let selectedMaterial = null;
 
-        btn.className = "materials_btn" + (isActive ? " active" : "");
+window.selectedMaterial = null;
 
-        btn.textContent = `${m.name} - ${formatPrice(m.price)} / م²`;
+const materialsBox = document.getElementById("materialsBox");
 
-        btn.onclick = () => {
-          document.querySelectorAll(".materials_btn")
-            .forEach(b => b.classList.remove("active"));
+if (materialsWrap && prod.materials?.length) {
 
-          btn.classList.add("active");
+  if (materialsBox) materialsBox.style.display = "block";
 
-          selectedMaterial = m;
-          window.selectedMaterial = m;
+  materialsWrap.innerHTML = "";
 
-          updatePrice();
+  // شكل الزرار كأنه disabled
+  if (addBtn) {
+    addBtn.classList.add("disabled-cart");
+  }
 
-          if (addBtn) addBtn.disabled = false;
-        };
+  prod.materials.forEach((m) => {
 
-        materialsWrap.appendChild(btn);
-      });
+    const btn = document.createElement("button");
+
+    btn.className = "materials_btn";
+
+    btn.textContent = `${m.name} - ${formatPrice(m.price)} / م²`;
+
+    btn.onclick = () => {
+
+      document.querySelectorAll(".materials_btn")
+        .forEach(b => b.classList.remove("active"));
+
+      btn.classList.add("active");
+
+      selectedMaterial = m;
+
+      window.selectedMaterial = m;
 
       updatePrice();
-    }
+
+      // تفعيل شكل الزرار
+      if (addBtn) {
+        addBtn.classList.remove("disabled-cart");
+      }
+    };
+
+    materialsWrap.appendChild(btn);
+  });
+
+} else {
+
+  // المنتجات العادية بدون خامات
+  selectedMaterial = null;
+
+  window.selectedMaterial = null;
+
+  updatePrice();
+}
 
     window.selectedMaterial = selectedMaterial;
     // ================= COLORS =================
@@ -360,9 +390,14 @@ if (addBtn) {
     const user = localStorage.getItem("user");
 
     if (!user) {
-      showToast("Please log in first.");
+      showToast("Please log in first", "remove");
       return;
     }
+
+    if (prod.materials?.length && !selectedMaterial) {
+  showToast("Please pick the material first", "remove");
+  return;
+}
 
     let meters = 1;
     let qty = 1;
@@ -373,7 +408,7 @@ if (addBtn) {
       meters = Number(metersInput?.value);
 
       if (!meters || meters <= 0) {
-        showToast("Enter the number of meters");
+        showToast("Enter the number of meters", "remove");
         return;
       }
 
@@ -431,7 +466,7 @@ try {
 
   updateCartCount();
 
-  showToast("The product has been added to the cart.");
+  showToast("The product has been added to the cart", "add");
 
 } catch (e) {
   console.error("Cart error:", e);

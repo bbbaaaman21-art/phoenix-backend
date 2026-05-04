@@ -119,7 +119,7 @@ function cancelOrder(orderId) {
   })
     .then(res => res.json())
     .then(data => {
-      showToast(data.message || "Cancelled");
+      showToast(data.message || "Cancelled", "add");
 
       loadOrders();
     });
@@ -139,7 +139,7 @@ function deleteOrder(orderId) {
     .then(data => {
   console.log("CANCEL RESPONSE:", data);
 
-  showToast("The order has been cancelled");
+  showToast("The order has been cancelled", "add");
 
   loadOrders();
 });
@@ -377,12 +377,12 @@ function loadNotifications() {
       return res.json();
     })
     .then(() => {
-      showToast("The notification has been deleted");
+      showToast("The notification has been deleted", "add");
       loadNotifications();
     })
     .catch(err => {
       console.error(err);
-      showToast("An error occurred during deletion");
+      showToast("An error occurred during deletion", "remove");
     });
 }
 

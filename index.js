@@ -33,6 +33,7 @@ const jwt = require("jsonwebtoken");
 
 const app = express();
 
+app.set("trust proxy", 1);
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000,
@@ -86,7 +87,7 @@ const upload = multer({
 app.disable("x-powered-by");
 
 app.use(cors({
-  origin: ["https://phoenix-backend-47l8.onrender.com", "https://rovixhome.com"], // فرونت عندك
+  origin: [" https://rovixhome.com", "https://rovixhome.com"], // فرونت عندك
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));
@@ -334,7 +335,7 @@ const { Server } = require("socket.io");
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: ["https://phoenix-backend-47l8.onrender.com", "https://rovixhome.com"]
+    origin: [" https://rovixhome.com", "https://rovixhome.com"]
   }
 });
 // 🔥 نخزن io عشان نستخدمه في أي مكان

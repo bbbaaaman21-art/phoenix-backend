@@ -566,11 +566,6 @@
     justify-content: center;
   }
 
-  .about_image img {
-    width: 70%;
-
-  }
-
   /* SWIPER BUTTONS */
   .swiper-button-next,
   .swiper-button-prev {

@@ -11,7 +11,7 @@ async function sendEmail(to, resetLink) {
     });
 
     await transporter.sendMail({
-      from: '"Phoenix Furniture" <YOUR_GMAIL@gmail.com>',
+      from: '"Rovix Home" <YOUR_GMAIL@gmail.com>',
       to,
       subject: "إعادة تعيين كلمة المرور",
       html: `

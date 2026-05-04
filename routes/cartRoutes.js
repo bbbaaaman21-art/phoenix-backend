@@ -128,21 +128,23 @@ router.post("/add", auth, async (req, res) => {
 });
 
 // ================= REMOVE =================
+// ================= REMOVE =================
 router.post("/remove", auth, async (req, res) => {
   try {
 
-    if (!req.body || !req.body.productId) {
-  return res.status(400).json({ message: "Invalid data" });
-}
+    if (!req.body || !req.body.cartItemId) {
+      return res.status(400).json({ message: "Invalid data" });
+    }
 
-const { productId } = req.body;
+    const { cartItemId } = req.body;
 
     const cart = await Cart.findOne({ user: req.user.userId });
 
     if (!cart) return res.json([]);
 
+    // 🔥 حذف item واحد فقط
     cart.items = cart.items.filter(
-      item => item.productId !== productId
+      item => String(item._id) !== String(cartItemId)
     );
 
     await cart.save();
@@ -154,7 +156,6 @@ const { productId } = req.body;
     res.status(500).json({ message: "Server error" });
   }
 });
-
 // ================= CLEAR =================
 router.post("/clear", auth, async (req, res) => {
   try {
