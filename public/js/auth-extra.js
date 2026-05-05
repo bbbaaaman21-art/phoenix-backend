@@ -42,7 +42,6 @@ window.sendReset = async function () {
   const token = params.get("token");
 
   if (!token) {
-    msgEl.innerText = "رابط غير صالح";
     return;
   }
 

@@ -1,259 +1,529 @@
 /* =========================
    GLOBAL RESET
 ========================= */
-* {
+*{
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Tajawal', system-ui, sans-serif;
-  line-height: 1.6;
-}
-h1, h2, h3 {
-  font-weight: 600;
+html,
+body{
+  width: 100%;
+  overflow-x: hidden;
 }
 
-p {
-  font-weight: 400;
-}
-body {
+body{
+  font-family: 'Tajawal', system-ui, sans-serif;
+  line-height: 1.6;
+  direction: rtl;
+
   min-height: 100vh;
+
   background:
-  linear-gradient(rgba(0,0,0,.6), rgba(0,0,0,.6)),
-  url("../img/logo/auth.webp") center/cover no-repeat;
-  background-size: cover;
-background-position: center;
+    linear-gradient(rgba(0,0,0,.62), rgba(0,0,0,.62)),
+    url("../img/logo/auth.webp") center/cover no-repeat;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  direction: rtl;
+
+  padding: 30px 16px;
+}
+
+/* =========================
+   TYPOGRAPHY
+========================= */
+h1,h2,h3{
+  font-weight: 700;
+}
+
+p{
+  font-weight: 400;
 }
 
 /* =========================
    LOGO
 ========================= */
-.auth_logo {
+.auth_logo{
   position: fixed;
-  top: 0px;
-  right: 0px;
-  width: 220px;
-  z-index: 120;
+  top: 14px;
+  right: 14px;
+
+  width: 150px;
+
+  z-index: 100;
+
+  filter: drop-shadow(0 8px 18px rgba(0,0,0,.25));
 }
 
 /* =========================
-   WRAPPER & BOX
+   WRAPPER
 ========================= */
-.auth_wrapper {
+.auth_wrapper{
   width: 100%;
   display: flex;
   justify-content: center;
-  padding: 20px;
+  align-items: center;
 }
 
-.auth_box {
-  background: #fff;
+/* =========================
+   AUTH BOX
+========================= */
+.auth_box{
   width: 100%;
-  max-width: 420px;
-  border-radius: 18px;
-  padding: 30px 22px;
-  box-shadow: 0 25px 60px rgba(0,0,0,.25);
-  animation: fadeUp .6s ease;
+  max-width: 430px;
+
+  background: rgba(255,255,255,.97);
+
+  backdrop-filter: blur(8px);
+
+  border-radius: 24px;
+
+  padding: 34px 26px;
+
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.28),
+    0 2px 10px rgba(0,0,0,.08);
+
+  animation: fadeUp .55s ease;
 }
 
-.auth_box h2 {
+/* =========================
+   TITLE
+========================= */
+.auth_box h2{
   text-align: center;
-  margin-bottom: 18px;
-  color: #555;
-  font-size: 20px;
+
+  margin-bottom: 22px;
+
+  color: #444;
+
+  font-size: 26px;
   font-weight: 800;
 }
 
 /* =========================
    INPUTS
 ========================= */
-.auth_box input {
+.auth_box input{
   width: 100%;
-  margin-top: 12px;
-  padding: 13px 40px 13px 14px; /* 👈 هنا التعديل */
-  border-radius: 10px;
+
+  margin-top: 14px;
+
+  height: 54px;
+
+  padding: 0 44px 0 16px;
+
+  border-radius: 14px;
+
   border: 1px solid #ddd;
-  font-size: 14px;
-  transition: .3s;
+
+  background: #fff;
+
+  font-size: 15px;
+  font-weight: 500;
+
+  transition:
+    border-color .25s,
+    box-shadow .25s,
+    transform .2s;
 }
 
-.auth_box input:focus {
+.auth_box input::placeholder{
+  color: #999;
+}
+
+.auth_box input:focus{
   outline: none;
+
   border-color: #1b6ca8;
-  box-shadow: 0 0 0 3px rgba(27,108,168,.15);
+
+  box-shadow: 0 0 0 4px rgba(27,108,168,.14);
+
+  transform: translateY(-1px);
 }
 
 /* =========================
    PASSWORD STRENGTH
 ========================= */
-.password_strength {
-  margin-top: 8px;
+.password_strength{
+  margin-top: 10px;
+
   height: 6px;
-  border-radius: 6px;
+
+  border-radius: 30px;
+
   background: #eee;
+
   overflow: hidden;
 }
 
-.password_strength span {
+.password_strength span{
   display: block;
+
   height: 100%;
   width: 0;
-  transition: .4s;
+
+  border-radius: 30px;
+
+  transition: .35s;
 }
 
-.strength-weak    { width: 33%; background: #e63946; }
-.strength-medium  { width: 66%; background: #f4a261; }
-.strength-strong  { width: 100%; background: #2ec4b6; }
+.strength-weak{
+  width: 33%;
+  background: #e63946;
+}
+
+.strength-medium{
+  width: 66%;
+  background: #f4a261;
+}
+
+.strength-strong{
+  width: 100%;
+  background: #2ec4b6;
+}
 
 /* =========================
    BUTTON
 ========================= */
-.auth_box button {
+.auth_box button{
   width: 100%;
-  margin-top: 20px;
-  padding: 13px;
-  border-radius: 12px;
+
+  margin-top: 22px;
+
+  height: 54px;
+
   border: none;
+  border-radius: 14px;
+
   font-size: 15px;
-  font-weight: 700;
+  font-weight: 800;
+
   cursor: pointer;
+
   color: #fff;
-  background: #555;
- 
-  transition: .25s;
-  position: relative;
+
+  background: linear-gradient(135deg,#444,#222);
+
+  transition:
+    transform .22s,
+    box-shadow .22s,
+    opacity .22s;
 }
 
-.auth_box button:hover {
+.auth_box button:hover{
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px rgba(46,196,182,.35);
+
+  box-shadow: 0 14px 30px rgba(0,0,0,.22);
 }
 
-.auth_box button:disabled {
+.auth_box button:active{
+  transform: scale(.98);
+}
+
+.auth_box button:disabled{
   opacity: .7;
   cursor: not-allowed;
-}
-
-/* =========================
-   LOADER
-========================= */
-.auth_box button.loading {
-  pointer-events: none;
-  color: transparent;
-}
-
-.auth_box button.loading::after {
-  content: "";
-  width: 22px;
-  height: 22px;
-  
-  border: 3px solid #fff;
-  border-top-color: transparent;
-  border-radius: 50%;
-  position: absolute;
-  inset: 0;
-  margin: auto;
-  animation: spin .8s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-/* =========================
-   MESSAGES
-========================= */
-#msg {
-  margin-top: 15px;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 600;
-}
-
-.msg-success {
-  color: #2ec4b6;
-}
-
-.msg-error {
-  color: #e63946;
-}
-
-/* =========================
-   COLLAPSE (LOGIN / REGISTER)
-========================= */
-.auth_content {
-  overflow: hidden;
-  max-height: 0;
-  transition: max-height .45s ease;
-}
-
-.auth_content.open {
-  max-height: 500px;
-}
-
-.auth_header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  cursor: pointer;
-  padding: 12px 10px;
-  border-radius: 10px;
-}
-
-.arrow {
-  transition: .3s;
-}
-
-.arrow.rotate {
-  transform: rotate(180deg);
-}
-
-/* =========================
-   FORGOT LINK
-========================= */
-.forgot_password {
-  text-align: left;
-  font-size: 13px;
-  color: #555;
-  cursor: pointer;
+  transform: none;
 }
 
 /* =========================
    ANIMATION
 ========================= */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to   { opacity: 1; transform: translateY(0); }
+@keyframes fadeUp{
+
+  from{
+    opacity: 0;
+    transform: translateY(25px);
+  }
+
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* =========================
+   MOBILE
+========================= */
+@media (max-width: 768px){
+
+  body{
+    padding: 20px 14px;
+    align-items: center;
+  }
+
+  .auth_logo{
+    width: 115px;
+    top: 10px;
+    right: 10px;
+  }
+
+  .auth_box{
+    max-width: 100%;
+
+    padding: 30px 20px;
+
+    border-radius: 22px;
+  }
+
+  .auth_box h2{
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+
+  .auth_box input{
+    height: 56px;
+
+    font-size: 16px;
+
+    border-radius: 14px;
+
+    padding: 0 46px 0 16px;
+  }
+
+  .auth_box button{
+    height: 56px;
+
+    font-size: 16px;
+
+    border-radius: 14px;
+  }
+
+}
+/* =========================
+   LOADER
+========================= */
+.auth_box button.loading{
+  pointer-events: none;
+  color: transparent;
+  position: relative;
+}
+
+.auth_box button.loading::after{
+  content: "";
+
+  width: 22px;
+  height: 22px;
+
+  border: 3px solid #fff;
+  border-top-color: transparent;
+
+  border-radius: 50%;
+
+  position: absolute;
+  inset: 0;
+  margin: auto;
+
+  animation: spin .75s linear infinite;
+}
+
+@keyframes spin{
+  to{
+    transform: rotate(360deg);
+  }
+}
+
+/* =========================
+   MESSAGES
+========================= */
+#msg{
+  margin-top: 16px;
+
+  text-align: center;
+
+  font-size: 14px;
+  font-weight: 700;
+
+  line-height: 1.7;
+}
+
+.msg-success{
+  color: #2ec4b6;
+}
+
+.msg-error{
+  color: #e63946;
+}
+
+/* =========================
+   COLLAPSE
+========================= */
+.auth_content{
+  overflow: hidden;
+
+  max-height: 0;
+
+  transition:
+    max-height .45s ease,
+    opacity .3s ease;
+
+  opacity: 0;
+}
+
+.auth_content.open{
+  max-height: 550px;
+  opacity: 1;
+}
+
+/* =========================
+   HEADER
+========================= */
+.auth_header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  cursor: pointer;
+
+  padding: 14px 12px;
+
+  border-radius: 14px;
+
+  background: rgba(0,0,0,.03);
+
+  transition: .25s;
+}
+
+.auth_header:hover{
+  background: rgba(0,0,0,.06);
+}
+
+.arrow{
+  transition: transform .3s ease;
+}
+
+.arrow.rotate{
+  transform: rotate(180deg);
+}
+
+/* =========================
+   FORGOT PASSWORD
+========================= */
+.forgot_password{
+  margin-top: 12px;
+
+  text-align: left;
+
+  font-size: 13px;
+  font-weight: 600;
+
+  color: #666;
+
+  cursor: pointer;
+
+  transition: .25s;
+}
+
+.forgot_password:hover{
+  color: #111;
+  text-decoration: underline;
+}
+
+/* =========================
+   PASSWORD WRAP
+========================= */
+.password_wrap{
+  position: relative;
+}
+
+.password_wrap input{
+  padding-left: 46px;
+}
+
+/* =========================
+   TOGGLE PASSWORD
+========================= */
+.toggle_pass{
+  position: absolute;
+
+  left: 14px;
+  top: 50%;
+
+  transform: translateY(-50%);
+
+  cursor: pointer;
+
+  font-size: 17px;
+
+  color: #666;
+
+  transition: .25s;
+
+  user-select: none;
+}
+
+.toggle_pass:hover{
+  color: #111;
+}
+
+/* =========================
+   FORGOT PAGE
+========================= */
+.forgot_page{
+  min-height: 100vh;
+
+  background:
+    linear-gradient(rgba(0,0,0,.62), rgba(0,0,0,.62)),
+    url("../img/logo/auth.webp") center/cover no-repeat;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 20px;
 }
 
 /* =========================
    RESPONSIVE
 ========================= */
-@media (max-width: 480px) {
-  .auth_logo { width: 110px; }
-  .auth_box  { padding: 24px 16px; }
+@media (max-width: 768px){
+
+  #msg{
+    font-size: 14px;
+  }
+
+  .auth_header{
+    padding: 15px 14px;
+    border-radius: 14px;
+  }
+
+  .forgot_password{
+    font-size: 14px;
+  }
+
+  .toggle_pass{
+    font-size: 18px;
+    left: 15px;
+  }
+
 }
 
-.password_wrap {
-  position: relative;
-}
+@media (max-width: 480px){
 
-.password_wrap input {
-  padding-left: 40px;
-}
+  .auth_logo{
+    width: 105px;
+  }
 
-.toggle_pass {
-  position: absolute;
-  left: 12px; /* عشان RTL */
-  top: 50%;
-  transform: translateY(-50%);
-  cursor: pointer;
-  font-size: 16px;
-  color: #555;
+  .auth_box{
+    padding: 26px 16px;
+    border-radius: 20px;
+  }
+
+  .auth_box h2{
+    font-size: 22px;
+  }
+
+  .auth_box input{
+    height: 54px;
+    font-size: 15px;
+  }
+
+  .auth_box button{
+    height: 54px;
+    font-size: 15px;
+  }
+
 }
