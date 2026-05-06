@@ -28,7 +28,6 @@
     "mongoose": "^9.1.1",
     "morgan": "^1.10.1",
     "multer": "^2.1.1",
-    "nodemailer": "^7.0.12",
     "open": "^11.0.0",
     "pdfkit": "^0.17.2",
     "qr-image": "^3.2.0",

@@ -9,56 +9,20 @@ apiInstance.setApiKey(
 
 async function sendEmail(to, resetLink) {
 
-  try {
+  await apiInstance.sendTransacEmail({
+    sender: {
+      name: "Rovix Home",
+      email: process.env.EMAIL_FROM
+    },
 
-    await apiInstance.sendTransacEmail({
+    to: [{ email: to }],
 
-      sender: {
-        name: "Rovix Home",
-        email: process.env.EMAIL_FROM
-      },
+    subject: "Reset Password",
 
-      to: [
-        { email: to }
-      ],
+    htmlContent: `<a href="${resetLink}">Reset</a>`
+  });
 
-      subject: "إعادة تعيين كلمة المرور",
-
-      htmlContent: `
-        <div style="font-family:Arial; direction:rtl">
-          <h2>إعادة تعيين كلمة المرور</h2>
-
-          <p>اضغط على الزر التالي لتغيير كلمة المرور:</p>
-
-          <a href="${resetLink}"
-             style="
-               display:inline-block;
-               padding:12px 20px;
-               background:#111;
-               color:#fff;
-               border-radius:8px;
-               text-decoration:none;
-             ">
-             تغيير كلمة المرور
-          </a>
-
-          <p style="margin-top:15px">
-            الرابط صالح لمدة 60 دقيقة
-          </p>
-        </div>
-      `
-    });
-
-    console.log("📧 Email sent:", to);
-
-  } catch (err) {
-
-    console.error("❌ Brevo error:",
-      err.response?.body || err.message
-    );
-
-    throw err;
-  }
+  console.log("✅ Email sent");
 }
 
 module.exports = sendEmail;
