@@ -1,5 +1,6 @@
 /* ================== CHECKOUT PAGE ================== */
 requireAuth();
+const token = localStorage.getItem("token");
 /* ===== get address ===== */
 function getCheckoutAddress() {
 
@@ -52,7 +53,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   // ===== AUTH =====
   const rawUser = localStorage.getItem("user");
   const user = rawUser ? JSON.parse(rawUser) : null;
-  const token = localStorage.getItem("token");
+ 
 
   if (!user || !token) {
     localStorage.setItem("redirectAfterLogin", "checkout.html");
@@ -258,7 +259,7 @@ async function renderCheckoutSummary() {
 
   if (!itemsWrap || !subEl || !shipEl || !totalEl) return;
 
-  const token = localStorage.getItem("token");
+ 
   if (!token) {
     itemsWrap.innerHTML = "<p>سجل دخول أولاً</p>";
     return;
@@ -332,7 +333,7 @@ async function renderCheckoutSummary() {
 }
 async function submitOrderToDB() {
 
-  const token = localStorage.getItem("token");
+
 
   const name = document.getElementById("fullName").value.trim();
   const phone = document.getElementById("phone").value.trim();

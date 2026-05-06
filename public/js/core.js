@@ -1,5 +1,5 @@
 // ================= GLOBAL =================
-window.API = " https://rovixhome.com/api";
+window.API = "https://rovixhome.com/api";
 
 window.PRODUCTS = [];
 window.PRODUCTS_MAP = {};
@@ -20,7 +20,7 @@ window.getImageHtml = function (prod) {
   }
 
   if (img.startsWith("/uploads/")) {
-    img = " https://rovixhome.com" + img;
+    img = "https://rovixhome.com" + img;
   }
 
   return `

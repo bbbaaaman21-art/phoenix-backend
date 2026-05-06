@@ -1,6 +1,6 @@
 const rawUser = localStorage.getItem("user");
 const user = rawUser ? JSON.parse(rawUser) : null;
-
+const token = localStorage.getItem("token");
 requireAuth();
 
 /* ===== بيانات المستخدم في الهيدر ===== */

@@ -1,12 +1,13 @@
 /* ================== ADD ================== */
+
 requireAuth();
+
 /* ================== CART CACHE ================== */
 let CART_CACHE = [];
 
 /* ================== ADD API ================== */
 async function addToCartAPI(item) {
   try {
-    const token = localStorage.getItem("token");
 
     if (item.color && typeof item.color !== "object") {
       item.color = {
@@ -43,7 +44,7 @@ async function addToCartAPI(item) {
 /* ================== FETCH ================== */
 async function fetchCart() {
   try {
-    const token = localStorage.getItem("token");
+    
     if (!token) return [];
 
     const res = await fetch(`${API}/cart`, {
@@ -71,7 +72,7 @@ async function fetchCart() {
 /* ================== HANDLE ADD ================== */
 async function handleAddToCart(btn, productId) {
   try {
-    const token = localStorage.getItem("token");
+   
 
     if (!token) {
       showToast("⚠ Please log in first", "remove");
@@ -165,7 +166,6 @@ function updateCartCount() {
 /* ================== REMOVE ================== */
 async function removeFromCartAPI(cartItemId) {
   try {
-    const token = localStorage.getItem("token");
 
     await fetch(`${API}/cart/remove`, {
       method: "POST",

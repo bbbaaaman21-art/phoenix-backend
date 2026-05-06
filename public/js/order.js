@@ -1,11 +1,12 @@
 // ===== INIT =====
+const token = localStorage.getItem("token");
 document.addEventListener("DOMContentLoaded", async function () {
 
   requireAuth();
 
   const params = new URLSearchParams(window.location.search);
   const orderId = params.get("id");
-  const token = localStorage.getItem("token");
+  
 
   const box = document.getElementById("orderBox");
 

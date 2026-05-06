@@ -87,7 +87,7 @@ const upload = multer({
 app.disable("x-powered-by");
 
 app.use(cors({
-  origin: [" https://rovixhome.com", "https://rovixhome.com"], // فرونت عندك
+  origin: ["https://rovixhome.com", "https://rovixhome.com"], // فرونت عندك
   methods: ["GET", "POST", "PUT", "DELETE"],
   credentials: true
 }));

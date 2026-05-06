@@ -1,4 +1,4 @@
-window.API = " https://rovixhome.com/api";
+window.API = "https://rovixhome.com/api";
 const originalFetch = window.fetch;
 
 window.fetch = async (url, options = {}) => {

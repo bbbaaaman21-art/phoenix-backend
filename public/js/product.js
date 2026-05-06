@@ -109,7 +109,7 @@ if (wishlistBtn) {
   }
 
   if (img.startsWith("/uploads/")) {
-    img = " https://rovixhome.com" + img;
+    img = "https://rovixhome.com" + img;
   }
 
   imgEl.src = img;

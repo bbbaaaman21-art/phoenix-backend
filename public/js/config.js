@@ -1,1 +1,1 @@
-export const API = " https://rovixhome.com/api";
+export const API = "https://rovixhome.com/api";
