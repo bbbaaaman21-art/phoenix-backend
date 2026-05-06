@@ -85,7 +85,14 @@ async function login() {
   }
 }
 
+function requireAuth() {
+  const token = localStorage.getItem("token");
 
+  if (!token) {
+    localStorage.setItem("redirectAfterLogin", window.location.pathname);
+    window.location.href = "auth.html";
+  }
+}
 
 /* ================== LOGOUT ================== */
 function logout() {
