@@ -246,39 +246,35 @@ res.json(order);
 next(err);
 }
 });
-/* ================= DELETE ONE ORDER ================= */
 router.delete("/:id", auth, async (req, res, next) => {
-try {
-const order = await Order.findOne({
-_id: req.params.id,
-userId: req.user.userId
+  try {
+
+    const order = await Order.findOne({
+      _id: req.params.id,
+      userId: req.user.userId
+    });
+
+    if (!order) {
+      return res.status(404).json({ message: "Order not found" });
+    }
+
+    if (["shipped", "delivered"].includes(order.status)) {
+      return res.status(400).json({
+        message: "لا يمكن حذف الطلب بعد الشحن"
+      });
+    }
+
+    await order.deleteOne();
+
+    const io = req.app.get("io");
+
+if (io) {
+  io.emit("orderDeleted", order._id);
+}
+    res.json({ message: "Order deleted successfully" });
+
+  } catch (err) {
+    next(err);
+  }
 });
-
-```
-if (!order) {
-  return res.status(404).json({ message: "Order not found" });
-}
-
-// ❌ منع الحذف بعد الشحن
-if (["shipped", "delivered"].includes(order.status)) {
-  return res.status(400).json({
-    message: "لا يمكن حذف الطلب بعد الشحن"
-  });
-}
-
-await order.deleteOne();
-
-const io = req.app.get("io");
-io.emit("orderDeleted", order._id);
-
-res.json({ message: "Order deleted successfully" });
-```
-
-} catch (err) {
-next(err);
-}
-});
-
-
-
 module.exports = router;

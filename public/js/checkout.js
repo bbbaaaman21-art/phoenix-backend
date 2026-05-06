@@ -1,4 +1,5 @@
 /* ================== CHECKOUT PAGE ================== */
+requireAuth();
 /* ===== get address ===== */
 function getCheckoutAddress() {
 

@@ -1,13 +1,7 @@
 const rawUser = localStorage.getItem("user");
 const user = rawUser ? JSON.parse(rawUser) : null;
 
-const token = localStorage.getItem("token");
-
-/* ===== حماية الصفحة ===== */
-if (!token || !user) {
-  window.location.href = "auth.html";
-  throw new Error("Not authenticated");
-}
+requireAuth();
 
 /* ===== بيانات المستخدم في الهيدر ===== */
 document.getElementById("userName").innerText =
@@ -601,8 +595,7 @@ function deleteAvatar() {
     });
 }
 
-// 🔥 AUTH
-requireAuth();
+
 
 // 🔥 TABS
 window.openTab = function(event, id) {

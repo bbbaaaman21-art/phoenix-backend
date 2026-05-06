@@ -335,7 +335,7 @@ const { Server } = require("socket.io");
 const server = http.createServer(app);
 const io = new Server(server, {
   cors: {
-    origin: [" https://rovixhome.com", "https://rovixhome.com"]
+    origin: ["https://rovixhome.com", "https://rovixhome.com"]
   }
 });
 // 🔥 نخزن io عشان نستخدمه في أي مكان

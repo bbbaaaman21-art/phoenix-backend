@@ -85,6 +85,19 @@ async function login() {
   }
 }
 
+function authFetch(url, options = {}) {
+
+  const token = localStorage.getItem("token");
+
+  return fetch(url, {
+    ...options,
+    headers: {
+      "Content-Type": "application/json",
+      ...(options.headers || {}),
+      Authorization: `Bearer ${token}`
+    }
+  });
+}
 
 /* ================== LOGOUT ================== */
 function logout() {
@@ -92,7 +105,6 @@ function logout() {
   localStorage.removeItem("user");
   window.location.href = "auth.html";
 }
-
 
 /* ================== AUTH GUARD ================== */
 function requireAuth() {
