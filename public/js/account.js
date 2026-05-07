@@ -149,8 +149,6 @@ function deleteOrder(orderId) {
 
 function downloadInvoice(orderId) {
 
-  const token = localStorage.getItem("token");
-
   if (!token) {
     alert("لازم تسجل دخول");
     return;
