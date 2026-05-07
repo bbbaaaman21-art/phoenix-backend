@@ -301,8 +301,8 @@ function resetAddressForm() {
 window.toggleNotifications = function () {
 
   document
-    .getElementById("notifDropdown")
-    .classList.toggle("active");
+    .getElementById("notifBox")
+    .classList.toggle("hidden");
 
 };
 /* ================== الإشعارات ================== */
