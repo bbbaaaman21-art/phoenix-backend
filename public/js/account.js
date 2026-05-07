@@ -1,16 +1,19 @@
-
-
 const rawUser = localStorage.getItem("user");
 const user = rawUser ? JSON.parse(rawUser) : null;
+
 const token = localStorage.getItem("token");
 
-/* ===== بيانات المستخدم في الهيدر ===== */
-if (user) {
-  document.getElementById("userName").innerText =
-    user.firstName + " " + user.lastName;
-
-  document.getElementById("userEmail").innerText = user.email;
+/* ===== حماية الصفحة ===== */
+if (!token || !user) {
+  window.location.href = "auth.html";
+  throw new Error("Not authenticated");
 }
+
+/* ===== بيانات المستخدم في الهيدر ===== */
+document.getElementById("userName").innerText =
+  user.firstName + " " + user.lastName;
+document.getElementById("userEmail").innerText = user.email;
+
 /* ====
 ============== فتح التابات ================== */
 function openTab(event, id) {
