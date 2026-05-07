@@ -195,7 +195,7 @@ router.post(
           role: user.role
         },
         JWT_SECRET,
-        { expiresIn: "60d" }
+        { expiresIn: "7d" }
       );
 
       res.json({
