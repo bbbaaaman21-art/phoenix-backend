@@ -1,13 +1,12 @@
-const tokena = localStorage.getItem("token");
-
-const socket = io("https://rovixhome.com");
+const socket = io("http://localhost:3000");
 
 let lastOrdersCount = 0;
 let allOrders = [];
 
+const token = localStorage.getItem("token");
 
 // ❌ مفيش توكن
-if (!tokena) {
+if (!token) {
   window.location.href = "/admin-login.html";
 }
 
@@ -15,7 +14,7 @@ if (!tokena) {
 let payload;
 
 try {
-  payload = JSON.parse(atob(tokenش.split('.')[1]));
+  payload = JSON.parse(atob(token.split('.')[1]));
 } catch (err) {
   // ❌ توكن بايظ
   localStorage.removeItem("token");
@@ -52,7 +51,7 @@ socket.on("orderUpdated", (order) => {
 async function loadStats() {
   try {
     const res = await fetch(`${API}/admin/stats`, {
-      headers: { Authorization: "Bearer " + tokena }
+      headers: { Authorization: "Bearer " + token }
     });
 
     const data = await res.json();
@@ -85,7 +84,7 @@ async function loadStats() {
 // ================= PRODUCTS =================
 async function loadProducts() {
   const res = await fetch(`${API}/admin/products`, {
-    headers: { Authorization: "Bearer " + tokena }
+    headers: { Authorization: "Bearer " + token }
   });
 
   const products = await res.json();
@@ -108,7 +107,7 @@ async function loadProducts() {
 async function deleteProduct(id) {
   await fetch(`${API}/admin/products/${id}`, {
     method: "DELETE",
-    headers: { Authorization: "Bearer " + tokena }
+    headers: { Authorization: "Bearer " + token }
   });
 
   localStorage.removeItem("allProducts");
@@ -195,7 +194,7 @@ console.log("method:", method);
 await fetch(url, {
   method,
   headers: {
-    Authorization: "Bearer " + tokena
+    Authorization: "Bearer " + token
   },
   body: formData
 });
@@ -212,7 +211,7 @@ loadProducts();
 // ================= ORDERS =================
 async function loadOrders() {
   const res = await fetch(`${API}/admin/orders`, {
-    headers: { Authorization: "Bearer " + tokena }
+    headers: { Authorization: "Bearer " + token }
   });
 
   const orders = await res.json();
@@ -332,7 +331,7 @@ async function updateOrderStatus(orderId, status) {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + tokena
+      Authorization: "Bearer " + token
     },
     body: JSON.stringify({ status, trackingNumber })
   });
@@ -345,7 +344,7 @@ async function updateOrderStatus(orderId, status) {
 // ================= TOP PRODUCTS =================
 async function loadTopProducts() {
   const res = await fetch(`${API}/admin/top-products`, {
-    headers: { Authorization: "Bearer " + tokena }
+    headers: { Authorization: "Bearer " + token }
   });
 
   const products = await res.json();
@@ -374,7 +373,7 @@ function showToast(message, type = "success") {
 // ================= TOP PRODUCTS =================
 async function loadTopProducts() {
   const res = await fetch(`${API}/admin/top-products`, {
-    headers: { Authorization: "Bearer " + tokena }
+    headers: { Authorization: "Bearer " + token }
   });
 
   const products = await res.json();
@@ -389,7 +388,7 @@ async function loadTopProducts() {
 //=================load user============
 async function loadUsers() {
   const res = await fetch(`${API}/admin/users`, {
-    headers: { Authorization: "Bearer " + tokena }
+    headers: { Authorization: "Bearer " + token }
   });
 
   const users = await res.json();
@@ -425,7 +424,7 @@ async function loadUsers() {
 async function deleteUser(id) {
   await fetch(`${API}/admin/users/${id}`, {
     method: "DELETE",
-    headers: { Authorization: "Bearer " + tokena }
+    headers: { Authorization: "Bearer " + token }
   });
 
   showToast("🗑 User has been deleted", "remove");
@@ -436,7 +435,7 @@ async function deleteUser(id) {
 async function makeAdmin(id) {
   await fetch(`${API}/admin/users/${id}`, {
     method: "PUT",
-    headers: { Authorization: "Bearer " + tokena }
+    headers: { Authorization: "Bearer " + token }
   });
 
   showToast("👑It has been converted to Admin", "add");
@@ -449,7 +448,7 @@ async function updateTracking(orderId, trackingNumber) {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + tokena
+      Authorization: "Bearer " + token
     },
     body: JSON.stringify({ trackingNumber })
   });
@@ -499,7 +498,7 @@ let editingId = null;
 
 async function editProduct(id) {
   const res = await fetch(`${API}/admin/products`, {
-    headers: { Authorization: "Bearer " + tokena }
+    headers: { Authorization: "Bearer " + token }
   });
 
   const products = await res.json();
