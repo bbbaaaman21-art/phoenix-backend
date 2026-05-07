@@ -1,5 +1,4 @@
 /* ================== ADD ================== */
-if (!requireAuth()) return;
 
 const token = localStorage.getItem("token");
 /* ================== CART CACHE ================== */

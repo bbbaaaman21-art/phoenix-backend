@@ -1,5 +1,5 @@
 /* ================== CHECKOUT PAGE ================== */
-if (!requireAuth()) return;
+requireAuth();
 const token = localStorage.getItem("token");
 /* ===== get address ===== */
 function getCheckoutAddress() {
