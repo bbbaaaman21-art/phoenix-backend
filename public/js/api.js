@@ -5,9 +5,12 @@ window.fetch = async (url, options = {}) => {
 
   const token = localStorage.getItem("token");
 
+  const isFormData = options.body instanceof FormData;
+
   options.headers = {
     ...(options.headers || {}),
-    "Content-Type": "application/json",
+    // 🔥 ضيف Content-Type بس لو فيه body ومش FormData
+    ...(!isFormData && options.body ? { "Content-Type": "application/json" } : {}),
     ...(token ? { Authorization: `Bearer ${token}` } : {})
   };
 
