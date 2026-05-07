@@ -1,6 +1,6 @@
 /* ================== CHECKOUT PAGE ================== */
 requireAuth();
-const token = localStorage.getItem("token");
+const tokenh = localStorage.getItem("token");
 /* ===== get address ===== */
 function getCheckoutAddress() {
 
@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   const user = rawUser ? JSON.parse(rawUser) : null;
  
 
-  if (!user || !token) {
+  if (!user || !tokenh) {
     localStorage.setItem("redirectAfterLogin", "checkout.html");
     window.location.href = "auth.html";
     return;
@@ -64,7 +64,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   // ===== ADDRESS =====
   try {
     const res = await fetch(`${API}/addresses`, {
-      headers: { Authorization: "Bearer " + token }
+      headers: { Authorization: "Bearer " + tokenh }
     });
 
     const addresses = await res.json();
@@ -260,7 +260,7 @@ async function renderCheckoutSummary() {
   if (!itemsWrap || !subEl || !shipEl || !totalEl) return;
 
  
-  if (!token) {
+  if (!tokenh) {
     itemsWrap.innerHTML = "<p>سجل دخول أولاً</p>";
     return;
   }
@@ -366,7 +366,7 @@ async function submitOrderToDB() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer " + token
+        "Authorization": "Bearer " + tokenh
       },
       body: JSON.stringify({
         fullName: name,
@@ -390,7 +390,7 @@ async function submitOrderToDB() {
     await fetch(`${API}/cart/clear`, {
       method: "POST",
       headers: {
-        "Authorization": "Bearer " + token
+        "Authorization": "Bearer " + tokenh
       }
     });
 

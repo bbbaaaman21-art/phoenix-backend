@@ -1,6 +1,7 @@
 /* ================== ADD ================== */
+requireAuth();
 
-const token = localStorage.getItem("token");
+const tokenc = localStorage.getItem("token");
 /* ================== CART CACHE ================== */
 let CART_CACHE = [];
 
@@ -21,7 +22,7 @@ async function addToCartAPI(item) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer " + token
+        "Authorization": "Bearer " + tokenc
       },
       body: JSON.stringify(item)
     });
@@ -44,11 +45,11 @@ async function addToCartAPI(item) {
 async function fetchCart() {
   try {
     
-    if (!token) return [];
+    if (!tokenc) return [];
 
     const res = await fetch(`${API}/cart`, {
       headers: {
-        "Authorization": "Bearer " + token
+        "Authorization": "Bearer " + tokenc
       }
     });
 
@@ -73,7 +74,7 @@ async function handleAddToCart(btn, productId) {
   try {
    
 
-    if (!token) {
+    if (!tokenc) {
       showToast("⚠ Please log in first", "remove");
       return;
     }
@@ -170,7 +171,7 @@ async function removeFromCartAPI(cartItemId) {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": "Bearer " + token
+        "Authorization": "Bearer " + tokenc
       },
       body: JSON.stringify({ cartItemId })
     });
@@ -312,7 +313,7 @@ window.goToCheckout = async function () {
 
 
   // ❌ مش مسجل دخول
-  if (!token) {
+  if (!tokenc) {
     localStorage.setItem("redirectAfterLogin", "checkout.html");
     window.location.href = "auth.html";
     return;

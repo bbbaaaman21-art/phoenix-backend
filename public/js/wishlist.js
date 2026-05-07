@@ -1,6 +1,6 @@
 /* ================== WISHLIST ================== */
 requireAuth();
-  const token = localStorage.getItem("token");
+  const tokenw = localStorage.getItem("token");
 
 document.addEventListener("DOMContentLoaded", async function () {
 
@@ -15,7 +15,7 @@ let WISHLIST_LOADING = false;
 
 async function fetchWishlist(force = false) {
 
-  if (!token) return [];
+  if (!tokenw) return [];
 
   // 🔥 لو فيه cache استخدمه
   if (!force && WISHLIST_CACHE) {
@@ -38,7 +38,7 @@ async function fetchWishlist(force = false) {
     WISHLIST_LOADING = true;
 
     const res = await fetch(`${window.API}/wishlist`, {
-      headers: { Authorization: "Bearer " + token }
+      headers: { Authorization: "Bearer " + tokenw }
     });
 
     if (!res.ok) {
@@ -83,13 +83,13 @@ async function fetchWishlist(force = false) {
 async function addToWishlistAPI(productId) {
 
   
-  if (!token) return [];
+  if (!tokenw) return [];
 
   try {
 
     const res = await fetch(`${window.API}/wishlist/${productId}`, {
       method: "POST",
-      headers: { Authorization: "Bearer " + token }
+      headers: { Authorization: "Bearer " + tokenw }
     });
 
     return await res.json();
@@ -104,13 +104,13 @@ async function addToWishlistAPI(productId) {
 // ===== REMOVE =====
 async function removeFromWishlistAPI(productId) {
 
-  if (!token) return [];
+  if (!tokenw) return [];
 
   try {
 
     const res = await fetch(`${window.API}/wishlist/${productId}`, {
       method: "DELETE",
-      headers: { Authorization: "Bearer " + token }
+      headers: { Authorization: "Bearer " + tokenw }
     });
 
     return await res.json();
@@ -125,7 +125,7 @@ async function removeFromWishlistAPI(productId) {
 // ===== TOGGLE =====
 async function toggleWishlist(productId) {
 
-  if (!token) {
+  if (!tokenw) {
     showToast("⚠ Please log in first", "remove");
     return false;
   }

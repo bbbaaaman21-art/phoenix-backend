@@ -1,7 +1,7 @@
 // ===== INIT =====
 requireAuth();
 
-const token = localStorage.getItem("token");
+const tokeno = localStorage.getItem("token");
 document.addEventListener("DOMContentLoaded", async function () {
 
   requireAuth();
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", async function () {
   try {
     const res = await fetch(`${API}/orders/${orderId}`, {
       headers: {
-        Authorization: "Bearer " + token
+        Authorization: "Bearer " + tokeno
       }
     });
 
