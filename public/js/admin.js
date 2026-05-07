@@ -1,4 +1,3 @@
-requireAuth();
 const tokena = localStorage.getItem("token");
 
 const socket = io("https://rovixhome.com");
