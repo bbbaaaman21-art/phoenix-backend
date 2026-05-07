@@ -1,4 +1,6 @@
 /* ================== ADD ================== */
+if (!requireAuth()) return;
+
 const token = localStorage.getItem("token");
 /* ================== CART CACHE ================== */
 let CART_CACHE = [];
@@ -309,7 +311,6 @@ document.addEventListener("DOMContentLoaded", async function () {
 // 🔥 GO TO CHECKOUT
 window.goToCheckout = async function () {
 
-  const token = localStorage.getItem("token");
 
   // ❌ مش مسجل دخول
   if (!token) {

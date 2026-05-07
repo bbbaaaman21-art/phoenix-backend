@@ -1,4 +1,7 @@
 /* ================== WISHLIST ================== */
+if (!requireAuth()) return;
+  const token = localStorage.getItem("token");
+
 document.addEventListener("DOMContentLoaded", async function () {
 
   await loadProducts(); // 🔥 مهم جدًا
@@ -12,7 +15,6 @@ let WISHLIST_LOADING = false;
 
 async function fetchWishlist(force = false) {
 
-  const token = localStorage.getItem("token");
   if (!token) return [];
 
   // 🔥 لو فيه cache استخدمه
@@ -80,7 +82,7 @@ async function fetchWishlist(force = false) {
 // ===== ADD =====
 async function addToWishlistAPI(productId) {
 
-  const token = localStorage.getItem("token");
+  
   if (!token) return [];
 
   try {
@@ -102,7 +104,6 @@ async function addToWishlistAPI(productId) {
 // ===== REMOVE =====
 async function removeFromWishlistAPI(productId) {
 
-  const token = localStorage.getItem("token");
   if (!token) return [];
 
   try {
@@ -123,8 +124,6 @@ async function removeFromWishlistAPI(productId) {
 
 // ===== TOGGLE =====
 async function toggleWishlist(productId) {
-
-  const token = localStorage.getItem("token");
 
   if (!token) {
     showToast("⚠ Please log in first", "remove");

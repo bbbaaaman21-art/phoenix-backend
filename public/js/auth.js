@@ -97,11 +97,17 @@ function requireAuth() {
   const token = localStorage.getItem("token");
 
   if (!token) {
-    localStorage.setItem("redirectAfterLogin", window.location.pathname);
-    window.location.href = "auth.html";
-  }
-}
+    localStorage.setItem(
+      "redirectAfterLogin",
+      window.location.href
+    );
 
+    window.location.href = "auth.html";
+    return false;
+  }
+
+  return true;
+}
 
 /* ================== TOGGLE PASSWORD ================== */
 function togglePassword(inputId, el) {

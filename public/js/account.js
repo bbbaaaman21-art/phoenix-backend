@@ -1,10 +1,12 @@
+if (!requireAuth()) return;
+
 const rawUser = localStorage.getItem("user");
 const user = rawUser ? JSON.parse(rawUser) : null;
 
-const TOKEN123 = localStorage.getItem("token");
+const token1 = localStorage.getItem("token");
 
-/* ===== حماية الصفحة ===== */
-if (!token || !user) {
+/* ===== حماية إضافية ===== */
+if (!user) {
   window.location.href = "auth.html";
   throw new Error("Not authenticated");
 }
@@ -12,7 +14,9 @@ if (!token || !user) {
 /* ===== بيانات المستخدم في الهيدر ===== */
 document.getElementById("userName").innerText =
   user.firstName + " " + user.lastName;
-document.getElementById("userEmail").innerText = user.email;
+
+document.getElementById("userEmail").innerText =
+  user.email;
 
 /* ================== فتح التابات ================== */
 function openTab(event, id) {
@@ -33,7 +37,7 @@ function openTab(event, id) {
 function loadOrders() {
   fetch(`${API}/orders/my-orders`, {
     headers: {
-      Authorization: `Bearer ${TOKEN123}`
+      Authorization: `Bearer ${token1}`
     }
   })
     .then(res => res.json())
@@ -114,7 +118,7 @@ function cancelOrder(orderId) {
   fetch(`${API}/orders/${orderId}/cancel`, {
     method: "PUT",
     headers: {
-      Authorization: "Bearer " + TOKEN123
+      Authorization: "Bearer " + token1
     }
   })
     .then(res => res.json())
@@ -132,7 +136,7 @@ function deleteOrder(orderId) {
   fetch(`${API}/orders/${orderId}`, {
     method: "DELETE",
     headers: {
-      Authorization: `Bearer ${TOKEN123}`
+      Authorization: `Bearer ${token1}`
     }
   })
     .then(res => res.json())
@@ -149,14 +153,14 @@ function deleteOrder(orderId) {
 
 function downloadInvoice(orderId) {
 
-  if (!TOKEN123) {
+  if (!token1) {
     alert("لازم تسجل دخول");
     return;
   }
 
   // 🔥 افتح رابط الفاتورة مباشرة
   window.open(
-    `${API}/orders/${orderId}/invoice?TOKEN123=${TOKEN123}`,
+    `${API}/orders/${orderId}/invoice?token=${token1}`,
     "_blank"
   );
 }
@@ -166,7 +170,7 @@ function downloadInvoice(orderId) {
 function loadAddresses() {
   fetch(`${API}/addresses`, {
     headers: {
-      Authorization: "Bearer " + token
+      Authorization: "Bearer " + token1
     }
   })
     .then(res => res.json())
@@ -229,7 +233,7 @@ function saveAddress() {
     method,
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + token
+      Authorization: "Bearer " + token1
     },
     body: JSON.stringify(data)
   })
@@ -243,7 +247,7 @@ function saveAddress() {
 function editAddress(id) {
   fetch(`${API}/addresses`, {
     headers: {
-      Authorization: "Bearer " + token
+      Authorization: "Bearer " + token1
     }
   })
     .then(res => res.json())
@@ -267,7 +271,7 @@ function deleteAddress(id) {
   fetch(`${API}/addresses/${id}`, {
     method: "DELETE",
     headers: {
-      Authorization: "Bearer " + token
+      Authorization: "Bearer " + token1
     }
   })
     .then(res => res.json())
@@ -278,7 +282,7 @@ function setDefaultAddress(id) {
   fetch(`${API}/addresses/${id}/default`, {
     method: "PUT",
     headers: {
-      Authorization: "Bearer " + token
+      Authorization: "Bearer " + token1
     }
   })
     .then(res => res.json())
@@ -299,7 +303,7 @@ function resetAddressForm() {
 function loadNotifications() {
   fetch(`${API}/notifications`, {
     headers: {
-      Authorization: "Bearer " + token
+      Authorization: "Bearer " + token1
     }
   })
     .then(res => res.json())
@@ -365,7 +369,7 @@ function loadNotifications() {
   fetch(`${API}/notifications/${id}`, {
     method: "DELETE",
     headers: {
-      Authorization: "Bearer " + token
+      Authorization: "Bearer " + token1
     }
   })
     .then(res => {
@@ -390,7 +394,7 @@ function deleteAllNotifications() {
   fetch(`${API}/notifications`, {
     method: "DELETE",
     headers: {
-      Authorization: "Bearer " + token
+      Authorization: "Bearer " + token1
     }
   })
     .then(res => res.json())
@@ -405,7 +409,7 @@ function markNotificationRead(id) {
   fetch(`${API}/notifications/${id}/read`, {
     method: "PUT",
     headers: {
-      Authorization: "Bearer " + token
+      Authorization: "Bearer " + token1
     }
   })
     .then(res => res.json())
@@ -450,7 +454,7 @@ function updateProfile() {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + token
+      Authorization: "Bearer " + token1
     },
     body: JSON.stringify({ firstName, lastName, email })
   })
@@ -492,7 +496,7 @@ function changePasswordFromSettings() {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      Authorization: "Bearer " + token
+      Authorization: "Bearer " + token1
     },
     body: JSON.stringify({ oldPass, newPass })
   })
@@ -523,7 +527,7 @@ function uploadAvatar() {
   fetch(`${API}/user/avatar`, {
     method: "PUT",
     headers: {
-      Authorization: "Bearer " + token
+      Authorization: "Bearer " + token1
     },
     body: formData
   })
@@ -577,7 +581,7 @@ function deleteAvatar() {
   fetch(`${API}/user/avatar`, {
     method: "DELETE",
     headers: {
-      Authorization: "Bearer " + token
+      Authorization: "Bearer " + token1
     }
   })
     .then(res => res.json())

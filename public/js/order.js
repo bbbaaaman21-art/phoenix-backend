@@ -1,4 +1,6 @@
 // ===== INIT =====
+if (!requireAuth()) return;
+
 const token = localStorage.getItem("token");
 document.addEventListener("DOMContentLoaded", async function () {
 

@@ -1,9 +1,11 @@
+if (!requireAuth()) return;
+const token = localStorage.getItem("token");
+
 const socket = io("https://rovixhome.com");
 
 let lastOrdersCount = 0;
 let allOrders = [];
 
-const token = localStorage.getItem("token");
 
 // ❌ مفيش توكن
 if (!token) {
