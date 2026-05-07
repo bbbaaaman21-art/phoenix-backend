@@ -1,7 +1,7 @@
 const rawUser = localStorage.getItem("user");
 const user = rawUser ? JSON.parse(rawUser) : null;
 
-const token = localStorage.getItem("token");
+const TOKEN123 = localStorage.getItem("token");
 
 /* ===== حماية الصفحة ===== */
 if (!token || !user) {
@@ -33,7 +33,7 @@ function openTab(event, id) {
 function loadOrders() {
   fetch(`${API}/orders/my-orders`, {
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${TOKEN123}`
     }
   })
     .then(res => res.json())
@@ -114,7 +114,7 @@ function cancelOrder(orderId) {
   fetch(`${API}/orders/${orderId}/cancel`, {
     method: "PUT",
     headers: {
-      Authorization: "Bearer " + token
+      Authorization: "Bearer " + TOKEN123
     }
   })
     .then(res => res.json())
@@ -132,7 +132,7 @@ function deleteOrder(orderId) {
   fetch(`${API}/orders/${orderId}`, {
     method: "DELETE",
     headers: {
-      Authorization: `Bearer ${token}`
+      Authorization: `Bearer ${TOKEN123}`
     }
   })
     .then(res => res.json())
@@ -149,14 +149,14 @@ function deleteOrder(orderId) {
 
 function downloadInvoice(orderId) {
 
-  if (!token) {
+  if (!TOKEN123) {
     alert("لازم تسجل دخول");
     return;
   }
 
   // 🔥 افتح رابط الفاتورة مباشرة
   window.open(
-    `${API}/orders/${orderId}/invoice?token=${token}`,
+    `${API}/orders/${orderId}/invoice?TOKEN123=${TOKEN123}`,
     "_blank"
   );
 }
