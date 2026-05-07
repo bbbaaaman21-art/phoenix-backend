@@ -14,8 +14,7 @@ document.getElementById("userName").innerText =
   user.firstName + " " + user.lastName;
 document.getElementById("userEmail").innerText = user.email;
 
-/* ====
-============== فتح التابات ================== */
+/* ================== فتح التابات ================== */
 function openTab(event, id) {
   document.querySelectorAll('.tab_content').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.menu_item').forEach(b => b.classList.remove('active'));
@@ -602,7 +601,8 @@ function deleteAvatar() {
     });
 }
 
-
+// 🔥 AUTH
+requireAuth();
 
 // 🔥 TABS
 window.openTab = function(event, id) {

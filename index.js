@@ -29,7 +29,6 @@ const User = require("./models/User");
 const bcrypt = require("bcrypt");
 const axios = require("axios");
 const sendEmail = require("./utils/sendEmail");
-const jwt = require("jsonwebtoken");
 
 const app = express();
 
