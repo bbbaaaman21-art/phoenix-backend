@@ -1,14 +1,16 @@
 const rawUser = localStorage.getItem("user");
 const user = rawUser ? JSON.parse(rawUser) : null;
 const token = localStorage.getItem("token");
-requireAuth();
+
 
 /* ===== بيانات المستخدم في الهيدر ===== */
 document.getElementById("userName").innerText =
   user.firstName + " " + user.lastName;
 document.getElementById("userEmail").innerText = user.email;
 
-/* ================== فتح التابات ================== */
+requireAuth();
+/* ====
+============== فتح التابات ================== */
 function openTab(event, id) {
   document.querySelectorAll('.tab_content').forEach(t => t.classList.remove('active'));
   document.querySelectorAll('.menu_item').forEach(b => b.classList.remove('active'));

@@ -1,5 +1,4 @@
 /* ================== CHECKOUT PAGE ================== */
-requireAuth();
 const token = localStorage.getItem("token");
 /* ===== get address ===== */
 function getCheckoutAddress() {
@@ -7,6 +6,7 @@ function getCheckoutAddress() {
   const mode =
     document.querySelector('input[name="addressMode"]:checked')?.value;
 
+    requireAuth();
   // ===== NEW ADDRESS =====
   if (mode === "new") {
 

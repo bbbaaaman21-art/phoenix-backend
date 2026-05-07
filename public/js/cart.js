@@ -1,6 +1,4 @@
 /* ================== ADD ================== */
-
-requireAuth();
 const token = localStorage.getItem("token");
 /* ================== CART CACHE ================== */
 let CART_CACHE = [];
