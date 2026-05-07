@@ -1,4 +1,4 @@
-const socket = io("http://localhost:3000");
+const socket = io("https://rovixhome.com/api");
 
 let lastOrdersCount = 0;
 let allOrders = [];
