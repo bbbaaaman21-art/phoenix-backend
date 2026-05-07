@@ -89,11 +89,11 @@ function requireAuth() {
   const token = localStorage.getItem("token");
 
   if (!token) {
-    localStorage.setItem("redirectAfterLogin", window.location.pathname);
+    localStorage.setItem("redirectAfterLogin", window.location.href);
     window.location.href = "auth.html";
+    return;
   }
 }
-
 /* ================== LOGOUT ================== */
 function logout() {
   localStorage.removeItem("token");
@@ -102,14 +102,7 @@ function logout() {
 }
 
 /* ================== AUTH GUARD ================== */
-function requireAuth() {
-  const token = localStorage.getItem("token");
 
-  if (!token) {
-    localStorage.setItem("redirectAfterLogin", window.location.pathname);
-    window.location.href = "auth.html";
-  }
-}
 
 
 /* ================== TOGGLE PASSWORD ================== */
