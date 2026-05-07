@@ -298,6 +298,13 @@ function resetAddressForm() {
   document.getElementById("addressForm").classList.add("hidden");
 }
 
+window.toggleNotifications = function () {
+
+  document
+    .getElementById("notifDropdown")
+    .classList.toggle("active");
+
+};
 /* ================== الإشعارات ================== */
 
 function loadNotifications() {
@@ -361,6 +368,7 @@ function loadNotifications() {
       }
     });
 }
+
 
 /* ================== حذف إشعار واحد ================== */
 

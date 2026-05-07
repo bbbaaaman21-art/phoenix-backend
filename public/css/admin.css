@@ -6,13 +6,14 @@
 }
 
 /* ===== Body ===== */
-body {
-  height: 100vh;
+body.admin-login {
+  min-height: 100vh;
   display: flex;
-flex-direction: column;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-   background-image: url("../img/logo/auth.webp");
+
+  background-image: url("../img/logo/auth.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -623,8 +624,8 @@ html, body {
   }
 
 }
-input,
-button{
+.admin-login input,
+.admin-login button {
   height: 70px;
   font-size: 18px;
 }

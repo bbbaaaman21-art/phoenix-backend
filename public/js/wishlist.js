@@ -1,5 +1,4 @@
 /* ================== WISHLIST ================== */
-requireAuth();
   const tokenw = localStorage.getItem("token");
 
 document.addEventListener("DOMContentLoaded", async function () {
