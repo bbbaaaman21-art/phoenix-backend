@@ -199,7 +199,7 @@ async function clearCartAfterOrder() {
     const cart = CART_CACHE || [];
 
     for (const item of cart) {
-      await removeFromCartAPI(item._id);
+      await removeFromCartAPI(item._id, true);
     }
 
     // 🔥 فضي الكاش

@@ -162,7 +162,10 @@ function updateCartCount() {
 
 
 /* ================== REMOVE ================== */
-async function removeFromCartAPI(cartItemId) {
+async function removeFromCartAPI(
+  cartItemId,
+  silent = false
+) {
   try {
 
     await fetch(`${API}/cart/remove`, {
@@ -176,15 +179,24 @@ async function removeFromCartAPI(cartItemId) {
 
     // 🔥 تحديث الكاش
     CART_CACHE = (CART_CACHE || []).filter(
-  item => item._id !== cartItemId
-);
+      item => item._id !== cartItemId
+    );
 
     updateCartCount();
 
-    showToast("The product has been deleted", "remove");
+    // 🔥 رسالة فقط لو مش silent
+    if (!silent) {
+      showToast(
+        "The product has been deleted",
+        "remove"
+      );
+    }
 
     // لو في صفحة الكارت
-    if (typeof renderCartTable === "function") {
+    if (
+      !silent &&
+      typeof renderCartTable === "function"
+    ) {
       renderCartTable();
     }
 
