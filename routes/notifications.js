@@ -58,24 +58,26 @@ router.delete("/:id", auth, async (req, res, next) => {
 
 // ================= DELETE ALL =================
 router.delete("/", auth, async (req, res, next) => {
-try {
-const user = await User.findById(req.user.userId);
 
-```
-if (!user) {
-  return res.status(404).json({ message: "User not found" });
-}
+  try {
 
-user.notifications = [];
+    await User.findByIdAndUpdate(
+      req.user.userId,
+      {
+        $set: {
+          notifications: []
+        }
+      }
+    );
 
-await user.save();
+    res.json({
+      message: "All notifications cleared"
+    });
 
-res.json({ message: "All notifications cleared" });
-```
+  } catch (err) {
+    next(err);
+  }
 
-} catch (err) {
-next(err);
-}
 });
 //=============================
 router.put("/:id/read", auth, async (req, res, next) => {

@@ -643,3 +643,12 @@ window.toggleAddressForm = function() {
   document.getElementById('addressForm')
     .classList.toggle('hidden');
 };
+document
+  .getElementById("setAvatar")
+  ?.addEventListener("change", function () {
+
+    if (this.files.length) {
+      uploadAvatar();
+    }
+
+});
