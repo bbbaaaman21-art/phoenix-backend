@@ -399,28 +399,34 @@ if (addBtn) {
   return;
 }
 
-    let meters = 1;
-    let qty = 1;
+let meters = 1;
+let qty = 1;
 
-    // 🔥 لو منتج بالمتر
-    if (prod.hasMeters) {
+// 🔥 لو منتج بالمتر
+if (prod.hasMeters) {
 
-      meters = Number(metersInput?.value);
+  meters = parseFloat(
+    metersInput?.value?.trim()
+  );
 
-      if (!meters || meters <= 0) {
-        showToast("Enter the number of meters", "remove");
-        return;
-      }
+  if (isNaN(meters) || meters <= 0) {
 
-      qty = 1;
+    showToast(
+      "Enter the number of meters",
+      "remove"
+    );
 
-    } else {
+    return;
+  }
 
-      // 🔥 منتج عادي
-      qty = Number(qtyInput?.value) || 1;
-      meters = 1;
-    }
+  qty = 1;
 
+} else {
+
+  // 🔥 منتج عادي
+  qty = Number(qtyInput?.value) || 1;
+  meters = 1;
+}
     // ================= PAYLOAD =================
     let payload = {
       productId: prod.id,

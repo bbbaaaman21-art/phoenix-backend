@@ -85,32 +85,40 @@ async function handleAddToCart(btn, productId) {
       return;
     }
 
-    let meters = 1;
-    let material = null;
+let meters = 1;
+let material = null;
 
-    if (product.hasMeters) {
-      meters = Number(document.getElementById("metersInput")?.value) || 1;
-      material = window.selectedMaterial;
-    }
+if (product.hasMeters) {
 
-    const payload = {
-      productId: product.id,
-      qty: 1,
-      meters
-    };
+  showToast(
+    "حدد الخامة وعدد الأمتار أولاً",
+    "remove"
+  );
 
-    if (material) {
-      payload.material = {
-        name: material.name
-      };
-    }
+  window.location.href =
+    `product.html?id=${product.id}`;
 
-    if (window.selectedColor) {
-      payload.color = {
-        name: window.selectedColor.name,
-        codes: window.selectedColor.codes
-      };
-    }
+  return;
+}
+
+const payload = {
+  productId: product.id,
+  qty: 1,
+  meters
+};
+
+if (material) {
+  payload.material = {
+    name: material.name
+  };
+}
+
+if (window.selectedColor) {
+  payload.color = {
+    name: window.selectedColor.name,
+    codes: window.selectedColor.codes
+  };
+}
 
     console.log("🔥 CLEAN PAYLOAD:", payload);
 
