@@ -46,7 +46,8 @@
     <div class="header_actions">
 
       <!-- SEARCH -->
-      <form class="search_box" onsubmit="return false;">
+       <form class="search_box"
+      onsubmit="handleSearch(); return false;">
         <input type="text" id="searchInput" placeholder="ابحث عن منتج..." />
         <button type="button" onclick="handleSearch()" aria-label="بحث">
 
@@ -129,14 +130,40 @@
 
   <!-- Sidebar -->
   <aside class="account_sidebar">
-    <div class="user_box">
-      <div class="avatar" id="avatarLetterOrImg"></div>
+ <div class="account_layout">
 
-      <div class="user_meta">
-        <strong id="userName"></strong>
-        <small id="userEmail"></small>
-      </div>
-    </div>
+  <!-- Sidebar -->
+  <aside class="account_sidebar">
+    <div class="user_box" onclick="toggleProfileMenu()">
+
+  <div class="avatar" id="avatarLetterOrImg"></div>
+
+  <div class="user_meta">
+    <strong id="userName"></strong>
+  </div>
+
+  <div id="profileMenu" class="profile_menu hidden">
+
+    <div class="profile_email" id="userEmail"></div>
+
+    <button onclick="openTab(event,'settings')">
+      <i class="fa-solid fa-gear"></i>
+      الإعدادات
+    </button>
+
+    <button onclick="document.getElementById('setAvatar').click()">
+      <i class="fa-solid fa-image"></i>
+      تغيير الصورة
+    </button>
+
+    <button onclick="logout()" class="logout_btn">
+      <i class="fa-solid fa-right-from-bracket"></i>
+      تسجيل خروج
+    </button>
+
+  </div>
+
+</div>
 
     <nav class="menu">
       <button class="menu_item active" onclick="openTab(event,'dashboard')">
@@ -157,14 +184,9 @@
         <i class="fa-solid fa-location-dot"></i> العناوين
       </button>
     
-<button class="menu_item" onclick="openTab(event,'settings')">
-  <i class="fa-solid fa-gear"></i> الإعدادات
-</button>
-      <button class="menu_item logout" onclick="logout()">
-        <i class="fa-solid fa-right-from-bracket"></i> تسجيل خروج
-      </button>
     </nav>
   </aside>
+
 
   <!-- Main -->
   <main class="account_main">

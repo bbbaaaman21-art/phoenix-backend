@@ -19,15 +19,6 @@
 document.addEventListener("DOMContentLoaded", function () {
 
   // ================= SEARCH =================
- let timer;
-
-document.getElementById("searchInput")?.addEventListener("input", function () {
-  clearTimeout(timer);
-
-  timer = setTimeout(() => {
-    handleSearch();
-  }, 400);
-});
 
   // ================= 🔥 SMART LOAD PRODUCTS =================
   loadProducts().then(() => {

@@ -1,4 +1,4 @@
-const socket = io("https://rovixhome.com/api");
+const socket = io("https://rovixhome.com");
 
 let lastOrdersCount = 0;
 let allOrders = [];

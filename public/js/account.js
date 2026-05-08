@@ -298,6 +298,14 @@ function resetAddressForm() {
   document.getElementById("addressForm").classList.add("hidden");
 }
 
+window.toggleProfileMenu = function () {
+
+  document
+    .getElementById("profileMenu")
+    .classList.toggle("hidden");
+
+};
+
 window.toggleNotifications = function () {
 
   document
