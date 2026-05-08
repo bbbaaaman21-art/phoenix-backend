@@ -543,3 +543,21 @@ body.account_page {
   }
 
 }
+@media (max-width: 768px) {
+
+  .account_sidebar {
+    overflow: visible;
+  }
+
+  .profile_menu {
+    position: fixed;
+
+    top: 70px;
+    right: 10px;
+
+    width: 230px;
+
+    z-index: 99999;
+  }
+
+}
