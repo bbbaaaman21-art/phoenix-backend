@@ -187,8 +187,8 @@ body.account_page {
 
   /* نخبي user box عشان المساحة */
   .user_box {
-    display: none;
-  }
+  min-width: max-content;
+}
 
   /* main */
   .account_main {
