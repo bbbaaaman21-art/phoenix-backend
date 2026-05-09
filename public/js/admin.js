@@ -61,14 +61,17 @@ socket.on("newOrder", (order) => {
   }
 
   // 📱 إشعار الموبايل
-  if (Notification.permission === "granted") {
+ if (Notification.permission === "granted") {
 
-    new Notification("🛒 طلب جديد", {
-      body: `تم استلام أوردر جديد`,
-      icon: "/img/logo.png"
-    });
+  alert("Notification Working");
 
-  }
+  new Notification("🛒 طلب جديد", {
+    body: "تم استلام أوردر جديد",
+    icon: "/img/logo.png",
+    requireInteraction: true
+  });
+
+}
 
   // تحديث الطلبات
   loadOrders();
