@@ -99,12 +99,14 @@ app.use(
       directives: {
         defaultSrc: ["'self'"],
 
-        scriptSrc: [
-          "'self'",
-          "https://cdn.jsdelivr.net",
-          "https://cdnjs.cloudflare.com",
-          "'unsafe-inline'"
-        ],
+       scriptSrc: [
+  "'self'",
+  "https://cdn.jsdelivr.net",
+  "https://cdnjs.cloudflare.com",
+  "https://www.gstatic.com",
+  "'unsafe-inline'",
+  "'unsafe-eval'"
+],
 
         scriptSrcAttr: ["'unsafe-inline'"], // 👈 الحل هنا
 
@@ -112,7 +114,7 @@ app.use(
           "'self'",
           "https://cdn.jsdelivr.net",
           "https://cdnjs.cloudflare.com",
-          "https://www.gstatic.com",
+          
           "'unsafe-inline'"
         ],
 
@@ -123,9 +125,13 @@ app.use(
         ],
 
         connectSrc: [
-          "'self'",
-          "https://cdn.jsdelivr.net"
-        ],
+  "'self'",
+  "https://cdn.jsdelivr.net",
+  "https://fcmregistrations.googleapis.com",
+  "https://firebaseinstallations.googleapis.com",
+  "https://www.googleapis.com",
+  "https://firebase.googleapis.com"
+],
 
         fontSrc: [
           "'self'",

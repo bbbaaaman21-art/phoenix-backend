@@ -591,6 +591,7 @@ async function editProduct(id) {
 }
 
 
+
 //===================admin-login ande out================//
 function logout() {
   // امسح التوكن
@@ -603,3 +604,17 @@ function logout() {
   // رجوع لصفحة الأدمن لوجين
   window.location.href = "/admin-login.html";
 }
+window.loadOrders = loadOrders;
+window.loadProducts = loadProducts;
+window.loadUsers = loadUsers;
+window.filterOrders = filterOrders;
+window.searchOrders = searchOrders;
+window.updateOrderStatus = updateOrderStatus;
+window.viewOrder = viewOrder;
+window.editProduct = editProduct;
+window.deleteProduct = deleteProduct;
+window.makeAdmin = makeAdmin;
+window.deleteUser = deleteUser;
+window.addProduct = addProduct;
+window.logout = logout;
+window.addColor = addColor;
