@@ -451,20 +451,7 @@ function showToast(message, type = "success") {
 
 
 // ================= TOP PRODUCTS =================
-async function loadTopProducts() {
-  const res = await fetch(`${API}/admin/top-products`, {
-    headers: { Authorization: "Bearer " + token }
-  });
 
-  const products = await res.json();
-
-  document.getElementById("topProducts").innerHTML =
-    products.map(p => `
-      <div class="top-product">
-        🔥 ${p.name} - ${p.sold} مبيعات
-      </div>
-    `).join("");
-}
 //=================load user============
 async function loadUsers() {
   const res = await fetch(`${API}/admin/users`, {
