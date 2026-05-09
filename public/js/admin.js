@@ -45,15 +45,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 socket.on("newOrder", (order) => {
+
   showToast("🔥 New Order !", "add");
 
-  // 🔄 نحدث الطلبات فورًا
-  loadOrders();
-});
-socket.on("orderUpdated", (order) => {
-  showToast("⚠️ Request has been updated", "add");
+  // 🔊 الصوت
+  try {
+    const audio = new Audio("/sounds/notify.mp3");
 
+    audio.play().catch(() => {
+      console.log("Sound blocked");
+    });
+
+  } catch (err) {
+    console.log(err);
+  }
+
+  // 📱 إشعار الموبايل
+  if (Notification.permission === "granted") {
+
+    new Notification("🛒 طلب جديد", {
+      body: `تم استلام أوردر جديد`,
+      icon: "/img/logo.png"
+    });
+
+  }
+
+  // تحديث الطلبات
   loadOrders();
+
 });
 // ================= STATS =================
 async function loadStats() {
