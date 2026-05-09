@@ -112,6 +112,7 @@ app.use(
           "'self'",
           "https://cdn.jsdelivr.net",
           "https://cdnjs.cloudflare.com",
+          "https://www.gstatic.com",
           "'unsafe-inline'"
         ],
 
