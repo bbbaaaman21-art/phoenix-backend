@@ -1,4 +1,14 @@
+// ================= INIT =================
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+
+import {
+  getMessaging,
+  getToken,
+  onMessage
+} from "https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging.js";
+
 const socket = io("https://rovixhome.com");
+
 
 let lastOrdersCount = 0;
 let allOrders = [];
@@ -28,15 +38,54 @@ const isSuperAdmin = payload.role === "super_admin";
 if (payload.role !== "admin" && payload.role !== "super_admin") {
   window.location.href = "/";
 }
-// ================= INIT =================
+
+
+const firebaseConfig = {
+  apiKey: "AIzaSyBSxxZOEAn5kyj5xRZpkX3i8Pcvj7YQV2A",
+  authDomain: "rovix-home.firebaseapp.com",
+  projectId: "rovix-home",
+  storageBucket: "rovix-home.firebasestorage.app",
+  messagingSenderId: "443037415645",
+  appId: "1:443037415645:web:a66aee2b19c69f7c464334"
+};
+
+const app = initializeApp(firebaseConfig);
+
+const messaging = getMessaging(app);
+
 document.addEventListener("DOMContentLoaded", () => {
 
   // طلب صلاحية الإشعارات
   if ("Notification" in window) {
+
     Notification.requestPermission()
       .then(permission => {
+
         console.log("Notification Permission:", permission);
+
+        // Firebase Token
+        if (permission === "granted") {
+
+          getToken(messaging, {
+            vapidKey: "9wqy3Yn3kWzvDSJp4FFtBYOFAIIA8KmzSvSjE44iDFQ"
+          })
+          .then((currentToken) => {
+
+            if (currentToken) {
+              console.log("FCM TOKEN:", currentToken);
+            } else {
+              console.log("No registration token available");
+            }
+
+          })
+          .catch((err) => {
+            console.log("TOKEN ERROR:", err);
+          });
+
+        }
+
       });
+
   }
 
   loadStats();
@@ -44,12 +93,15 @@ document.addEventListener("DOMContentLoaded", () => {
   loadTopProducts();
 
 });
+
+// استقبال أوردر جديد
 socket.on("newOrder", (order) => {
 
   showToast("🔥 New Order !", "add");
 
   // 🔊 الصوت
   try {
+
     const audio = new Audio("/sounds/notify.mp3");
 
     audio.play().catch(() => {
@@ -60,18 +112,16 @@ socket.on("newOrder", (order) => {
     console.log(err);
   }
 
-  // 📱 إشعار الموبايل
- if (Notification.permission === "granted") {
+  // 📱 إشعار داخل الصفحة
+  if (Notification.permission === "granted") {
 
-  alert("Notification Working");
+    new Notification("🛒 طلب جديد", {
+      body: "تم استلام أوردر جديد",
+      icon: "/img/logo.png",
+      requireInteraction: true
+    });
 
-  new Notification("🛒 طلب جديد", {
-    body: "تم استلام أوردر جديد",
-    icon: "/img/logo.png",
-    requireInteraction: true
-  });
-
-}
+  }
 
   // تحديث الطلبات
   loadOrders();
