@@ -67,8 +67,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (permission === "granted") {
 
           getToken(messaging, {
-            vapidKey: "9wqy3Yn3kWzvDSJp4FFtBYOFAIIA8KmzSvSjE44iDFQ"
-          })
+vapidKey: "BHtLFupPsEzL4sp0GNwM8e0pOAaRLc2UglBqQmoml0btYN7fReLATI7D8Pi5T8tnHaCcYX-xXjbEDJRCrF0gWWA"          })
           .then((currentToken) => {
 
             if (currentToken) {
