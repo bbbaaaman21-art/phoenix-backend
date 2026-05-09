@@ -30,10 +30,18 @@ if (payload.role !== "admin" && payload.role !== "super_admin") {
 }
 // ================= INIT =================
 document.addEventListener("DOMContentLoaded", () => {
+
+  // طلب صلاحية الإشعارات
+  if ("Notification" in window) {
+    Notification.requestPermission()
+      .then(permission => {
+        console.log("Notification Permission:", permission);
+      });
+  }
+
   loadStats();
   loadOrders();
   loadTopProducts();
-
 
 });
 socket.on("newOrder", (order) => {
