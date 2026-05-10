@@ -1,39 +1,71 @@
-// firebase notification route
 const express = require("express");
 const router = express.Router();
 
-let savedToken = null;
+const admin = require("../config/firebase");
+const FcmToken = require("../models/FcmToken");
 
-module.exports.savedToken = savedToken;
+// ================= SAVE TOKEN =================
+router.post("/save-fcm-token", async (req, res) => {
 
-router.post("/save-fcm-token", (req, res) => {
+  try {
 
-savedToken = req.body.fcmToken;
+    const token = req.body.fcmToken;
 
-module.exports.savedToken = savedToken;
+    if (!token) {
+      return res.status(400).json({
+        success: false
+      });
+    }
 
-  console.log("FCM TOKEN SAVED:", savedToken);
+    await FcmToken.findOneAndUpdate(
+      { token },
+      { token },
+      { upsert: true, new: true }
+    );
 
-  res.json({
-    success: true
-  });
+    console.log("FCM TOKEN SAVED:", token);
+
+    res.json({
+      success: true
+    });
+
+  } catch (err) {
+
+    console.log(err);
+
+    res.status(500).json({
+      success: false
+    });
+
+  }
 
 });
 
+// ================= TEST NOTIFICATION =================
 router.get("/test-notification", async (req, res) => {
 
   try {
 
-    const admin = require("../config/firebase");
+    const tokens = await FcmToken.find();
 
-    await admin.messaging().send({
-      token: savedToken,
+    for (const t of tokens) {
 
-      notification: {
-        title: "🛒 طلب جديد",
-        body: "تم استلام أوردر جديد"
-      }
-    });
+      await admin.messaging().send({
+        token: t.token,
+
+        notification: {
+          title: "🛒 Test Notification",
+          body: "Firebase Push شغال 🔥"
+        },
+
+        webpush: {
+          notification: {
+            icon: "https://rovixhome.com/img/logo.png"
+          }
+        }
+      });
+
+    }
 
     res.json({
       success: true
