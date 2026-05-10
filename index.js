@@ -29,6 +29,7 @@ const User = require("./models/User");
 const bcrypt = require("bcrypt");
 const axios = require("axios");
 const sendEmail = require("./utils/sendEmail");
+const fcmRoutes = require("./routes/fcm");
 
 const app = express();
 
@@ -175,6 +176,7 @@ app.use("/api/notifications", notificationsRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/addresses", addressRoutes);
+app.use("/", fcmRoutes);
 // ================= STATIC =================
 app.use("/uploads", express.static("uploads"));
 app.use(express.static("public"));
