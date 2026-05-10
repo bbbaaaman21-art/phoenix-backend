@@ -4,9 +4,13 @@ const router = express.Router();
 
 let savedToken = null;
 
+module.exports.savedToken = savedToken;
+
 router.post("/save-fcm-token", (req, res) => {
 
-  savedToken = req.body.fcmToken;
+savedToken = req.body.fcmToken;
+
+module.exports.savedToken = savedToken;
 
   console.log("FCM TOKEN SAVED:", savedToken);
 

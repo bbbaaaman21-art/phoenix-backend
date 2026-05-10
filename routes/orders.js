@@ -6,7 +6,8 @@ const addNotification = require("../utils/notifications");
 const Order = require("../models/Order");
 const Product = require("../models/Product");
 const auth = require("../middleware/authMiddleware");
-
+const admin = require("../config/firebase");
+const { savedToken } = require("./fcm");
 /* ================================
    CREATE CASH ORDER (checkout)
 ================================ */
@@ -168,6 +169,40 @@ addNotification(req.user.userId, "تم إنشاء الطلب بنجاح 🎉")
 // 🔥 socket
 const io = req.app.get("io");
 io.emit("newOrder", order);
+
+// 🔥 Firebase Push Notification
+try {
+
+  if (savedToken) {
+
+    await admin.messaging().send({
+      token: savedToken,
+
+      notification: {
+        title: "🛒 طلب جديد",
+        body: `طلب جديد باسم ${fullName}`
+      },
+
+      webpush: {
+        notification: {
+          icon: "https://rovixhome.com/img/logo.png"
+        }
+      }
+    });
+
+    console.log("✅ PUSH SENT");
+
+  } else {
+
+    console.log("❌ NO FCM TOKEN");
+
+  }
+
+} catch (err) {
+
+  console.log("❌ PUSH ERROR:", err);
+
+}
 
 res.json(order);
 
