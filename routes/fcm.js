@@ -60,8 +60,7 @@ router.get("/test-notification", async (req, res) => {
 
         webpush: {
           notification: {
-            icon: "https://rovixhome.com/img/logo.png"
-          }
+icon: "https://rovixhome.com/img/logo/64.png"          }
         }
       });
 
