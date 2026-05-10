@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
       await navigator.serviceWorker.ready;
 
       const currentToken = await getToken(messaging, {
-        vapidKey: "BHtLFupPsEzL4sp0GNwM8e0pOAaRLc2UglBqQmoml0btYN7fReLATI7D8Pi5T8tnHaCcYX-xXjbEDJRCrF0gWWA",
+        vapidKey: "BFvRQ-ZYq9CZIRNeojUaoMr4HMq8-R-nZZcbFl_3yY7-IP-Q6HNGzocOy1u-Qh6HW8uJygTB8fcBewqhNBqXa9M",
         serviceWorkerRegistration: registration
       });
 
