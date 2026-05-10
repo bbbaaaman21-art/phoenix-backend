@@ -82,8 +82,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         console.log("FCM TOKEN:", currentToken);
 
-        fetch(`${API}/save-fcm-token`, {
-          method: "POST",
+fetch("https://rovixhome.com/api/save-fcm-token", {          method: "POST",
           headers: {
             "Content-Type": "application/json",
             Authorization: "Bearer " + token

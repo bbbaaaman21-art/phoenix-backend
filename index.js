@@ -176,7 +176,7 @@ app.use("/api/notifications", notificationsRoutes);
 app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/addresses", addressRoutes);
-app.use("/", fcmRoutes);
+app.use("/api", fcmRoutes);
 // ================= STATIC =================
 app.use("/uploads", express.static("uploads"));
 app.use(express.static("public"));
