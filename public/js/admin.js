@@ -64,52 +64,60 @@ document.addEventListener("DOMContentLoaded", () => {
         console.log("Notification Permission:", permission);
 
         // Firebase Token
-        if (permission === "granted") {
+       if (permission === "granted") {
 
-          getToken(messaging, {
-vapidKey: "BHtLFupPsEzL4sp0GNwM8e0pOAaRLc2UglBqQmoml0btYN7fReLATI7D8Pi5T8tnHaCcYX-xXjbEDJRCrF0gWWA"          })
-          .then((currentToken) => {
+  navigator.serviceWorker.register("/firebase-messaging-sw.js")
+  .then(async (registration) => {
 
-if (currentToken) {
+    console.log("SW REGISTERED");
 
-  console.log("FCM TOKEN:", currentToken);
+    const currentToken = await getToken(messaging, {
+      vapidKey: "BHtLFupPsEzL4sp0GNwM8e0pOAaRLc2UglBqQmoml0btYN7fReLATI7D8Pi5T8tnHaCcYX-xXjbEDJRCrF0gWWA",
+      serviceWorkerRegistration: registration
+    });
 
-  fetch(`${API}/save-fcm-token`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + token
-    },
-    body: JSON.stringify({
-      fcmToken: currentToken
-    })
-  })
-  .then(res => res.json())
-  .then(data => {
+    if (currentToken) {
 
-    console.log("TOKEN SAVED RESPONSE:", data);
+      console.log("FCM TOKEN:", currentToken);
 
-  })
-  .catch(err => {
+      fetch(`${API}/save-fcm-token`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + token
+        },
+        body: JSON.stringify({
+          fcmToken: currentToken
+        })
+      })
+      .then(res => res.json())
+      .then(data => {
 
-    console.log("SAVE TOKEN ERROR:", err);
+        console.log("TOKEN SAVED RESPONSE:", data);
 
-  });
+      })
+      .catch(err => {
 
-} else {
-
-  console.log("No registration token available");
-
-}
-
-          })
-          .catch((err) => {
-            console.log("TOKEN ERROR:", err);
-          });
-
-        }
+        console.log("SAVE TOKEN ERROR:", err);
 
       });
+
+    } else {
+
+      console.log("No registration token available");
+
+    }
+
+  })
+  .catch((err) => {
+
+    console.log("SW ERROR:", err);
+
+  });
+  
+ }
+
+  });
 
   }
 
