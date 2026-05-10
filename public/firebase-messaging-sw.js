@@ -7,7 +7,7 @@ firebase.initializeApp({
   projectId: "rovix-home",
   storageBucket: "rovix-home.firebasestorage.app",
   messagingSenderId: "443037415645",
-  appId: "1:443037415645:web:a66aee2b19c69f7c464334"
+  appId: "1:443037415645:web:2ec4434c6f4ec05f464334"
 });
 
 const messaging = firebase.messaging();
