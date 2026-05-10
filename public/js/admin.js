@@ -58,66 +58,67 @@ document.addEventListener("DOMContentLoaded", () => {
   // طلب صلاحية الإشعارات
   if ("Notification" in window) {
 
-    Notification.requestPermission()
-      .then(permission => {
+   Notification.requestPermission()
+.then(async (permission) => {
 
-        console.log("Notification Permission:", permission);
+  console.log("Notification Permission:", permission);
 
-        // Firebase Token
-       if (permission === "granted") {
+  if (permission === "granted") {
 
-  navigator.serviceWorker.register("/firebase-messaging-sw.js")
-  .then(async (registration) => {
+    try {
 
-    console.log("SW REGISTERED");
+      const registration = await navigator.serviceWorker.register("/firebase-messaging-sw.js");
 
-    const currentToken = await getToken(messaging, {
-      vapidKey: "BHtLFupPsEzL4sp0GNwM8e0pOAaRLc2UglBqQmoml0btYN7fReLATI7D8Pi5T8tnHaCcYX-xXjbEDJRCrF0gWWA",
-      serviceWorkerRegistration: registration
-    });
+      console.log("SW REGISTERED", registration);
 
-    if (currentToken) {
+      await navigator.serviceWorker.ready;
 
-      console.log("FCM TOKEN:", currentToken);
-
-      fetch(`${API}/save-fcm-token`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: "Bearer " + token
-        },
-        body: JSON.stringify({
-          fcmToken: currentToken
-        })
-      })
-      .then(res => res.json())
-      .then(data => {
-
-        console.log("TOKEN SAVED RESPONSE:", data);
-
-      })
-      .catch(err => {
-
-        console.log("SAVE TOKEN ERROR:", err);
-
+      const currentToken = await getToken(messaging, {
+        vapidKey: "BHtLFupPsEzL4sp0GNwM8e0pOAaRLc2UglBqQmoml0btYN7fReLATI7D8Pi5T8tnHaCcYX-xXjbEDJRCrF0gWWA",
+        serviceWorkerRegistration: registration
       });
 
-    } else {
+      if (currentToken) {
 
-      console.log("No registration token available");
+        console.log("FCM TOKEN:", currentToken);
+
+        fetch(`${API}/save-fcm-token`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: "Bearer " + token
+          },
+          body: JSON.stringify({
+            fcmToken: currentToken
+          })
+        })
+        .then(res => res.json())
+        .then(data => {
+
+          console.log("TOKEN SAVED RESPONSE:", data);
+
+        })
+        .catch(err => {
+
+          console.log("SAVE TOKEN ERROR:", err);
+
+        });
+
+      } else {
+
+        console.log("No registration token available");
+
+      }
+
+    } catch (err) {
+
+      console.log("TOKEN ERROR:", err);
 
     }
 
-  })
-  .catch((err) => {
+  }
 
-    console.log("SW ERROR:", err);
-
-  });
-  
- }
-
-  });
+});
 
   }
 
