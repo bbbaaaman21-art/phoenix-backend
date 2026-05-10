@@ -72,6 +72,16 @@ vapidKey: "BHtLFupPsEzL4sp0GNwM8e0pOAaRLc2UglBqQmoml0btYN7fReLATI7D8Pi5T8tnHaCcY
 
             if (currentToken) {
               console.log("FCM TOKEN:", currentToken);
+              fetch(`${API}/save-fcm-token`, {
+  method: "POST",
+  headers: {
+    "Content-Type": "application/json",
+    Authorization: "Bearer " + token
+  },
+  body: JSON.stringify({
+    fcmToken: currentToken
+  })
+});
             } else {
               console.log("No registration token available");
             }
