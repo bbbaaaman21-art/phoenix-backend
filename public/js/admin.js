@@ -145,6 +145,17 @@ socket.on("newOrder", (order) => {
     console.log(err);
   }
 
+  // 📱 إشعار داخل الصفحة
+  if (Notification.permission === "granted") {
+
+    new Notification("🛒 طلب جديد", {
+      body: "تم استلام أوردر جديد",
+      icon: "/img/logo/64.png",
+      requireInteraction: true
+    });
+
+  }
+
   // تحديث الطلبات
   loadOrders();
 

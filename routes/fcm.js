@@ -50,19 +50,43 @@ router.get("/test-notification", async (req, res) => {
 
     for (const t of tokens) {
 
-      await admin.messaging().send({
-        token: t.token,
+      try {
 
-        notification: {
-          title: "🛒 Test Notification",
-          body: "Firebase Push شغال 🔥"
-        },
+        await admin.messaging().send({
+          token: t.token,
 
-        webpush: {
           notification: {
-icon: "https://rovixhome.com/img/logo/64.png"          }
+            title: "🛒 Test Notification",
+            body: "Firebase Push شغال 🔥"
+          },
+
+          webpush: {
+            notification: {
+              icon: "https://rovixhome.com/img/logo/180.png"
+            }
+          }
+        });
+
+        console.log("✅ PUSH SENT");
+
+      } catch (err) {
+
+        console.log("❌ TOKEN ERROR:", err.message);
+
+        // 🔥 احذف التوكن البايظ
+        if (
+          err.code === "messaging/registration-token-not-registered"
+        ) {
+
+          await FcmToken.deleteOne({
+            token: t.token
+          });
+
+          console.log("🗑 INVALID TOKEN REMOVED");
+
         }
-      });
+
+      }
 
     }
 
