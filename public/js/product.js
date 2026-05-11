@@ -310,8 +310,7 @@ function updatePrice() {
 
   if (!priceEl) return;
 
-  const meters = Number(metersInput?.value) || 0;
-
+const meters = parseFloat(metersInput?.value) || 0;
   // 🔥 لو محتاج متر
   if (prod.hasMeters && meters <= 0) {
 

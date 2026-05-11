@@ -213,12 +213,27 @@ try {
 // 🔥 Telegram Notification
 try {
 
-  const message = `
+const productsText = items.map(item => {
+
+  return `
+🪑 المنتج: ${item.name}
+🎨 اللون: ${item.color || "غير محدد"}
+📦 الكمية: ${item.qty || item.meters + " متر"}
+`;
+
+}).join("\n");
+
+const message = `
 🛒 طلب جديد
 
 👤 الاسم: ${fullName}
 
 📞 الهاتف: ${phone}
+
+📍 العنوان:
+${address}
+
+${productsText}
 
 💰 الإجمالي: ${finalTotal} جنيه
 `;
