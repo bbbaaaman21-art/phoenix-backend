@@ -5,7 +5,7 @@ const addNotification = require("../utils/notifications");
 const Order = require("../models/Order");
 const Product = require("../models/Product");
 const auth = require("../middleware/authMiddleware");
-
+const axios = require("axios");
 const admin = require("../config/firebase");
 const FcmToken = require("../models/FcmToken");
 /* ================================
@@ -189,7 +189,8 @@ try {
 
         webpush: {
           notification: {
-icon: "https://rovixhome.com/img/logo/64.png"          }
+            icon: "https://rovixhome.com/img/logo/64.png"
+          }
         }
       });
 
@@ -206,6 +207,35 @@ icon: "https://rovixhome.com/img/logo/64.png"          }
 } catch (err) {
 
   console.log("❌ PUSH ERROR:", err);
+
+}
+
+// 🔥 Telegram Notification
+try {
+
+  const message = `
+🛒 طلب جديد
+
+👤 الاسم: ${fullName}
+
+📞 الهاتف: ${phone}
+
+💰 الإجمالي: ${finalTotal} جنيه
+`;
+
+  await axios.post(
+    "https://api.telegram.org/bot8606313871:AAHxflqFgAqjNQuFZLmq0vykEVgEB_Td_xk/sendMessage",
+    {
+      chat_id: "6916981504",
+      text: message
+    }
+  );
+
+  console.log("✅ TELEGRAM SENT");
+
+} catch (err) {
+
+  console.log("❌ TELEGRAM ERROR:", err.message);
 
 }
 

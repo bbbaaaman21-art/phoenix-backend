@@ -150,7 +150,7 @@ socket.on("newOrder", (order) => {
 
     new Notification("🛒 طلب جديد", {
       body: "تم استلام أوردر جديد",
-      icon: "/img/logo/64.png",
+      icon: "https://rovixhome.com/img/logo/64.png",
       requireInteraction: true
     });
 
