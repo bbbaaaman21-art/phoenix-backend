@@ -217,7 +217,7 @@ const productsText = items.map(item => {
 
   return `
 🪑 المنتج: ${item.name}
-🎨 اللون: ${item.color || "غير محدد"}
+🎨 اللون: ${item.color?.name || item.color || "غير محدد"}
 📦 الكمية: ${item.qty || item.meters + " متر"}
 `;
 
@@ -231,7 +231,10 @@ const message = `
 📞 الهاتف: ${phone}
 
 📍 العنوان:
-${address}
+${address.city || ""}
+${address.area || ""}
+${address.street || ""}
+${address.details || ""}
 
 ${productsText}
 
