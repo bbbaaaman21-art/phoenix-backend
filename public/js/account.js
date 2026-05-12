@@ -31,6 +31,30 @@ function openTab(event, id) {
   if(id === 'notifications') loadNotifications();
 
 }
+function translateStatus(status) {
+
+  switch(status) {
+
+    case "pending":
+      return "⏳ Pending";
+
+    case "processing":
+      return "🛠 Processing";
+
+    case "shipped":
+      return "🚚 Shipped";
+
+    case "delivered":
+      return "✅ Delivered";
+
+    case "cancelled":
+      return "❌ Cancelled";
+
+    default:
+      return status;
+  }
+
+}
 
 /* ================== الطلبات ================== */
 
@@ -59,25 +83,28 @@ function loadOrders() {
   <div class="order_card">
 
     <div class="order_head">
-      <strong>#${order._id}</strong>
-
-      <span class="status ${order.status || "pending"}">
-        ${order.status || "pending"}
+<strong>#${order.orderNumber || order._id.slice(-6)}</strong>
+      <span class="status ${translateStatus(order.status || "pending")}">
+        ${translateStatus(order.status || "pending")}
       </span>
     </div>
 
     <p>💰 المبلغ: <strong>${order.total}</strong> جنيه</p>
 
-    <p>📅 التاريخ: ${new Date(order.createdAt).toLocaleDateString()}</p>
+    <p>📅 التاريخ: ${new Date(order.createdAt).toLocaleString("en-US")}</p>
 
-    <p>📦 الحالة: ${order.status || "pending"}</p>
+    <p>📦 الحالة: ${translateStatus(order.status || "pending")}</p>
 
-    <p>
-  🔢 رقم التتبع: 
+   ${order.status === "shipped" || order.status === "delivered"
+? `
+<p>
+  🚚 Tracking Number:
   <strong style="color:#0a7cff">
-    ${order.trackingNumber || "لم يتم الشحن بعد"}
+    ${order.trackingNumber || "-"}
   </strong>
 </p>
+`
+: ""}
 
     <div class="order_actions">
 

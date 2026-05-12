@@ -350,6 +350,30 @@ if (orders.length > lastOrdersCount && lastOrdersCount !== 0) {
 
   renderOrders(allOrders);
 }
+function translateStatus(status) {
+
+  switch(status) {
+
+    case "pending":
+      return "⏳ Pending";
+
+    case "processing":
+      return "🛠 Processing";
+
+    case "shipped":
+      return "🚚 Shipped";
+
+    case "delivered":
+      return "✅ Delivered";
+
+    case "cancelled":
+      return "❌ Cancelled";
+
+    default:
+      return status;
+  }
+
+}
 
 // ================= RENDER ORDERS =================
 function renderOrders(orders) {
@@ -372,8 +396,8 @@ function renderOrders(orders) {
 <p>💰 ${o.total || 0} EGP</p>
 
         <p class="status ${o.status}">
-          📦 ${o.status || "pending"}
-        </p>
+  ${translateStatus(o.status || "pending")}
+</p>
        
         <input 
           id="tracking-${o._id}"
@@ -383,6 +407,9 @@ function renderOrders(orders) {
         />
 
         <div class="actions">
+        <button onclick="updateOrderStatus('${o._id}','processing')" class="btn">
+  🛠 تجهيز
+</button>
 
           <button onclick="updateOrderStatus('${o._id}','shipped')" class="btn">
             🚚 شحن
