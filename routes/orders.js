@@ -221,9 +221,9 @@ const productsText = items.map(item => {
   return `
 🪑 المنتج: ${item.name}
 🎨 اللون: ${item.color?.name || item.color || "غير محدد"}
-📦 ${item.meters
-  ? `المتر: ${item.meters} متر`
-  : `الكمية: ${item.qty || 1}`
+${item.qty
+  ? `📦 الكمية: ${item.qty}`
+  : `📏 المتر: ${item.meters} متر`
 }
 `;
 

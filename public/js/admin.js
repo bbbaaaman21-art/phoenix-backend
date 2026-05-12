@@ -366,7 +366,7 @@ function renderOrders(orders) {
 </p>
 
 <p>
-  🗓 ${new Date(o.createdAt).toLocaleString("ar-EG")}
+  🗓 ${new Date(o.createdAt).toLocaleString("en-US")}
 </p>
 
 <p>💰 ${o.total || 0} EGP</p>
