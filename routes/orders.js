@@ -217,13 +217,16 @@ try {
 try {
 
 const productsText = items.map(item => {
+const isMeter = item.material && item.material.name;
 
-  return `
+return `
 🪑 المنتج: ${item.name}
+
 🎨 اللون: ${item.color?.name || item.color || "غير محدد"}
-${item.qty
-  ? `📦 الكمية: ${item.qty}`
-  : `📏 المتر: ${item.meters} متر`
+
+${isMeter
+  ? `📏 المتر: ${item.meters} متر`
+  : `📦 الكمية: ${item.qty || 1}`
 }
 `;
 
