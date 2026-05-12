@@ -44,6 +44,7 @@ const orderSchema = new mongoose.Schema(
     name: String,
     email: String,
     phone: String,
+    orderNumber: String,
 
     total: Number,
 

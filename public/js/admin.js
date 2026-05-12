@@ -357,10 +357,19 @@ function renderOrders(orders) {
     orders.map(o => `
       <div class="card order-card">
 
-        <h3>Order #${o._id}</h3>
+      <h3>Order #${o.orderNumber || o._id.slice(-6)}</h3>
 
-        <p>👤 ${o.userId?.email || "غير معروف"}</p>
-        <p>💰 ${o.total || 0} EGP</p>
+<p>👤 ${o.name || "غير معروف"}</p>
+
+<p>
+  📧 ${o.email || o.userId?.email || "لا يوجد"}
+</p>
+
+<p>
+  🗓 ${new Date(o.createdAt).toLocaleString("ar-EG")}
+</p>
+
+<p>💰 ${o.total || 0} EGP</p>
 
         <p class="status ${o.status}">
           📦 ${o.status || "pending"}

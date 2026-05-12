@@ -140,12 +140,15 @@ const updatedItems = items.map(item => {
 // ===============================
 // ✅ إنشاء الأوردر
 // ===============================
+const orderNumber =
+  "RV" + Date.now().toString().slice(-6);
 const order = await Order.create({
   userId: req.user.userId,
   items: updatedItems,
   address,
   name: fullName,
   phone,
+  orderNumber,
   subtotal,
   shipping,
   total: finalTotal,
@@ -218,7 +221,10 @@ const productsText = items.map(item => {
   return `
 🪑 المنتج: ${item.name}
 🎨 اللون: ${item.color?.name || item.color || "غير محدد"}
-📦 الكمية: ${item.qty || item.meters + " متر"}
+📦 ${item.meters
+  ? `المتر: ${item.meters} متر`
+  : `الكمية: ${item.qty || 1}`
+}
 `;
 
 }).join("\n");
