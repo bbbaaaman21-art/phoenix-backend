@@ -224,6 +224,11 @@ return `
 
 🎨 اللون: ${item.color?.name || item.color || "غير محدد"}
 
+${item.material?.name
+  ? `🧱 الخامة: ${item.material.name}`
+  : ""
+}
+
 ${isMeter
   ? `📏 المتر: ${item.meters} متر`
   : `📦 الكمية: ${item.qty || 1}`
