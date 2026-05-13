@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", async function () {
 
   if (!user || !tokenh) {
     localStorage.setItem("redirectAfterLogin", "checkout.html");
-    window.location.href = "auth.html";
+window.location.replace("auth.html");
     return;
   }
 
@@ -297,7 +297,9 @@ async function renderCheckoutSummary() {
       itemsWrap.innerHTML += `
         <div class="checkout_item">
           <div>
-            ${item.name || "منتج"}
+<a href="${getProductUrl(item)}">
+  ${item.name || "منتج"}
+</a>
             ${isMeter ? " - " + item.meters + " متر" : " - " + item.qty + " قطعة"}
             ${item.material?.name ? " - " + item.material.name : ""}
             ${item.color?.name ? " - " + item.color.name : ""}

@@ -17,7 +17,7 @@ const token = localStorage.getItem("token");
 
 // ❌ مفيش توكن
 if (!token) {
-  window.location.href = "/admin-login.html";
+window.location.replace("/admin-login.html");
 }
 
 // 🔥 نحط try هنا
@@ -28,7 +28,7 @@ try {
 } catch (err) {
   // ❌ توكن بايظ
   localStorage.removeItem("token");
-  window.location.href = "/admin-login.html";
+window.location.replace("/admin-login.html");
 }
 
 // ✅ نستخدمه بعد ما نتأكد
@@ -331,8 +331,11 @@ async function loadOrders() {
 
   // 🔔 إشعار أوردر جديد
 if (orders.length > lastOrdersCount && lastOrdersCount !== 0) {
-  showToast("🔥 New Order From ", "add" + (orders[0]?.userId?.email || "عميل"));
-
+showToast(
+  "🔥 New Order From " +
+  (orders[0]?.userId?.email || "عميل"),
+  "add"
+);
   try {
     const audio = new Audio("/sounds/notify.mp3");
     audio.play().catch(() => {
@@ -671,7 +674,7 @@ function logout() {
   localStorage.removeItem("allProducts_time");
 
   // رجوع لصفحة الأدمن لوجين
-  window.location.href = "/admin-login.html";
+window.location.replace("/admin-login.html");
 }
 window.loadOrders = loadOrders;
 window.loadProducts = loadProducts;

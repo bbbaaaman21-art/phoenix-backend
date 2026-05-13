@@ -71,7 +71,7 @@ window.sendReset = async function () {
       msgEl.innerText = data.message;
 
       setTimeout(() => {
-        window.location.href = "auth.html";
+window.location.replace("auth.html");
       }, 2000);
 
     } catch (err) {

@@ -7,7 +7,7 @@ const token1 = localStorage.getItem("token");
 
 /* ===== حماية إضافية ===== */
 if (!user) {
-  window.location.href = "auth.html";
+window.location.replace("auth.html");
   throw new Error("Not authenticated");
 }
 
@@ -188,7 +188,8 @@ function downloadInvoice(orderId) {
   // 🔥 افتح رابط الفاتورة مباشرة
   window.open(
     `${API}/orders/${orderId}/invoice?token=${token1}`,
-    "_blank"
+    "_blank",
+      "noopener,noreferrer"
   );
 }
 
@@ -509,7 +510,7 @@ function updateProfile() {
 
       if (!data.error) {
         localStorage.setItem("user", JSON.stringify(data.user));
-        location.reload();
+window.location.reload();
       }
     });
 }

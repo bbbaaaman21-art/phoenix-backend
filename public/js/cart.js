@@ -77,8 +77,8 @@ async function handleAddToCart(btn, productId) {
       return;
     }
 
-    const res = await fetch(`${API}/products/${productId}`);
-    const product = await res.json();
+    const product =
+  window.PRODUCTS_MAP?.[productId];
 
     if (!product || product.message) {
       showToast("The product is not available.", "remove");
@@ -276,13 +276,21 @@ function renderCartTable() {
 
     row.innerHTML = `
       <td>
-        <img src="${item.image || '/img/default.png'}" 
-        style="width:60px;height:60px;object-fit:cover;border-radius:8px;">
+<img
+  src="${item.image || '/img/default.png'}"
+  loading="lazy"
+  decoding="async"
+          style="width:60px;height:60px;object-fit:cover;border-radius:8px;">
       </td>
 
       <td>${formatPrice(price)}</td>
-      <td>${item.name || "منتج"}</td>
+<td>
 
+  <a href="${getProductUrl(item)}">
+    ${item.name || "منتج"}
+  </a>
+
+</td>
       <td>${isMeter ? item.meters + " متر" : "-"}</td>
 
       <td>${item.qty || "-"}</td>
@@ -333,7 +341,7 @@ window.goToCheckout = async function () {
   // ❌ مش مسجل دخول
   if (!tokenc) {
     localStorage.setItem("redirectAfterLogin", "checkout.html");
-    window.location.href = "auth.html";
+window.location.replace("auth.html");
     return;
   }
 

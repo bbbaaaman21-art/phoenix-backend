@@ -1,4 +1,15 @@
 User-agent: *
+
 Allow: /
+
+Disallow: /admin.html
+Disallow: /admin-login.html
+Disallow: /checkout.html
+Disallow: /cart.html
+Disallow: /wishlist.html
+Disallow: /auth.html
+Disallow: /forgot.html
+Disallow: /reset.html
+Disallow: /order-details.html
 
 Sitemap: https://rovixhome.com/sitemap.xml

@@ -40,7 +40,7 @@ window.fetch = async (url, options = {}) => {
     localStorage.removeItem("user");
 
     setTimeout(() => {
-      window.location.href = "auth.html";
+window.location.replace("auth.html");
     }, 100);
 
     return res;

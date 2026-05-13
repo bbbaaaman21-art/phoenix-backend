@@ -35,7 +35,8 @@ document.addEventListener("DOMContentLoaded", async function () {
       <p><strong>رقم الطلب:</strong> ${order._id}</p>
       <p><strong>المبلغ:</strong> ${order.total} جنيه</p>
       <p><strong>الحالة:</strong> ${order.status}</p>
-      <p><strong>تاريخ الطلب:</strong> ${new Date(order.createdAt).toLocaleString()}</p>
+      <p><strong>تاريخ الطلب:</strong> ${new Date(order.createdAt)
+.toLocaleString("en-GB")}</p>
     `;
 
   } catch (err) {

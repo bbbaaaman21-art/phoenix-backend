@@ -275,7 +275,13 @@ async function initWishlistPage() {
 
       </div>
 
-      <h3 class="product_title">${prod.name}</h3>
+<h3 class="product_title">
+
+  <a href="${getProductUrl(prod)}">
+    ${prod.name}
+  </a>
+
+</h3>
       <div class="product_meta">${translateCategory(prod.category)}</div>
 
       <button class="btn" onclick="handleAddToCart(this, ${prod.id})">

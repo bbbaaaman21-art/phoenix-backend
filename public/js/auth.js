@@ -78,8 +78,7 @@ async function login() {
 
     localStorage.removeItem("redirectAfterLogin");
 
-    window.location.href = redirect;
-
+window.location.replace(redirect);
   } catch (err) {
     msg.innerText = "حصل خطأ – حاول مرة أخرى";
   }
@@ -89,7 +88,7 @@ async function login() {
 function logout() {
   localStorage.removeItem("token");
   localStorage.removeItem("user");
-  window.location.href = "auth.html";
+window.location.replace("auth.html");
 }
 
 /* ================== AUTH GUARD ================== */
@@ -97,7 +96,7 @@ function requireAuth() {
   const token = localStorage.getItem("token");
 
   if (!token) {
-    window.location.href = "auth.html";
+window.location.replace("auth.html");
   }
 }
 

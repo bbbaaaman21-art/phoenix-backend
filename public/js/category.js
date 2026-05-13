@@ -234,7 +234,11 @@ document.head.appendChild(script);
         </div>
       </a>
 
-      <h3 class="product_title">${prod.name}</h3>
+<h3 class="product_title">
+  <a href="${getProductUrl(prod)}">
+    ${prod.name}
+  </a>
+</h3>
       <div class="product_meta">قسم: ${translateCategory(prod.category)}</div>
 
       ${getRatingHtml(prod)}
@@ -317,7 +321,11 @@ function renderAllCategoriesSections(grid) {
           </div>
         </a>
 
-        <h3 class="product_title">${prod.name}</h3>
+<h3 class="product_title">
+  <a href="${getProductUrl(prod)}">
+    ${prod.name}
+  </a>
+</h3>
         <div class="product_meta">قسم: ${translateCategory(prod.category)}</div>
 
         ${getRatingHtml(prod)}
