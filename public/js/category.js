@@ -16,6 +16,67 @@ updateCartCount();
   initCategoryPage();
 });
 
+function setMeta(property, content) {
+
+  let el =
+    document.querySelector(
+      `meta[property="${property}"]`
+    );
+
+  if (!el) {
+
+    el =
+      document.createElement("meta");
+
+    el.setAttribute(
+      "property",
+      property
+    );
+
+    document.head.appendChild(el);
+  }
+
+  el.setAttribute(
+    "content",
+    content
+  );
+}
+
+const CATEGORY_SEO = {
+
+  all: {
+  title:
+    "كل منتجات الأثاث | Rovix Home",
+
+  description:
+    "تصفح جميع منتجات Rovix Home من الأثاث المودرن والديكور بأفضل الأسعار والخامات."
+},
+
+  dressing: {
+    title:
+      "دريسنج مودرن | Rovix Home",
+
+    description:
+      "أفضل تصميمات الدريسنج المودرن بخامات عالية الجودة وأسعار مميزة."
+  },
+
+  hairdo: {
+    title:
+      "تسريحات مودرن | Rovix Home",
+
+    description:
+      "تسريحات مودرن بتصميمات عملية وعصرية تناسب جميع المساحات."
+  },
+
+  komod: {
+    title:
+      "كومود مودرن | Rovix Home",
+
+    description:
+      "كومود مودرن بأفضل الخامات والتشطيبات العصرية."
+  }
+};
+
 
 function initCategoryPage() {
 
@@ -24,7 +85,95 @@ function initCategoryPage() {
   var cat    = getQueryParam("cat") || "all";
   var search = getQueryParam("search") || "";
 
+  const seo =
+  CATEGORY_SEO[cat];
+
+  if (seo) {
+
+  setMeta("og:title", seo.title);
+
+  setMeta(
+    "og:description",
+    seo.description
+  );
+
+  setMeta(
+    "og:url",
+    window.location.href
+  );
+
+  setMeta(
+    "og:type",
+"product.group"
+  );
+}
+
+let canonical =
+  document.querySelector(
+    'link[rel="canonical"]'
+  );
+
+if (!canonical) {
+
+  canonical =
+    document.createElement("link");
+
+  canonical.rel =
+    "canonical";
+
+  document.head.appendChild(canonical);
+}
+
+canonical.href =
+  window.location.href;
+
+  
+
   var titleEl = document.getElementById("pageTitle");
+
+  if (seo) {
+
+  document.title = seo.title;
+
+  const schema = {
+  "@context":
+    "https://schema.org",
+
+  "@type":
+    "CollectionPage",
+
+  name:
+    document.title,
+
+  url:
+    window.location.href
+};
+
+const script =
+  document.createElement("script");
+
+script.type =
+  "application/ld+json";
+
+script.text =
+  JSON.stringify(schema);
+
+document.head.appendChild(script);
+
+
+  const desc =
+    document.querySelector(
+      'meta[name="description"]'
+    );
+
+  if (desc) {
+    desc.setAttribute(
+      "content",
+      seo.description
+    );
+  }
+}
+
   var grid    = document.getElementById("categoryGrid");
 
   if (!grid || !window.PRODUCTS) return;

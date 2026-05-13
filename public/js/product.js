@@ -1,3 +1,25 @@
+
+function translateCategory(cat) {
+
+  const map = {
+
+    dressing: "دريسنج",
+    hairdo: "تسريحة",
+    komod: "كومود",
+    buffet: "بوفيه",
+    units_tv: "وحدات تليفزيون",
+    units_table: "ترابيزة + وحدات",
+    tables: "ترابيزات",
+    units_ki: "وحدات مطبخ",
+    coffee_corner: "كوفي كورنر",
+    books: "مكتبة",
+    office: "مكتب",
+    units_sh: "وحدات أحذية"
+
+  };
+
+  return map[cat] || cat;
+}
 /* ================== PRODUCT PAGE ================== */
 async function initProductPage() {
 
@@ -73,7 +95,9 @@ canonical.href = window.location.href;
 setMeta("og:title", prod.name + " | Rovix Home");
 
 setMeta("og:description",
+  
   prod.description || "Modern furniture from Rovix Home"
+  
 );
 
 setMeta("og:image",
@@ -87,6 +111,7 @@ const schema = {
   "@type": "Product",
 
   name: prod.name,
+  url: window.location.href,
 
   image: [
     "https://rovixhome.com" +
@@ -109,8 +134,9 @@ priceCurrency: "EGP",
       prod.price || 0,
 
     availability:
-      "https://schema.org/InStock"
-  }
+prod.stock > 0
+  ? "https://schema.org/InStock"
+  : "https://schema.org/OutOfStock"  }
 };
 
 const script =
@@ -123,6 +149,56 @@ script.text =
   JSON.stringify(schema);
 
 document.head.appendChild(script);
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+
+  itemListElement: [
+
+    {
+      "@type": "ListItem",
+      position: 1,
+
+      name: "الرئيسية",
+
+      item: "https://rovixhome.com/"
+    },
+
+    {
+      "@type": "ListItem",
+      position: 2,
+
+      name: translateCategory(prod.category),
+
+      item:
+        "https://rovixhome.com/category.html?cat=" +
+        prod.category
+    },
+
+    {
+      "@type": "ListItem",
+      position: 3,
+
+      name: prod.name,
+
+      item: window.location.href
+    }
+  ]
+};
+
+const breadcrumbScript =
+  document.createElement("script");
+
+breadcrumbScript.type =
+  "application/ld+json";
+
+breadcrumbScript.text =
+  JSON.stringify(breadcrumbSchema);
+
+document.head.appendChild(
+  breadcrumbScript
+);
 
      // ✅ SEO DESCRIPTION
       const metaDesc = document.querySelector('meta[name="description"]');
@@ -223,7 +299,12 @@ if (wishlistBtn) {
 
     // ================= TEXT =================
     if (nameEl) nameEl.textContent = prod.name;
-    if (catEl)  catEl.textContent  = prod.category;
+    if (catEl)  catEl.textContent =
+  translateCategory(prod.category);
+
+catEl.href =
+  "category.html?cat=" +
+  prod.category;
     if (descEl) descEl.textContent = prod.description || "";
 
 

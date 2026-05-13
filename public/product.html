@@ -169,8 +169,16 @@ img-src 'self' data: https:;
         <!-- صور المنتج -->
         <div class="product_gallery">
           <div class="product_main_img">
-            <img id="productImage" src="" alt="منتج">
-          </div>
+
+  <img
+    id="productImage"
+    src=""
+    alt="منتج"
+    loading="eager"
+    decoding="async"
+  >
+
+</div>
           <div id="productThumbs" class="product_thumbs">
             <!-- يتم الملء من JS -->
           </div>
@@ -181,9 +189,15 @@ img-src 'self' data: https:;
           <h1 id="productName">اسم المنتج</h1>
 
           <div class="product_meta_line">
-            <span>القسم:</span>
-            <strong id="productCategory">قسم</strong>
-          </div>
+  <span>القسم:</span>
+
+  <a
+    id="productCategory"
+    class="product_category_link"
+  >
+    قسم
+  </a>
+</div>
 
           <div class="product_price_block">
             <span class="product_price_label">السعر:</span>

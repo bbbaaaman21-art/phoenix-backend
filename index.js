@@ -177,7 +177,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/addresses", addressRoutes);
 app.use("/api", fcmRoutes);
-app.use("/api", sitemapRoute);
+app.use("/", sitemapRoute);
 // ================= STATIC =================
 app.use("/uploads", express.static("uploads"));
 app.use(express.static("public"));
