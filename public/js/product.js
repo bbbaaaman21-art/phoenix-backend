@@ -39,6 +39,90 @@ const dimEl = document.getElementById("productDimensions");
 
     // ✅ SEO TITLE
       document.title = prod.name + " | Rovix Home";
+      let canonical = document.querySelector(
+  'link[rel="canonical"]'
+);
+
+if (!canonical) {
+
+  canonical = document.createElement("link");
+
+  canonical.rel = "canonical";
+
+  document.head.appendChild(canonical);
+}
+
+canonical.href = window.location.href;
+      const setMeta = (property, content) => {
+
+  let el = document.querySelector(
+    `meta[property="${property}"]`
+  );
+
+  if (!el) {
+
+    el = document.createElement("meta");
+    el.setAttribute("property", property);
+
+    document.head.appendChild(el);
+  }
+
+  el.setAttribute("content", content);
+};
+
+setMeta("og:title", prod.name + " | Rovix Home");
+
+setMeta("og:description",
+  prod.description || "Modern furniture from Rovix Home"
+);
+
+setMeta("og:image",
+  "https://rovixhome.com" + (prod.imageWebp || prod.image)
+);
+
+setMeta("og:url", window.location.href);
+
+const schema = {
+  "@context": "https://schema.org/",
+  "@type": "Product",
+
+  name: prod.name,
+
+  image: [
+    "https://rovixhome.com" +
+    (prod.imageWebp || prod.image)
+  ],
+
+  description:
+    prod.description || "",
+
+  brand: {
+    "@type": "Brand",
+    name: "Rovix Home"
+  },
+
+  offers: {
+    "@type": "Offer",
+
+priceCurrency: "EGP",
+    price:
+      prod.price || 0,
+
+    availability:
+      "https://schema.org/InStock"
+  }
+};
+
+const script =
+  document.createElement("script");
+
+script.type =
+  "application/ld+json";
+
+script.text =
+  JSON.stringify(schema);
+
+document.head.appendChild(script);
 
      // ✅ SEO DESCRIPTION
       const metaDesc = document.querySelector('meta[name="description"]');

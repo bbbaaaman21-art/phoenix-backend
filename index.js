@@ -30,7 +30,7 @@ const bcrypt = require("bcrypt");
 const axios = require("axios");
 const sendEmail = require("./utils/sendEmail");
 const fcmRoutes = require("./routes/fcm");
-
+const sitemapRoute = require("./routes/sitemap");
 const app = express();
 
 app.set("trust proxy", 1);
@@ -177,6 +177,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/addresses", addressRoutes);
 app.use("/api", fcmRoutes);
+app.use("/api", sitemapRoute);
 // ================= STATIC =================
 app.use("/uploads", express.static("uploads"));
 app.use(express.static("public"));
