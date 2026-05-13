@@ -30,7 +30,7 @@ window.getImageHtml = function (prod) {
       decoding="async"
        width="300"
        height="300"
-      alt="${prod.name}"
+alt="${prod.name} - Rovix Home"
     >
   `;
 
@@ -62,7 +62,7 @@ window.loadProducts = async function () {
 
   try {
 
-    const CACHE_TIME = 1000 * 60 * 10; // نص ساعة
+    const CACHE_TIME = 1000 * 60 * 10; // 10 minutes
 
     const cached = localStorage.getItem("allProducts");
     const cachedTime = parseInt(localStorage.getItem("allProducts_time"), 10);

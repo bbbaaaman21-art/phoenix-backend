@@ -304,15 +304,20 @@ function buildHomeCategoryRows() {
                 <div class="swiper-slide">
                   <div class="product_card">
 
-                    <a href="product.html?id=${safeProd.id}" class="product_link">
+                    <a href="${getProductUrl(safeProd)}" class="product_link">
                       <div class="product_img">
                         ${getImageHtml(safeProd)}
                         ${getBadgesHtml(safeProd)}
                       </div>
                     </a>
 
-                    <h3 class="product_title">${safeProd.name}</h3>
+<h3 class="product_title">
 
+  <a href="${getProductUrl(safeProd)}">
+    ${safeProd.name}
+  </a>
+
+</h3>
                     ${getRatingHtml(safeProd)}
                     ${getPriceHtml(safeProd)}
 
