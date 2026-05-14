@@ -10,11 +10,20 @@ const User = require("../models/User");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
+
+// 🔥 إنشاء uploads لو مش موجود
+const uploadsPath = path.join(__dirname, "..", "uploads");
+
+if (!fs.existsSync(uploadsPath)) {
+  fs.mkdirSync(uploadsPath, { recursive: true });
+}
+
 //==========avatar====================
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, "uploads/");
+    cb(null, uploadsPath);
   },
+
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
     cb(null, req.user.userId + "-" + Date.now() + ext);
@@ -23,8 +32,12 @@ const storage = multer.diskStorage({
 
 function fileFilter(req, file, cb) {
   const allowed = ["image/jpeg", "image/png", "image/jpg", "image/webp"];
-  if (allowed.includes(file.mimetype)) cb(null, true);
-  else cb(new Error("Invalid file type"), false);
+
+  if (allowed.includes(file.mimetype)) {
+    cb(null, true);
+  } else {
+    cb(new Error("Invalid file type"), false);
+  }
 }
 
 const upload = multer({
