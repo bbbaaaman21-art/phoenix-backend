@@ -592,14 +592,21 @@ function uploadAvatar() {
     });
 }
 function loadAvatarUI() {
+
   const box = document.getElementById("avatarLetterOrImg");
 
   if (user.avatar) {
+
     box.style.background = "none";
+
+    // 🔥 لو الصورة من Cloudinary
+    const avatarUrl = user.avatar.startsWith("http")
+      ? user.avatar
+      : `${API.replace("/api", "")}/uploads/${user.avatar}`;
 
     box.innerHTML = `
       <img 
-        src="${API.replace("/api", "")}/uploads/${user.avatar}"
+        src="${avatarUrl}"
         style="
           width:44px;
           height:44px;
@@ -611,7 +618,9 @@ function loadAvatarUI() {
     `;
 
   } else {
+
     box.innerHTML = user.firstName.charAt(0).toUpperCase();
+
     box.style.background = "#111";
     box.style.color = "#fff";
   }

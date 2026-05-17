@@ -12,13 +12,13 @@ window.getImageHtml = function (prod) {
     return `<img src="img/placeholder.webp" loading="lazy">`;
   }
 
-  // 🔥 الكارت = الصورة الصغيرة فقط
   let img = prod.image;
 
   if (!img) {
     return `<img src="img/placeholder.webp" loading="lazy">`;
   }
 
+  // 🔥 الصور القديمة المحلية
   if (img.startsWith("/uploads/")) {
     img = "https://rovixhome.com" + img;
   }
@@ -28,12 +28,11 @@ window.getImageHtml = function (prod) {
       src="${img}" 
       loading="lazy"
       decoding="async"
-       width="300"
-       height="300"
-alt="${prod.name} - Rovix Home"
+      width="300"
+      height="300"
+      alt="${prod.name} - Rovix Home"
     >
   `;
-
 };
 
 // ================= SEARCH =================
