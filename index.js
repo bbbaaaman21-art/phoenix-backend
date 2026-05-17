@@ -16,8 +16,6 @@ const wishlistRoutes = require("./routes/wishlist");
 const notificationsRoutes = require("./routes/notifications");
 console.log("NOTIFICATIONS TYPE:", typeof notificationsRoutes);
 const authRoutes = require("./routes/auth");
-const path = require("path");
-const fs = require("fs");
 const Order = require("./models/Order");
 const rateLimit = require("express-rate-limit");
 const { body, validationResult } = require("express-validator");
@@ -179,7 +177,6 @@ app.use("/api/addresses", addressRoutes);
 app.use("/api", fcmRoutes);
 app.use("/", sitemapRoute);
 // ================= STATIC =================
-app.use("/uploads", express.static("uploads"));
 app.use(express.static("public"));
 
 

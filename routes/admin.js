@@ -8,18 +8,41 @@ const auth = require("../middleware/authMiddleware");
 const isAdmin = require("../middleware/isAdmin");
 
 const multer = require("multer");
-const path = require("path");
 const User = require("../models/User");
+const { CloudinaryStorage } = require("multer-storage-cloudinary");
+const cloudinary = require("../config/cloudinary");
 
 /* ================= STORAGE ================= */
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "public/uploads/");
-  },
-  filename: function (req, file, cb) {
-    const uniqueName = Date.now() + path.extname(file.originalname);
-    cb(null, uniqueName);
+const storage = new CloudinaryStorage({
+  cloudinary,
+
+  params: async (req, file) => {
+
+    const isWebp = file.fieldname === "imageWebp";
+
+    return {
+      folder: "rovix-products",
+
+      allowed_formats: [
+        "jpg",
+        "jpeg",
+        "png",
+        "webp"
+      ],
+
+      transformation: [
+        isWebp
+          ? {
+              width: 1200,
+              crop: "limit"
+            }
+          : {
+              width: 600,
+              crop: "limit"
+            }
+      ]
+    };
   }
 });
 
@@ -84,11 +107,13 @@ router.post(
 
         // 🔥 الصورة
         image: req.files?.image
-        ? "/uploads/" + req.files.image[0].filename
+        ?
+req.files.image[0].path
         : null,
 
        imageWebp: req.files?.imageWebp
-       ? "/uploads/" + req.files.imageWebp[0].filename
+       ? 
+req.files.imageWebp[0].path
        : null,
 
         // 🔥 الألوان
@@ -339,12 +364,12 @@ router.put(
       // 🖼️ صورة جديدة
       // 🖼️ صورة الكرت
 if (req.files?.image) {
-  product.image = "/uploads/" + req.files.image[0].filename;
+product.image = req.files.image[0].path;
 }
 
 // 🖼️ صورة صفحة المنتج
 if (req.files?.imageWebp) {
-  product.imageWebp = "/uploads/" + req.files.imageWebp[0].filename;
+product.imageWebp = req.files.imageWebp[0].path;
 }
 
       // 🎨 colors
