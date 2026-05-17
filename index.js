@@ -58,7 +58,15 @@ process.on("unhandledRejection", (err) => {
 });
 
 // ========== File Upload (avatars) ==========
-
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    cb(null, "uploads/");
+  },
+  filename: (req, file, cb) => {
+    const ext = path.extname(file.originalname);
+    cb(null, req.user.userId + "-" + Date.now() + ext);
+  }
+});
 
 function fileFilter(req, file, cb) {
   const allowed = ["image/jpeg", "image/png", "image/jpg", "image/webp"];
