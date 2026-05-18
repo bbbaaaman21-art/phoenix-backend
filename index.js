@@ -126,13 +126,17 @@ app.use(
           "https:"
         ],
 
-        connectSrc: [
+ connectSrc: [
   "'self'",
   "https://cdn.jsdelivr.net",
   "https://fcmregistrations.googleapis.com",
   "https://firebaseinstallations.googleapis.com",
   "https://www.googleapis.com",
-  "https://firebase.googleapis.com"
+  "https://firebase.googleapis.com",
+
+  // ✅ Google Analytics
+  "https://www.google-analytics.com",
+  "https://region1.google-analytics.com"
 ],
 
         fontSrc: [
