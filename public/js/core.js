@@ -284,6 +284,8 @@ window.getProductUrl = function (prod) {
   return `product.html?id=${prod.id}&name=${name}`;
 };
 
+//================== GOOGLE ANALYTICS =================//
+
 const gaScript = document.createElement("script");
 
 gaScript.async = true;
@@ -292,13 +294,13 @@ gaScript.src =
   "https://www.googletagmanager.com/gtag/js?id=G-5LH27SEF9N";
 
 document.head.appendChild(gaScript);
-//================== تتبع=================//
-  window.dataLayer = window.dataLayer || [];
 
-  function gtag() {
-    dataLayer.push(arguments);
-  }
+window.dataLayer = window.dataLayer || [];
 
-  gtag('js', new Date());
+window.gtag = function () {
+  dataLayer.push(arguments);
+};
 
-  gtag('config', 'G-5LH27SEF9N');
+gtag("js", new Date());
+
+gtag("config", "G-5LH27SEF9N");
