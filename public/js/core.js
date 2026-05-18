@@ -283,3 +283,22 @@ window.getProductUrl = function (prod) {
 
   return `product.html?id=${prod.id}&name=${name}`;
 };
+
+const gaScript = document.createElement("script");
+
+gaScript.async = true;
+
+gaScript.src =
+  "https://www.googletagmanager.com/gtag/js?id=G-5LH27SEF9N";
+
+document.head.appendChild(gaScript);
+//================== تتبع=================//
+  window.dataLayer = window.dataLayer || [];
+
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+
+  gtag('js', new Date());
+
+  gtag('config', 'G-5LH27SEF9N');
