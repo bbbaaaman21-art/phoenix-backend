@@ -104,6 +104,8 @@ app.use(
   "https://cdn.jsdelivr.net",
   "https://cdnjs.cloudflare.com",
   "https://www.gstatic.com",
+  "https://www.googletagmanager.com",
+  "https://www.google-analytics.com",
   "'unsafe-inline'",
   "'unsafe-eval'"
 ],
