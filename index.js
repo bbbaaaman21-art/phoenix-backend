@@ -106,6 +106,7 @@ app.use(
   "https://www.gstatic.com",
   "https://www.googletagmanager.com",
   "https://www.google-analytics.com",
+  "https://www.clarity.ms",
   "'unsafe-inline'",
   "'unsafe-eval'"
 ],
@@ -136,7 +137,9 @@ app.use(
 
   // ✅ Google Analytics
   "https://www.google-analytics.com",
-  "https://region1.google-analytics.com"
+  "https://region1.google-analytics.com",
+    "https://www.clarity.ms"
+
 ],
 
         fontSrc: [
