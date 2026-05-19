@@ -320,5 +320,4 @@ gtag("config", "G-5LH27SEF9N");
 
     y.parentNode.insertBefore(t,y);
 
-})(window, document, "clarity", "script", "wt1fh0aqnl");
-window.clarity && window.clarity("start");
+})(window, document, "clarity", "script", "wtiygyhwjz");
