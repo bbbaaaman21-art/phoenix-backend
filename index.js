@@ -29,7 +29,8 @@ const bcrypt = require("bcrypt");
 const axios = require("axios");
 const sendEmail = require("./utils/sendEmail");
 const fcmRoutes = require("./routes/fcm");
-
+const fs = require("fs");
+const path = require("path");
 const sitemapRoute = require("./routes/sitemap");
 const app = express();
 
