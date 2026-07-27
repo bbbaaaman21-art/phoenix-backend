@@ -288,11 +288,7 @@ app.get("/api/orders/:id/invoice", async (req, res) => {
 
       itemsHTML += `
         <tr>
-<td>
-  <a href="${getProductUrl(item)}">
-    ${item.name || "منتج"}
-  </a>
-</td>
+<td>${item.name || "منتج"}</td>
           <td>${details.join(" | ") || "-"}</td>
           <td>${qty}</td>
           <td>${unitPrice.toFixed(2)}</td>
