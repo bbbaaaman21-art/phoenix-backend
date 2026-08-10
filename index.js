@@ -311,6 +311,8 @@ app.get("/api/orders/:id/invoice", async (req, res) => {
       NAME: order.name || "-",
       PHONE: order.phone || "-",
       ADDRESS: order.address?.city || "-",
+        INVOICE_NUMBER: order.merchantOrderId || order._id.toString(),
+
       ORDER_ID: order.merchantOrderId || order._id,
       DATE: new Date(order.createdAt).toLocaleDateString("en-GB"),
       SHIPPING: shipping.toFixed(2),
