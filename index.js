@@ -307,19 +307,23 @@ app.get("/api/orders/:id/invoice", async (req, res) => {
 
     /* ================= DATA ================= */
 
-    const data = {
-      NAME: order.name || "-",
-      PHONE: order.phone || "-",
-      ADDRESS: order.address?.city || "-",
-        INVOICE_NUMBER: order.merchantOrderId || order._id.toString(),
+   const data = {
+  NAME: order.name || "-",
+  PHONE: order.phone || "-",
+  ADDRESS: order.address?.city || "-",
 
-      ORDER_ID: order.merchantOrderId || order._id,
-      DATE: new Date(order.createdAt).toLocaleDateString("en-GB"),
-      SHIPPING: shipping.toFixed(2),
-      TOTAL: finalTotal.toFixed(2),
-      ITEMS: itemsHTML
-    };
+  ORDER_ID: order.orderNumber || order.merchantOrderId || order._id.toString(),
 
+  INVOICE_NUMBER:
+    order.orderNumber ||
+    order.merchantOrderId ||
+    order._id.toString(),
+
+  DATE: new Date(order.createdAt).toLocaleDateString("en-GB"),
+  SHIPPING: shipping.toFixed(2),
+  TOTAL: finalTotal.toFixed(2),
+  ITEMS: itemsHTML
+};
     Object.keys(data).forEach(key => {
       html = html.replace(new RegExp(`{{${key}}}`, "g"), data[key]);
     });
