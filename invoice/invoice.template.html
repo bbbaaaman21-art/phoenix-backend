@@ -248,7 +248,7 @@ tfoot {
 
 th,
 td {
-  border: 1.4px solid #222;
+  border: 1.8px solid #111;
 
   padding: 9px 8px;
 
@@ -263,15 +263,17 @@ td {
 /* رأس الجدول */
 
 th {
-  background: #eeeeee;
+  background: #d9d9d9;
 
   color: #000;
 
-  font-size: 13px;
+  font-size: 13.5px;
 
-  font-weight: 700;
+  font-weight: 800;
 
   white-space: nowrap;
+
+  border-color: #111;
 }
 
 
@@ -280,9 +282,11 @@ th {
 td {
   background: #fff;
 
-  color: #111;
+  color: #000;
 
   font-size: 12.5px;
+
+  border-color: #111;
 }
 
 
@@ -384,25 +388,20 @@ tr {
 .footer {
   width: 100%;
 
-  margin-top: 25px;
+  margin-top: 20px;
+  padding-top: 10px;
 
-  padding-top: 14px;
-
-  border-top: 1.4px solid #222;
+  border-top: 1.5px solid #111;
 
   display: flex;
-
-  justify-content: space-between;
-
+  justify-content: flex-end;
   align-items: center;
 
-  direction: ltr;
+  direction: rtl;
 
   page-break-inside: avoid;
-
   break-inside: avoid;
 }
-
 
 /* =========================================================
    QR CODE
@@ -424,12 +423,13 @@ tr {
 ========================================================= */
 
 .stamp {
-  width: 70px;
+  width: 45px !important;
+  height: 45px !important;
 
-  height: 70px;
+  max-width: 45px !important;
+  max-height: 45px !important;
 
   object-fit: contain;
-
   display: block;
 }
 
@@ -640,27 +640,44 @@ img {
     <span class="info-value">{{ADDRESS}}</span>
   </div>
 
+<div class="right">
+
+  <p>
+    <strong>اسم العميل:</strong>
+    <span>{{NAME}}</span>
+  </p>
+
+  <p>
+    <strong>الهاتف:</strong>
+    <span class="ltr">{{PHONE}}</span>
+  </p>
+
+  <p>
+    <strong>العنوان:</strong>
+    <span>{{ADDRESS}}</span>
+  </p>
+
 </div>
+
 
 <div class="left">
 
-  <div class="info-item">
-    <span class="info-label">رقم الفاتورة</span>
-    <span class="info-value ltr">{{INVOICE_NUMBER}}</span>
-  </div>
+  <p>
+    <strong>رقم الفاتورة:</strong>
+    <span class="ltr">{{INVOICE_NUMBER}}</span>
+  </p>
 
-  <div class="info-item">
-    <span class="info-label">تاريخ الطلب</span>
-    <span class="info-value ltr">{{DATE}}</span>
-  </div>
+  <p>
+    <strong>تاريخ الطلب:</strong>
+    <span class="ltr">{{DATE}}</span>
+  </p>
 
-  <div class="info-item">
-    <span class="info-label">العملة</span>
-    <span class="info-value ltr">EGP</span>
-  </div>
+  <p>
+    <strong>العملة:</strong>
+    <span class="ltr">EGP</span>
+  </p>
 
 </div>
-
   </section>
 
   <table>
@@ -685,10 +702,9 @@ img {
   <p><strong>الإجمالي النهائي : {{TOTAL}} EGP</strong></p>
 </div>
 
-  <footer>
- <img src="{{STAMP}}">
-  </footer>
-
+ <footer class="footer">
+  <img class="stamp" src="{{STAMP}}">
+</footer>
 </div>
 <script>
   window.onload = () => {
