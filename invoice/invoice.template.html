@@ -1,717 +1,523 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
- 
-  
+
 <head>
   <meta charset="UTF-8">
-  <title>Invoice</title>
-     <!-- ICONS -->
-  <link rel="icon" href="/img/logo/32.png?v=2" sizes="32x32">
-  <link rel="icon" href="/img/logo/64.png?v=2" sizes="64x64">
-  <link rel="apple-touch-icon" href="/img/logo/180.png?v=2">
-<style>
 
-/* =========================================================
-   ROVIX HOME - INVOICE
-   A4 PRINT / PDF
-========================================================= */
+  <title>فاتورة - Rovix Home</title>
 
-* {
-  box-sizing: border-box;
-}
+  <style>
 
-html {
-  direction: rtl;
-}
+    /* =========================
+       PAGE
+    ========================= */
 
-body {
-  margin: 0;
-  padding: 25px;
+    @page {
+      size: A4;
+      margin: 12mm;
+    }
 
-  direction: rtl;
-  text-align: right;
+    * {
+      box-sizing: border-box;
+    }
 
-  font-family: Arial, Tahoma, sans-serif;
-  font-size: 14px;
-  line-height: 1.6;
+    html,
+    body {
+      margin: 0;
+      padding: 0;
 
-  color: #111;
-  background: #fff;
+      direction: rtl;
 
-  -webkit-print-color-adjust: exact;
-  print-color-adjust: exact;
-}
+      font-family: Arial, Tahoma, sans-serif;
 
+      color: #111;
+      background: #fff;
 
-/* =========================================================
-   A4 PAGE
-========================================================= */
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
 
-@page {
-  size: A4;
-  margin: 12mm;
-}
+    body {
+      font-size: 14px;
+      line-height: 1.5;
+    }
 
 
-/* =========================================================
-   HEADER
-========================================================= */
+    /* =========================
+       HEADER
+    ========================= */
 
-header {
-  width: 100%;
-  margin-bottom: 20px;
-}
+    header {
+      display: flex;
 
-.header {
-  width: 100%;
+      justify-content: space-between;
+      align-items: flex-start;
 
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
+      margin-bottom: 25px;
+    }
 
-  direction: rtl;
+    header > img {
+      width: 150px;
+      height: auto;
 
-  margin-bottom: 20px;
-}
+      object-fit: contain;
+    }
 
+    .contact {
+      direction: ltr;
 
-/* =========================================================
-   LOGO
-========================================================= */
+      display: flex;
+      flex-direction: column;
 
-.logo {
-  display: flex;
-  align-items: center;
-}
+      gap: 7px;
 
-.logo img {
-  width: 150px;
-  max-width: 100%;
-  height: auto;
-  object-fit: contain;
-}
+      text-align: left;
+    }
 
+    .contact div {
+      display: flex;
 
-/* =========================================================
-   CONTACT INFORMATION
-========================================================= */
+      align-items: center;
 
-.contact {
-  direction: ltr;
-  text-align: left;
+      gap: 7px;
 
-  display: flex;
-  flex-direction: column;
+      font-size: 14px;
+      font-weight: 600;
 
-  gap: 7px;
-}
+      white-space: nowrap;
+    }
 
-.contact > div {
-  display: flex;
-  align-items: center;
+    .contact img {
+      width: 22px;
+      height: 22px;
 
-  gap: 8px;
+      object-fit: contain;
+    }
 
-  font-size: 14px;
-  font-weight: 600;
 
-  white-space: nowrap;
-}
+    /* =========================
+       CUSTOMER / INVOICE INFO
+    ========================= */
 
-.contact img {
-  width: 23px;
-  height: 23px;
+    .box {
+      display: grid;
 
-  object-fit: contain;
+      grid-template-columns: 1fr 1fr;
 
-  flex-shrink: 0;
-}
+      gap: 35px;
 
+      margin-bottom: 28px;
+    }
 
-/* =========================================================
-   CUSTOMER / INVOICE INFORMATION
-   بدون مستطيلات - خطوط فقط
-========================================================= */
+    .right,
+    .left {
+      width: 100%;
+    }
 
-.box {
-  width: 100%;
+    .right p,
+    .left p {
+      margin: 0;
 
-  display: grid;
+      padding: 8px 3px;
 
-  grid-template-columns: 1fr 1fr;
+      min-height: 38px;
 
-  gap: 35px;
+      border-bottom: 1.5px solid #111;
 
-  margin-bottom: 25px;
+      font-size: 14px;
 
-  direction: rtl;
-}
+      color: #111;
+    }
 
-.right,
-.left {
-  width: 100%;
-}
+    .right p:first-child,
+    .left p:first-child {
+      border-top: 1.5px solid #111;
+    }
 
+    .right strong,
+    .left strong {
+      color: #000;
 
-/* كل سطر بيانات */
+      font-weight: 700;
+    }
 
-.right p,
-.left p {
-  width: 100%;
+    .ltr {
+      direction: ltr;
 
-  margin: 0;
+      unicode-bidi: embed;
 
-  padding: 9px 3px;
+      display: inline-block;
+    }
 
-  border-bottom: 1.4px solid #222;
 
-  font-size: 14px;
+    /* =========================
+       PRODUCTS TABLE
+    ========================= */
 
-  line-height: 1.6;
+    table {
+      width: 100%;
 
-  color: #111;
+      border-collapse: collapse;
 
-  min-height: 40px;
-}
+      margin-top: 10px;
 
+      direction: rtl;
 
-/* أول سطر */
+      page-break-inside: auto;
+    }
 
-.right p:first-child,
-.left p:first-child {
-  border-top: 1.4px solid #222;
-}
+    thead {
+      display: table-header-group;
+    }
 
+    th,
+    td {
+      border: 2px solid #111;
 
-/* اسم الحقل */
+      padding: 9px 7px;
 
-.right p strong,
-.left p strong {
-  color: #000;
+      text-align: center;
 
-  font-weight: 700;
-}
+      vertical-align: middle;
 
+      line-height: 1.4;
+    }
 
-/* =========================================================
-   LTR DATA
-========================================================= */
+    th {
+      background: #d6d6d6;
 
-.ltr {
-  direction: ltr;
+      color: #000;
 
-  unicode-bidi: embed;
+      font-size: 13.5px;
 
-  display: inline-block;
+      font-weight: 800;
+    }
 
-  text-align: left;
-}
+    td {
+      background: #fff;
 
+      color: #000;
 
-/* =========================================================
-   TABLE
-========================================================= */
+      font-size: 12.5px;
+    }
 
-table {
-  width: 100%;
+    tr {
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
 
-  border-collapse: collapse;
+    .product-name {
+      font-weight: 700;
+    }
 
-  border-spacing: 0;
+    .product-description {
+      color: #111;
+      font-size: 12px;
+    }
 
-  direction: rtl;
+    .quantity,
+    .price,
+    .item-total {
+      direction: ltr;
 
-  margin-top: 25px;
+      unicode-bidi: embed;
 
-  margin-bottom: 20px;
+      white-space: nowrap;
 
-  table-layout: auto;
+      text-align: center;
+    }
 
-  page-break-inside: auto;
-}
 
+    /* =========================
+       TOTAL
+    ========================= */
 
-/* تكرار عنوان الجدول في حالة وجود أكثر من صفحة */
+    .total {
+      width: 300px;
 
-thead {
-  display: table-header-group;
-}
+      margin-top: 22px;
 
-tfoot {
-  display: table-footer-group;
-}
+      margin-right: auto;
 
+      padding: 10px 15px;
 
-/* =========================================================
-   TABLE CELLS
-========================================================= */
+      border: 2px solid #111;
 
-th,
-td {
-  border: 1.8px solid #111;
+      background: #eef7ed;
 
-  padding: 9px 8px;
+      display: flex;
 
-  text-align: center;
+      flex-direction: column;
 
-  vertical-align: middle;
+      gap: 3px;
 
-  line-height: 1.4;
-}
+      text-align: right;
 
+      font-size: 15px;
 
-/* رأس الجدول */
+      color: #000;
 
-th {
-  background: #d9d9d9;
+      font-weight: 700;
 
-  color: #000;
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
 
-  font-size: 13.5px;
+    .total p {
+      margin: 0;
+      padding: 2px 0;
+    }
 
-  font-weight: 800;
+    .total p:last-child {
+      font-size: 17px;
+      font-weight: 800;
+    }
 
-  white-space: nowrap;
 
-  border-color: #111;
-}
+    /* =========================
+       FOOTER / STAMP
+    ========================= */
 
+    .footer {
+      margin-top: 20px;
 
-/* بيانات الجدول */
+      padding-top: 10px;
 
-td {
-  background: #fff;
+      border-top: 1.5px solid #111;
 
-  color: #000;
+      display: flex;
 
-  font-size: 12.5px;
+      justify-content: flex-end;
 
-  border-color: #111;
-}
+      align-items: center;
 
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
 
-/* عدم تقسيم المنتج بين صفحتين */
+    .stamp {
+      width: 40px !important;
+      height: 40px !important;
 
-tr {
-  page-break-inside: avoid;
+      max-width: 40px !important;
+      max-height: 40px !important;
 
-  break-inside: avoid;
-}
+      min-width: 40px !important;
+      min-height: 40px !important;
 
+      object-fit: contain !important;
 
-/* =========================================================
-   PRODUCT TABLE
-========================================================= */
+      display: block;
 
-.product-name {
-  font-weight: 700;
+      margin: 0;
+      padding: 0;
+    }
 
-  color: #000;
-}
 
-.product-description {
-  font-size: 12px;
+    /* =========================
+       PRINT
+    ========================= */
 
-  color: #222;
-}
+    @media print {
 
-.quantity,
-.price,
-.item-total {
-  direction: ltr;
+      html,
+      body {
+        width: 210mm;
+        min-height: 297mm;
 
-  unicode-bidi: embed;
+        margin: 0;
+        padding: 0;
 
-  white-space: nowrap;
+        background: #fff;
+      }
 
-  text-align: center;
-}
+      header,
+      .box,
+      .total,
+      .footer {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
 
+      table {
+        page-break-inside: auto;
+      }
 
-/* =========================================================
-   TOTAL
-   الإجمالي يظل في خانة واضحة
-========================================================= */
+      thead {
+        display: table-header-group;
+      }
 
-.total {
-  width: 290px;
+      tr {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+    }
 
-  min-height: 55px;
-
-  margin-top: 25px;
-
-  margin-right: auto;
-
-  padding: 12px 16px;
-
-  border: 1.4px solid #222;
-
-  border-radius: 3px;
-
-  background: #eef7ed;
-
-  display: flex;
-
-  justify-content: space-between;
-
-  align-items: center;
-
-  gap: 15px;
-
-  text-align: center;
-
-  font-size: 16px;
-
-  font-weight: 700;
-
-  page-break-inside: avoid;
-
-  break-inside: avoid;
-}
-
-
-/* قيمة الإجمالي */
-
-.total .ltr {
-  font-size: 17px;
-
-  font-weight: 700;
-
-  white-space: nowrap;
-}
-
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-.footer {
-  width: 100%;
-
-  margin-top: 20px;
-  padding-top: 10px;
-
-  border-top: 1.5px solid #111;
-
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-
-  direction: rtl;
-
-  page-break-inside: avoid;
-  break-inside: avoid;
-}
-
-/* =========================================================
-   QR CODE
-========================================================= */
-
-.qr {
-  width: 80px;
-
-  height: 80px;
-
-  object-fit: contain;
-
-  display: block;
-}
-
-
-/* =========================================================
-   STAMP
-========================================================= */
-
-.stamp {
-  width: 45px !important;
-  height: 45px !important;
-
-  max-width: 45px !important;
-  max-height: 45px !important;
-
-  object-fit: contain;
-  display: block;
-}
-
-
-/* =========================================================
-   GENERAL IMAGES
-========================================================= */
-
-img {
-  max-width: 100%;
-
-  height: auto;
-}
-
-
-/* =========================================================
-   PRINT
-========================================================= */
-
-@media print {
-
-  html,
-  body {
-    width: 210mm;
-
-    min-height: 297mm;
-
-    margin: 0;
-
-    padding: 0;
-
-    background: #fff;
-
-    color: #111;
-  }
-
-  body {
-    padding: 0;
-
-    font-family: Arial, Tahoma, sans-serif;
-
-    -webkit-print-color-adjust: exact;
-
-    print-color-adjust: exact;
-  }
-
-
-  /* الروابط بدون شكل لينك */
-
-  a {
-    color: inherit;
-
-    text-decoration: none;
-  }
-
-
-  /* البيانات لا تتقسم */
-
-  .box,
-  .right,
-  .left,
-  .total,
-  .footer {
-    page-break-inside: avoid;
-
-    break-inside: avoid;
-  }
-
-
-  /* العناوين لا تنفصل عن المحتوى */
-
-  h1,
-  h2,
-  h3,
-  h4 {
-    page-break-after: avoid;
-
-    break-after: avoid;
-  }
-
-
-  /* الجدول يسمح له بالاستمرار في صفحة جديدة */
-
-  table {
-    page-break-inside: auto;
-  }
-
-
-  /* عنوان الجدول يظهر مرة أخرى في الصفحة التالية */
-
-  thead {
-    display: table-header-group;
-  }
-
-
-  /* صف المنتج لا يتقطع */
-
-  tr {
-    page-break-inside: avoid;
-
-    break-inside: avoid;
-  }
-
-
-  /* الإجمالي والختم لا يتقسموا */
-
-  .total,
-  .footer {
-    page-break-inside: avoid;
-
-    break-inside: avoid;
-  }
-
-
-  /* تحسين توزيع النص */
-
-  p {
-    orphans: 3;
-
-    widows: 3;
-  }
-}
-
-
-/* =========================================================
-   SCREEN - MOBILE
-========================================================= */
-
-@media screen and (max-width: 700px) {
-
-  body {
-    padding: 15px;
-  }
-
-  .header {
-    flex-direction: column;
-
-    gap: 15px;
-  }
-
-  .box {
-    grid-template-columns: 1fr;
-
-    gap: 15px;
-  }
-
-  .total {
-    width: 100%;
-  }
-
-  .footer {
-    flex-direction: row;
-
-    gap: 15px;
-  }
-}
-
-
-/* =========================================================
-   SMALL PRINT
-========================================================= */
-
-@media print and (max-width: 700px) {
-
-  body {
-    padding: 0;
-  }
-}
-
-</style>
+  </style>
 </head>
+
 
 <body>
 
-<div class="invoice">
+  <div class="invoice">
 
-  <header>
-   <img src="{{LOGO}}">
 
-    <div class="contact">
-      <div>
-       <img src="{{PHONE_ICON}}">
-        <span>01006675938</span>
+    <!-- =========================
+         HEADER
+    ========================= -->
+
+    <header>
+
+      <img src="{{LOGO}}" alt="Rovix Home">
+
+      <div class="contact">
+
+        <div>
+          <img src="{{PHONE_ICON}}" alt="">
+          <span>01006675938</span>
+        </div>
+
+        <div>
+          <img src="{{WHATSAPP_ICON}}" alt="">
+          <span>01275444579</span>
+        </div>
+
       </div>
-      <div>
-        <img src="{{WHATSAPP_ICON}}">
-        <span>01275444579</span>
+
+    </header>
+
+
+    <!-- =========================
+         CUSTOMER / INVOICE INFO
+    ========================= -->
+
+    <section class="box">
+
+
+      <!-- بيانات العميل - يمين -->
+
+      <div class="right">
+
+        <p>
+          <strong>اسم العميل:</strong>
+          <span>{{NAME}}</span>
+        </p>
+
+        <p>
+          <strong>الهاتف:</strong>
+          <span class="ltr">{{PHONE}}</span>
+        </p>
+
+        <p>
+          <strong>العنوان:</strong>
+          <span>{{ADDRESS}}</span>
+        </p>
+
       </div>
+
+
+      <!-- بيانات الفاتورة - شمال -->
+
+      <div class="left">
+
+        <p>
+          <strong>رقم الفاتورة:</strong>
+          <span class="ltr">{{INVOICE_NUMBER}}</span>
+        </p>
+
+        <p>
+          <strong>تاريخ الطلب:</strong>
+          <span class="ltr">{{DATE}}</span>
+        </p>
+
+        <p>
+          <strong>العملة:</strong>
+          <span class="ltr">EGP</span>
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- =========================
+         PRODUCTS
+    ========================= -->
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>المنتج</th>
+          <th>الوصف</th>
+          <th>الكمية</th>
+          <th>السعر</th>
+          <th>الإجمالي</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        {{ITEMS}}
+
+      </tbody>
+
+    </table>
+
+
+    <!-- =========================
+         TOTAL
+    ========================= -->
+
+    <div class="total">
+
+      <p>
+        الشحن:
+        <span class="ltr">{{SHIPPING}} EGP</span>
+      </p>
+
+      <p>
+        الإجمالي النهائي:
+        <span class="ltr">{{TOTAL}} EGP</span>
+      </p>
+
     </div>
-  </header>
 
-  <section class="box">
 
-   <div class="right">
+    <!-- =========================
+         STAMP
+    ========================= -->
 
-  <div class="info-item">
-    <span class="info-label">اسم العميل</span>
-    <span class="info-value">{{NAME}}</span>
+    <footer class="footer">
+
+      <img
+        class="stamp"
+        src="{{STAMP}}"
+        alt="Stamp"
+      >
+
+    </footer>
+
+
   </div>
 
-  <div class="info-item">
-    <span class="info-label">الهاتف</span>
-    <span class="info-value ltr">{{PHONE}}</span>
-  </div>
 
-  <div class="info-item">
-    <span class="info-label">العنوان</span>
-    <span class="info-value">{{ADDRESS}}</span>
-  </div>
+  <script>
 
-<div class="right">
+    window.onload = () => {
 
-  <p>
-    <strong>اسم العميل:</strong>
-    <span>{{NAME}}</span>
-  </p>
+      setTimeout(() => {
 
-  <p>
-    <strong>الهاتف:</strong>
-    <span class="ltr">{{PHONE}}</span>
-  </p>
+        window.print();
 
-  <p>
-    <strong>العنوان:</strong>
-    <span>{{ADDRESS}}</span>
-  </p>
+      }, 300);
 
-</div>
+    };
 
+  </script>
 
-<div class="left">
-
-  <p>
-    <strong>رقم الفاتورة:</strong>
-    <span class="ltr">{{INVOICE_NUMBER}}</span>
-  </p>
-
-  <p>
-    <strong>تاريخ الطلب:</strong>
-    <span class="ltr">{{DATE}}</span>
-  </p>
-
-  <p>
-    <strong>العملة:</strong>
-    <span class="ltr">EGP</span>
-  </p>
-
-</div>
-  </section>
-
-  <table>
-    <thead>
-      <tr>
-        <th>المنتج</th>
-        <th>الوصف</th>
-        <th>الكمية</th>
-        <th>السعر</th>
-        <th>الإجمالي</th>
-      </tr>
-    </thead>
-
-  <tbody>
-  {{ITEMS}}
-</tbody>
-
-  </table>
-
-  <div class="total">
-  <p>الشحن : {{SHIPPING}} EGP</p>
-  <p><strong>الإجمالي النهائي : {{TOTAL}} EGP</strong></p>
-</div>
-
- <footer class="footer">
-  <img class="stamp" src="{{STAMP}}">
-</footer>
-</div>
-<script>
-  window.onload = () => {
-    setTimeout(() => {
-      window.print();
-    }, 300);
-  };
-</script>
 </body>
+
 </html>
