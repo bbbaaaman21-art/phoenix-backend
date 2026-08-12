@@ -4,18 +4,13 @@
 <head>
   <meta charset="UTF-8">
 
-  <title>فاتورة - Rovix Home</title>
+  <title>Rovix Home - Invoice</title>
 
   <style>
 
-    /* =========================
-       PAGE
-    ========================= */
-
-    @page {
-      size: A4;
-      margin: 12mm;
-    }
+    /* =====================================================
+       RESET
+    ===================================================== */
 
     * {
       box-sizing: border-box;
@@ -25,180 +20,338 @@
     body {
       margin: 0;
       padding: 0;
-
-      direction: rtl;
-
+      background: #ffffff;
+      color: #111111;
       font-family: Arial, Tahoma, sans-serif;
-
-      color: #111;
-      background: #fff;
-
+      direction: rtl;
       -webkit-print-color-adjust: exact;
       print-color-adjust: exact;
     }
 
     body {
-      font-size: 14px;
+      font-size: 13px;
       line-height: 1.5;
     }
 
-
-    /* =========================
-       HEADER
-    ========================= */
-
-    header {
-      display: flex;
-
-      justify-content: space-between;
-      align-items: flex-start;
-
-      margin-bottom: 25px;
+    @page {
+      size: A4;
+      margin: 9mm;
     }
 
-    header > img {
-      width: 150px;
-      height: auto;
 
-      object-fit: contain;
+    /* =====================================================
+       PAGE
+    ===================================================== */
+
+    .invoice {
+      width: 100%;
+      min-height: 277mm;
+      position: relative;
     }
+
+
+    /* =====================================================
+       TOP BRAND AREA
+    ===================================================== */
+
+    .top {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr 1fr;
+      align-items: center;
+
+      padding-bottom: 17px;
+
+      border-bottom: 3px solid #111;
+    }
+
+
+    /* Contact */
 
     .contact {
-      direction: ltr;
-
       display: flex;
       flex-direction: column;
-
       gap: 7px;
 
+      direction: ltr;
       text-align: left;
     }
 
-    .contact div {
+    .contact-row {
       display: flex;
-
       align-items: center;
-
       gap: 7px;
 
-      font-size: 14px;
-      font-weight: 600;
-
+      font-size: 12px;
+      font-weight: 700;
       white-space: nowrap;
     }
 
-    .contact img {
-      width: 22px;
-      height: 22px;
-
+    .contact-row img {
+      width: 20px;
+      height: 20px;
       object-fit: contain;
     }
 
 
-    /* =========================
-       CUSTOMER / INVOICE INFO
-    ========================= */
+    /* Logo */
 
-    .box {
+    .brand {
+      text-align: center;
+    }
+
+    .brand img {
+      width: 145px;
+      max-height: 65px;
+      object-fit: contain;
+    }
+
+
+    /* Invoice type */
+
+    .invoice-title {
+      text-align: left;
+      direction: rtl;
+    }
+
+    .invoice-title .small {
+      display: block;
+
+      color: #777;
+
+      font-size: 10px;
+      font-weight: 700;
+
+      letter-spacing: .5px;
+    }
+
+    .invoice-title h1 {
+      margin: 2px 0 0;
+
+      font-size: 27px;
+      line-height: 1;
+
+      font-weight: 900;
+
+      letter-spacing: -1px;
+    }
+
+    .invoice-title .english {
+      display: block;
+
+      margin-top: 5px;
+
+      font-size: 9px;
+      color: #777;
+
+      direction: ltr;
+    }
+
+
+    /* =====================================================
+       ORDER BAR
+    ===================================================== */
+
+    .order-bar {
       display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
 
-      grid-template-columns: 1fr 1fr;
+      margin-top: 18px;
 
-      gap: 35px;
-
-      margin-bottom: 28px;
+      border: 1.5px solid #111;
+      background: #f7f7f7;
     }
 
-    .right,
-    .left {
-      width: 100%;
+    .order-cell {
+      min-height: 58px;
+
+      padding: 9px 13px;
+
+      border-left: 1px solid #bbb;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
-    .right p,
-    .left p {
-      margin: 0;
-
-      padding: 8px 3px;
-
-      min-height: 38px;
-
-      border-bottom: 1.5px solid #111;
-
-      font-size: 14px;
-
-      color: #111;
+    .order-cell:last-child {
+      border-left: 0;
     }
 
-    .right p:first-child,
-    .left p:first-child {
-      border-top: 1.5px solid #111;
+    .order-label {
+      color: #777;
+
+      font-size: 9px;
+      font-weight: 700;
+
+      margin-bottom: 3px;
     }
 
-    .right strong,
-    .left strong {
+    .order-value {
       color: #000;
 
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .order-value.ltr {
+      direction: ltr;
+      unicode-bidi: embed;
+      text-align: right;
+    }
+
+
+    /* =====================================================
+       CUSTOMER SECTION
+    ===================================================== */
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      margin-top: 22px;
+      margin-bottom: 10px;
+    }
+
+    .section-title .number {
+      width: 24px;
+      height: 24px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background: #111;
+      color: #fff;
+
+      font-size: 11px;
+      font-weight: 900;
+    }
+
+    .section-title .text {
+      font-size: 15px;
+      font-weight: 900;
+    }
+
+    .section-title .line {
+      flex: 1;
+      height: 1px;
+      background: #111;
+    }
+
+
+    .customer-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+
+      border-top: 1.5px solid #111;
+      border-bottom: 1.5px solid #111;
+    }
+
+    .customer-column {
+      padding: 2px 14px;
+    }
+
+    .customer-column:first-child {
+      border-left: 1px solid #bbb;
+    }
+
+    .data-row {
+      min-height: 39px;
+
+      display: flex;
+      align-items: center;
+
+      border-bottom: 1px solid #d2d2d2;
+    }
+
+    .data-row:last-child {
+      border-bottom: 0;
+    }
+
+    .data-label {
+      min-width: 85px;
+
+      color: #666;
+
+      font-size: 10px;
       font-weight: 700;
+    }
+
+    .data-value {
+      color: #111;
+
+      font-size: 13px;
+      font-weight: 700;
+
+      word-break: break-word;
     }
 
     .ltr {
       direction: ltr;
-
       unicode-bidi: embed;
-
       display: inline-block;
     }
 
 
-    /* =========================
-       PRODUCTS TABLE
-    ========================= */
+    /* =====================================================
+       PRODUCTS
+    ===================================================== */
+
+    .products-title {
+      margin-top: 23px;
+    }
 
     table {
       width: 100%;
 
       border-collapse: collapse;
+      border-spacing: 0;
 
       margin-top: 10px;
 
-      direction: rtl;
+      table-layout: fixed;
 
-      page-break-inside: auto;
+      direction: rtl;
     }
 
     thead {
       display: table-header-group;
     }
 
-    th,
-    td {
-      border: 2px solid #111;
+    th {
+      padding: 10px 7px;
 
-      padding: 9px 7px;
+      background: #111;
+      color: #fff;
+
+      border: 1px solid #111;
+
+      font-size: 11px;
+      font-weight: 800;
 
       text-align: center;
 
-      vertical-align: middle;
-
-      line-height: 1.4;
-    }
-
-    th {
-      background: #d6d6d6;
-
-      color: #000;
-
-      font-size: 13.5px;
-
-      font-weight: 800;
+      white-space: nowrap;
     }
 
     td {
+      padding: 10px 7px;
+
       background: #fff;
 
-      color: #000;
+      color: #111;
 
-      font-size: 12.5px;
+      border: 1.3px solid #222;
+
+      font-size: 11.5px;
+
+      text-align: center;
+      vertical-align: middle;
+    }
+
+    tbody tr:nth-child(even) td {
+      background: #fafafa;
     }
 
     tr {
@@ -207,143 +360,207 @@
     }
 
     .product-name {
-      font-weight: 700;
+      font-weight: 900;
     }
 
     .product-description {
-      color: #111;
-      font-size: 12px;
+      color: #333;
+      font-size: 10.5px;
+      line-height: 1.6;
     }
 
     .quantity,
     .price,
     .item-total {
       direction: ltr;
-
       unicode-bidi: embed;
-
       white-space: nowrap;
+    }
 
-      text-align: center;
+    .item-total {
+      font-weight: 900;
     }
 
 
-  /* =========================
-   TOTAL + STAMP
-========================= */
+    /* =====================================================
+       SUMMARY
+    ===================================================== */
 
-.total-area {
-  width: 100%;
-
-  margin-top: 22px;
-
-  display: flex;
-
-  justify-content: flex-end;
-
-  align-items: flex-start;
-
-  gap: 12px;
-
-  direction: rtl;
-
-  page-break-inside: avoid;
-  break-inside: avoid;
-}
-
-
-/* =========================
-   TOTAL
-========================= */
-
-.total {
-  width: 300px;
-
-  padding: 10px 15px;
-
-  border: 2px solid #111;
-
-  background: #eef7ed;
-
-  display: flex;
-
-  flex-direction: column;
-
-  gap: 3px;
-
-  text-align: right;
-
-  font-size: 15px;
-
-  color: #000;
-
-  font-weight: 700;
-
-  page-break-inside: avoid;
-  break-inside: avoid;
-}
-
-.total p {
-  margin: 0;
-
-  padding: 2px 0;
-}
-
-.total p:last-child {
-  font-size: 17px;
-
-  font-weight: 800;
-}
-
-
-/* =========================
-   STAMP
-========================= */
-
-.stamp {
-  width: 65px !important;
-
-  height: 65px !important;
-
-  max-width: 65px !important;
-
-  max-height: 65px !important;
-
-  object-fit: contain !important;
-
-  display: block;
-
-  margin: 0;
-
-  padding: 0;
-}
-
-    /* =========================
-       FOOTER / STAMP
-    ========================= */
-
-    .footer {
-      margin-top: 20px;
-
-      padding-top: 10px;
-
-      border-top: 1.5px solid #111;
-
+    .summary-area {
       display: flex;
 
-      justify-content: flex-end;
+      justify-content: space-between;
+      align-items: flex-end;
 
-      align-items: center;
+      margin-top: 18px;
+
+      gap: 20px;
 
       page-break-inside: avoid;
       break-inside: avoid;
     }
 
-   
 
-    /* =========================
+    /* Thank you */
+
+    .thank-you {
+      flex: 1;
+
+      padding-bottom: 4px;
+    }
+
+    .thank-you strong {
+      display: block;
+
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .thank-you span {
+      display: block;
+
+      margin-top: 4px;
+
+      color: #777;
+
+      font-size: 10px;
+    }
+
+
+    /* Total box */
+
+    .summary {
+      width: 285px;
+
+      border: 2px solid #111;
+
+      background: #fff;
+    }
+
+    .summary-row {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: center;
+
+      min-height: 35px;
+
+      padding: 7px 12px;
+
+      border-bottom: 1px solid #ccc;
+
+      font-size: 11px;
+      font-weight: 700;
+    }
+
+    .summary-row:last-child {
+      border-bottom: 0;
+    }
+
+    .summary-row .amount {
+      direction: ltr;
+      unicode-bidi: embed;
+
+      font-weight: 800;
+      white-space: nowrap;
+    }
+
+    .summary-total {
+      background: #111;
+      color: #fff;
+
+      min-height: 48px;
+
+      font-size: 14px;
+      font-weight: 900;
+    }
+
+    .summary-total .amount {
+      font-size: 17px;
+      font-weight: 900;
+    }
+
+
+    /* =====================================================
+       STAMP + QR
+    ===================================================== */
+
+    .bottom {
+      display: flex;
+
+      justify-content: space-between;
+      align-items: flex-end;
+
+      margin-top: 18px;
+
+      padding-top: 13px;
+
+      border-top: 1px solid #222;
+
+      page-break-inside: avoid;
+      break-inside: avoid;
+    }
+
+    .qr-area {
+      text-align: right;
+    }
+
+    .qr-area img {
+      width: 65px;
+      height: 65px;
+
+      object-fit: contain;
+    }
+
+    .stamp-area {
+      display: flex;
+      align-items: flex-end;
+
+      gap: 10px;
+    }
+
+    .stamp-text {
+      color: #777;
+
+      font-size: 9px;
+      font-weight: 700;
+    }
+
+    .stamp {
+      width: 65px !important;
+      height: 65px !important;
+
+      max-width: 65px !important;
+      max-height: 65px !important;
+
+      object-fit: contain !important;
+
+      display: block;
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    .footer-note {
+      margin-top: 12px;
+
+      padding-top: 9px;
+
+      border-top: 1px solid #ccc;
+
+      text-align: center;
+
+      color: #777;
+
+      font-size: 9px;
+    }
+
+
+    /* =====================================================
        PRINT
-    ========================= */
+    ===================================================== */
 
     @media print {
 
@@ -358,12 +575,8 @@
         background: #fff;
       }
 
-      header,
-      .box,
-      .total,
-      .footer {
-        page-break-inside: avoid;
-        break-inside: avoid;
+      .invoice {
+        min-height: 0;
       }
 
       table {
@@ -378,6 +591,13 @@
         page-break-inside: avoid;
         break-inside: avoid;
       }
+
+      .summary-area,
+      .bottom,
+      .customer-grid {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
     }
 
   </style>
@@ -386,104 +606,287 @@
 
 <body>
 
-  <div class="invoice">
+  <main class="invoice">
 
 
-    <!-- =========================
+    <!-- =================================================
          HEADER
-    ========================= -->
+    ================================================= -->
 
-    <header>
+    <section class="top">
 
-      <img src="{{LOGO}}" alt="Rovix Home">
+
+      <!-- Contact -->
 
       <div class="contact">
 
-        <div>
+        <div class="contact-row">
+
           <img src="{{PHONE_ICON}}" alt="">
+
           <span>01006675938</span>
+
         </div>
 
-        <div>
+
+        <div class="contact-row">
+
           <img src="{{WHATSAPP_ICON}}" alt="">
+
           <span>01275444579</span>
+
         </div>
 
       </div>
 
-    </header>
 
+      <!-- Logo -->
 
-    <!-- =========================
-         CUSTOMER / INVOICE INFO
-    ========================= -->
+      <div class="brand">
 
-    <section class="box">
-
-
-      <!-- بيانات العميل - يمين -->
-
-      <div class="right">
-
-        <p>
-          <strong>اسم العميل:</strong>
-          <span>{{NAME}}</span>
-        </p>
-
-        <p>
-          <strong>الهاتف:</strong>
-          <span class="ltr">{{PHONE}}</span>
-        </p>
-
-        <p>
-          <strong>العنوان:</strong>
-          <span>{{ADDRESS}}</span>
-        </p>
+        <img
+          src="{{LOGO}}"
+          alt="Rovix Home"
+        >
 
       </div>
 
 
-      <!-- بيانات الفاتورة - شمال -->
+      <!-- Invoice title -->
 
-      <div class="left">
+      <div class="invoice-title">
 
-        <p>
-          <strong>رقم الفاتورة:</strong>
-          <span class="ltr">{{INVOICE_NUMBER}}</span>
-        </p>
+        <span class="small">
+          مستند مالي
+        </span>
 
-        <p>
-          <strong>تاريخ الطلب:</strong>
-          <span class="ltr">{{DATE}}</span>
-        </p>
+        <h1>
+          فاتورة
+        </h1>
 
-        <p>
-          <strong>العملة:</strong>
-          <span class="ltr">EGP</span>
-        </p>
+        <span class="english">
+          SALES INVOICE
+        </span>
 
       </div>
 
     </section>
 
 
-    <!-- =========================
+
+    <!-- =================================================
+         ORDER INFORMATION
+    ================================================= -->
+
+    <section class="order-bar">
+
+
+      <div class="order-cell">
+
+        <span class="order-label">
+          رقم الطلب / الفاتورة
+        </span>
+
+        <span class="order-value ltr">
+          {{INVOICE_NUMBER}}
+        </span>
+
+      </div>
+
+
+      <div class="order-cell">
+
+        <span class="order-label">
+          تاريخ الطلب
+        </span>
+
+        <span class="order-value ltr">
+          {{DATE}}
+        </span>
+
+      </div>
+
+
+      <div class="order-cell">
+
+        <span class="order-label">
+          حالة الدفع
+        </span>
+
+        <span class="order-value">
+          تم استلام الطلب
+        </span>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         CUSTOMER
+    ================================================= -->
+
+    <div class="section-title">
+
+      <div class="number">
+        01
+      </div>
+
+      <div class="text">
+        بيانات العميل
+      </div>
+
+      <div class="line"></div>
+
+    </div>
+
+
+    <section class="customer-grid">
+
+
+      <!-- Customer -->
+
+      <div class="customer-column">
+
+        <div class="data-row">
+
+          <span class="data-label">
+            اسم العميل
+          </span>
+
+          <span class="data-value">
+            {{NAME}}
+          </span>
+
+        </div>
+
+
+        <div class="data-row">
+
+          <span class="data-label">
+            الهاتف
+          </span>
+
+          <span class="data-value ltr">
+            {{PHONE}}
+          </span>
+
+        </div>
+
+
+        <div class="data-row">
+
+          <span class="data-label">
+            العنوان
+          </span>
+
+          <span class="data-value">
+            {{ADDRESS}}
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- Invoice -->
+
+      <div class="customer-column">
+
+        <div class="data-row">
+
+          <span class="data-label">
+            رقم الفاتورة
+          </span>
+
+          <span class="data-value ltr">
+            {{INVOICE_NUMBER}}
+          </span>
+
+        </div>
+
+
+        <div class="data-row">
+
+          <span class="data-label">
+            العملة
+          </span>
+
+          <span class="data-value ltr">
+            EGP
+          </span>
+
+        </div>
+
+
+        <div class="data-row">
+
+          <span class="data-label">
+            المتجر
+          </span>
+
+          <span class="data-value">
+            Rovix Home
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
          PRODUCTS
-    ========================= -->
+    ================================================= -->
+
+    <div class="section-title products-title">
+
+      <div class="number">
+        02
+      </div>
+
+      <div class="text">
+        تفاصيل الطلب
+      </div>
+
+      <div class="line"></div>
+
+    </div>
+
 
     <table>
 
       <thead>
 
         <tr>
-          <th>المنتج</th>
-          <th>الوصف</th>
-          <th>الكمية</th>
-          <th>السعر</th>
-          <th>الإجمالي</th>
+
+          <th style="width: 25%;">
+            المنتج
+          </th>
+
+          <th style="width: 31%;">
+            الوصف والتفاصيل
+          </th>
+
+          <th style="width: 10%;">
+            الكمية
+          </th>
+
+          <th style="width: 16%;">
+            السعر
+          </th>
+
+          <th style="width: 18%;">
+            الإجمالي
+          </th>
+
         </tr>
 
       </thead>
+
 
       <tbody>
 
@@ -494,52 +897,104 @@
     </table>
 
 
-    <!-- =========================
-     TOTAL + STAMP
-========================= -->
 
-<div class="total-area">
+    <!-- =================================================
+         SUMMARY
+    ================================================= -->
 
-  <div class="total">
-
-    <p>
-      الشحن:
-      <span class="ltr">{{SHIPPING}} EGP</span>
-    </p>
-
-    <p>
-      الإجمالي النهائي:
-      <span class="ltr">{{TOTAL}} EGP</span>
-    </p>
-
-  </div>
-
-  <img
-    class="stamp"
-    src="{{STAMP}}"
-    alt="Stamp"
-  >
-
-</div>
-    </footer>
+    <section class="summary-area">
 
 
-  </div>
+      <div class="thank-you">
+
+        <strong>
+          شكرًا لاختيارك Rovix Home
+        </strong>
+
+        <span>
+          نقدر ثقتك ونسعد بخدمتك دائمًا.
+        </span>
+
+      </div>
 
 
-  <script>
+      <div class="summary">
 
-    window.onload = () => {
+        <div class="summary-row">
 
-      setTimeout(() => {
+          <span>
+            قيمة الشحن
+          </span>
 
-        window.print();
+          <span class="amount">
+            {{SHIPPING}} EGP
+          </span>
 
-      }, 300);
+        </div>
 
-    };
 
-  </script>
+        <div class="summary-row summary-total">
+
+          <span>
+            الإجمالي النهائي
+          </span>
+
+          <span class="amount">
+            {{TOTAL}} EGP
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         QR + STAMP
+    ================================================= -->
+
+    <section class="bottom">
+
+
+      <div class="qr-area">
+
+        <!-- لو عندك QR في القالب الحالي ضعه هنا -->
+
+      </div>
+
+
+      <div class="stamp-area">
+
+        <span class="stamp-text">
+          اعتماد المتجر
+        </span>
+
+        <img
+          class="stamp"
+          src="{{STAMP}}"
+          alt="Rovix Home Stamp"
+        >
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =================================================
+         FOOTER
+    ================================================= -->
+
+    <div class="footer-note">
+
+      Rovix Home — Furniture & Home Solutions
+
+    </div>
+
+
+  </main>
 
 </body>
 
